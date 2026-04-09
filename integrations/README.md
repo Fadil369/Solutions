@@ -50,7 +50,7 @@ Doctor network and professional network platform.
 ## 🚀 Integration Points
 
 ### ED-Flow with Workers
-Deploy `ed-flow-worker.ts` to Cloudflare Workers for real-time ED flow processing:
+Deploy the dedicated `workers/ed-flow` workspace to Cloudflare Workers for real-time ED flow processing:
 
 ```bash
 cd ../workers

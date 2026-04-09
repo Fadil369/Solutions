@@ -103,6 +103,8 @@ if (edMetricsPreviewId) patchToml(edFlowToml, 'REPLACE_WITH_ED_METRICS_KV_PREVIE
 console.log('\n✅ Cloudflare resources created and wrangler.toml files updated!');
 console.log('\nNext steps:');
 console.log('  1. Set secrets: npx wrangler secret put JWT_SECRET (in api-gateway/)');
-console.log('  2. Run migrations: npm run migrate:local');
-console.log('  3. Start local dev: npm run dev:all');
-console.log('  4. Deploy: npm run deploy:all\n');
+console.log('     Set secrets: npx wrangler secret put JWT_SECRET (in ed-flow/)');
+console.log('  2. Replace ED-Flow placeholders in workers/ed-flow/wrangler.toml or set deploy vars in CI');
+console.log('  3. Run migrations: npm run migrate:local');
+console.log('  4. Start local dev: npm run dev:all');
+console.log('  5. Deploy: npm run deploy:all\n');

@@ -154,6 +154,26 @@ jobs:
           cache-dependency-path: workers/package-lock.json
       - run: npm ci
         working-directory: workers
+      - name: Configure ED-Flow runtime vars
+        env:
+          ED_FLOW_BACKEND_URL: ${{ vars.ED_FLOW_BACKEND_URL }}
+          ED_FLOW_N8N_WEBHOOK_URL: ${{ vars.ED_FLOW_N8N_WEBHOOK_URL }}
+          ED_FLOW_ALLOWED_ORIGINS: ${{ vars.ED_FLOW_ALLOWED_ORIGINS }}
+        run: |
+          test -n "$ED_FLOW_BACKEND_URL"
+          test -n "$ED_FLOW_N8N_WEBHOOK_URL"
+          test -n "$ED_FLOW_ALLOWED_ORIGINS"
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          path = Path("wrangler.toml")
+          content = path.read_text()
+          content = content.replace("REPLACE_WITH_ED_FLOW_BACKEND_URL", os.environ["ED_FLOW_BACKEND_URL"])
+          content = content.replace("REPLACE_WITH_ED_FLOW_N8N_WEBHOOK_URL", os.environ["ED_FLOW_N8N_WEBHOOK_URL"])
+          content = content.replace("REPLACE_WITH_ALLOWED_ORIGINS", os.environ["ED_FLOW_ALLOWED_ORIGINS"])
+          path.write_text(content)
+          PY
       - name: Deploy ED-Flow Worker
         uses: cloudflare/wrangler-action@v3
         with:

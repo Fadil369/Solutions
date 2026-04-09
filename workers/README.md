@@ -1,6 +1,6 @@
 # HealthBridge Cloudflare Workers
 
-Four Cloudflare Workers providing edge API services for the HealthBridge KSA platform.
+Five Cloudflare Workers providing edge API services for the HealthBridge KSA platform.
 
 ## Workers Overview
 
@@ -44,9 +44,10 @@ npm run dev:all
 ### Manual
 ```bash
 cd workers
-npm run deploy:all          # deploy all 4 workers
+npm run deploy:all          # deploy all 5 workers
 npm run deploy:gateway      # deploy only api-gateway
 npm run deploy:compliance   # deploy only compliance-db
+npm run deploy:ed-flow      # deploy only ed-flow
 npm run migrate:remote      # apply D1 migrations to production
 ```
 
@@ -56,6 +57,11 @@ Push to `main` → `.github/workflows/deploy-workers.yml` runs all deployments a
 Required GitHub secrets:
 - `CF_API_TOKEN` — Cloudflare API token (Workers+KV+D1+R2 edit)
 - `CF_ACCOUNT_ID` — Cloudflare account ID
+
+Required GitHub repository variables for `ed-flow` deployment:
+- `ED_FLOW_BACKEND_URL` — FastAPI backend base URL
+- `ED_FLOW_N8N_WEBHOOK_URL` — n8n ED workflow webhook URL
+- `ED_FLOW_ALLOWED_ORIGINS` — comma-separated trusted browser origins
 
 ## Cloudflare Resources
 
@@ -94,6 +100,9 @@ wrangler secret put JWT_SECRET
 # From workers/nphies-proxy/
 wrangler secret put NPHIES_CLIENT_ID
 wrangler secret put NPHIES_CLIENT_SECRET
+
+# From workers/ed-flow/
+wrangler secret put JWT_SECRET
 ```
 
 ## API Reference
