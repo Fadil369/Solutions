@@ -24,6 +24,8 @@ interface EDSession {
 
 const SESSION_TTL_SECONDS = 12 * 60 * 60;
 const METRICS_TTL_SECONDS = 60;
+const AUDIT_EVENT_TTL_SECONDS = 24 * 60 * 60;
+const PATIENT_HASH_LENGTH = 12;
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
@@ -335,15 +337,19 @@ function buildCorsHeaders(request: Request, env: Env): HeadersInit {
     .split(',')
     .map((entry) => entry.trim())
     .filter((entry) => entry && !entry.startsWith('REPLACE_WITH_'));
-  const allowOrigin = origin && allowedOrigins.includes(origin) ? origin : allowedOrigins[0] ?? origin ?? '*';
-
-  return {
-    'Access-Control-Allow-Origin': allowOrigin,
+  const allowOrigin = origin && allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
+  const headers: Record<string, string> = {
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-User-Role',
     'Access-Control-Max-Age': '86400',
     Vary: 'Origin',
   };
+
+  if (allowOrigin) {
+    headers['Access-Control-Allow-Origin'] = allowOrigin;
+  }
+
+  return headers;
 }
 
 function jsonResponse(
@@ -389,7 +395,7 @@ async function forwardBackendResponse(response: Response, request: Request, env:
 }
 
 async function recordEvent(env: Env, key: string, payload: unknown): Promise<void> {
-  await env.SESSION_KV.put(key, JSON.stringify(payload), { expirationTtl: 24 * 60 * 60 });
+  await env.SESSION_KV.put(key, JSON.stringify(payload), { expirationTtl: AUDIT_EVENT_TTL_SECONDS });
 }
 
 async function hashPatientId(patientId: string, secret: string): Promise<string> {
@@ -402,7 +408,7 @@ async function hashPatientId(patientId: string, secret: string): Promise<string>
   );
   const signature = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(patientId));
   return Array.from(new Uint8Array(signature))
-    .slice(0, 12)
+    .slice(0, PATIENT_HASH_LENGTH)
     .map((value) => value.toString(16).padStart(2, '0'))
     .join('');
 }
