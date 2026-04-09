@@ -14,14 +14,14 @@ NPHIES_CLIENT_ID=your_nphies_client_id
 NPHIES_CLIENT_SECRET=your_nphies_client_secret
 
 # ── ED-Flow Integration Variables ──────────────────────────────────
-ED_FLOW_BACKEND_URL=https://ed-flow-backend.example.com
-ED_FLOW_N8N_WEBHOOK_URL=https://n8n.example.com/webhook/ed-flow
+BACKEND_URL=https://ed-flow-backend.example.com
+N8N_WEBHOOK_URL=https://n8n.example.com/webhook/ed-flow
 
 # ── Notes ─────────────────────────────────────────────────────────
 # - JWT_SECRET: generate with: openssl rand -base64 32
 # - NPHIES_CLIENT_ID / SECRET: obtain from the NPHIES facility portal
-# - ED_FLOW_BACKEND_URL: FastAPI backend reachable from Cloudflare
-# - ED_FLOW_N8N_WEBHOOK_URL: n8n workflow endpoint for ED event fan-out
+# - BACKEND_URL: FastAPI backend reachable from Cloudflare
+# - N8N_WEBHOOK_URL: n8n workflow endpoint for ED event fan-out
 # - CF_API_TOKEN: create at dash.cloudflare.com/profile/api-tokens
 #   Required permissions: Workers Scripts:Edit, KV Storage:Edit,
 #   D1:Edit, R2 Storage:Edit, Account Settings:Read
