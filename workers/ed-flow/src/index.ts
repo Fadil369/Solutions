@@ -382,10 +382,12 @@ async function parseJson<T>(request: Request): Promise<T | null> {
 }
 
 async function readBackendBody(response: Response): Promise<unknown> {
+  const text = await response.text();
+
   try {
-    return await response.json();
+    return JSON.parse(text);
   } catch {
-    return { status: response.status, text: await response.text() };
+    return { status: response.status, text };
   }
 }
 
