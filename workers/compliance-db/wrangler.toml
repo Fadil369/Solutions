@@ -1,0 +1,16 @@
+name = "healthbridge-compliance-db"
+main = "src/index.ts"
+compatibility_date = "2024-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+# ─── D1 Database ──────────────────────────────────────────────────
+# Create with: wrangler d1 create COMPLIANCE_DB
+[[d1_databases]]
+binding = "COMPLIANCE_DB"
+database_name = "healthbridge-compliance"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+[vars]
+ENVIRONMENT = "production"
+PAGE_SIZE = "50"

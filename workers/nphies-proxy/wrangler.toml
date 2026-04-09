@@ -1,0 +1,17 @@
+name = "healthbridge-nphies-proxy"
+main = "src/index.ts"
+compatibility_date = "2024-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+# ─── KV Namespace ─────────────────────────────────────────────────
+# Replace after running: wrangler kv namespace create NPHIES_CACHE_KV
+[[kv_namespaces]]
+binding = "NPHIES_CACHE_KV"
+id = "REPLACE_WITH_NPHIES_CACHE_KV_ID"
+preview_id = "REPLACE_WITH_NPHIES_CACHE_KV_PREVIEW_ID"
+
+[vars]
+ENVIRONMENT = "production"
+NPHIES_BASE_URL = "https://hsb.nphies.sa/fhir"
+ELIGIBILITY_CACHE_TTL_SECONDS = "300"
+CLAIM_STATUS_CACHE_TTL_SECONDS = "60"

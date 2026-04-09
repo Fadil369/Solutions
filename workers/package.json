@@ -1,0 +1,35 @@
+{
+  "name": "healthbridge-workers",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HealthBridge Cloudflare Workers — API Gateway, NPHIES Proxy, Document Store, Compliance DB",
+  "workspaces": [
+    "api-gateway",
+    "nphies-proxy",
+    "document-store",
+    "compliance-db"
+  ],
+  "scripts": {
+    "dev:gateway":    "npm run dev -w api-gateway",
+    "dev:nphies":     "npm run dev -w nphies-proxy",
+    "dev:docs":       "npm run dev -w document-store",
+    "dev:compliance": "npm run dev -w compliance-db",
+    "dev:all":        "concurrently \"npm run dev:gateway\" \"npm run dev:nphies\" \"npm run dev:docs\" \"npm run dev:compliance\"",
+    "deploy:gateway":    "npm run deploy -w api-gateway",
+    "deploy:nphies":     "npm run deploy -w nphies-proxy",
+    "deploy:docs":       "npm run deploy -w document-store",
+    "deploy:compliance": "npm run deploy -w compliance-db",
+    "deploy:all": "npm run deploy:gateway && npm run deploy:nphies && npm run deploy:docs && npm run deploy:compliance",
+    "migrate:local":  "npm run migrate:local -w compliance-db",
+    "migrate:remote": "npm run migrate:remote -w compliance-db",
+    "lint": "npm run lint --workspaces --if-present",
+    "cf:setup": "node scripts/cf-setup.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "wrangler": "^3.40.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

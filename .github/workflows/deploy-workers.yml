@@ -1,0 +1,130 @@
+name: Deploy Cloudflare Workers
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'workers/**'
+      - '.github/workflows/deploy-workers.yml'
+  workflow_dispatch:
+    inputs:
+      worker:
+        description: 'Worker to deploy (api-gateway|nphies-proxy|document-store|compliance-db|all)'
+        required: false
+        default: 'all'
+
+jobs:
+  deploy-api-gateway:
+    name: Deploy API Gateway Worker
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    if: >
+      github.event_name == 'push' ||
+      github.event.inputs.worker == 'all' ||
+      github.event.inputs.worker == 'api-gateway'
+    defaults:
+      run:
+        working-directory: workers/api-gateway
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: workers/api-gateway/package-lock.json
+      - run: npm ci
+      - name: Deploy API Gateway
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          workingDirectory: workers/api-gateway
+
+  deploy-nphies-proxy:
+    name: Deploy NPHIES Proxy Worker
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    if: >
+      github.event_name == 'push' ||
+      github.event.inputs.worker == 'all' ||
+      github.event.inputs.worker == 'nphies-proxy'
+    defaults:
+      run:
+        working-directory: workers/nphies-proxy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: workers/nphies-proxy/package-lock.json
+      - run: npm ci
+      - name: Deploy NPHIES Proxy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          workingDirectory: workers/nphies-proxy
+
+  deploy-document-store:
+    name: Deploy Document Store Worker
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    if: >
+      github.event_name == 'push' ||
+      github.event.inputs.worker == 'all' ||
+      github.event.inputs.worker == 'document-store'
+    defaults:
+      run:
+        working-directory: workers/document-store
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: workers/document-store/package-lock.json
+      - run: npm ci
+      - name: Deploy Document Store
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          workingDirectory: workers/document-store
+
+  deploy-compliance-db:
+    name: Deploy Compliance DB Worker
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    if: >
+      github.event_name == 'push' ||
+      github.event.inputs.worker == 'all' ||
+      github.event.inputs.worker == 'compliance-db'
+    defaults:
+      run:
+        working-directory: workers/compliance-db
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: workers/compliance-db/package-lock.json
+      - run: npm ci
+      - name: Apply D1 migrations
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          workingDirectory: workers/compliance-db
+          command: d1 migrations apply COMPLIANCE_DB --remote
+      - name: Deploy Compliance DB Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          workingDirectory: workers/compliance-db
