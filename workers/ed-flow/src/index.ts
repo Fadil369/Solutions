@@ -235,7 +235,21 @@ async function handleSessions(request: Request, env: Env): Promise<Response> {
   const sessions = await Promise.all(
     sessionList.keys.map(async (key) => {
       const value = await env.SESSION_KV.get(key.name);
-      return value ? (JSON.parse(value) as EDSession) : null;
+      if (!value) {
+        return null;
+      }
+
+      try {
+        return JSON.parse(value) as EDSession;
+      } catch {
+        try {
+          await env.SESSION_KV.delete(key.name);
+        } catch {
+          // Ignore cleanup failures so one bad record does not fail the whole response.
+        }
+
+        return null;
+      }
     }),
   );
 
