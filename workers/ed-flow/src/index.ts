@@ -181,6 +181,11 @@ async function handleEncounterUpdate(
 }
 
 async function handleMetrics(request: Request, env: Env): Promise<Response> {
+  const role = await requireAuthorizedRole(request, env);
+  if (!role) {
+    return jsonError('Unauthorized', 403, request, env);
+  }
+
   const cached = await env.METRICS_KV.get('current:metrics');
   if (cached) {
     return new Response(cached, {
@@ -193,9 +198,9 @@ async function handleMetrics(request: Request, env: Env): Promise<Response> {
     });
   }
 
-  const role = request.headers.get('x-user-role') ?? 'guest';
   const backendResponse = await fetch(`${trimTrailingSlash(env.BACKEND_URL)}/ed/metrics`, {
     headers: {
+      Authorization: request.headers.get('authorization') ?? '',
       'X-User-Role': role,
     },
   });
@@ -329,8 +334,8 @@ function buildCorsHeaders(request: Request, env: Env): HeadersInit {
   const allowedOrigins = (env.ALLOWED_ORIGINS ?? '')
     .split(',')
     .map((entry) => entry.trim())
-    .filter(Boolean);
-  const allowOrigin = origin && allowedOrigins.includes(origin) ? origin : allowedOrigins[0] ?? '*';
+    .filter((entry) => entry && !entry.startsWith('REPLACE_WITH_'));
+  const allowOrigin = origin && allowedOrigins.includes(origin) ? origin : allowedOrigins[0] ?? origin ?? '*';
 
   return {
     'Access-Control-Allow-Origin': allowOrigin,
