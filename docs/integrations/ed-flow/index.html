@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ED-Flow Integration</title>
+  <style>
+    body { margin: 0; font-family: Inter, Arial, sans-serif; background: #08111f; color: #eff6ff; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 48px 24px 72px; }
+    .hero, .section { background: linear-gradient(180deg, rgba(37, 99, 235, .18), rgba(15, 23, 42, .92)); border: 1px solid rgba(96, 165, 250, .16); border-radius: 24px; padding: 28px; margin-bottom: 24px; }
+    h1, h2, h3 { margin-top: 0; }
+    p, li { line-height: 1.7; color: #dbeafe; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .card { background: rgba(15, 23, 42, .55); border-radius: 18px; padding: 20px; border: 1px solid rgba(148, 163, 184, .12); }
+    .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+    a { color: inherit; text-decoration: none; }
+    .btn { display: inline-flex; padding: 12px 16px; border-radius: 12px; font-weight: 600; }
+    .primary { background: #60a5fa; color: #08111f; }
+    .secondary { border: 1px solid rgba(148, 163, 184, .3); color: #e2e8f0; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <p>ED-Flow integration</p>
+      <h1>Emergency department operations delivered across the edge</h1>
+      <p>ED-Flow combines a FastAPI backend, Cloudflare edge worker, n8n workflow automation, and a React dashboard to reduce throughput delays and surface operational bottlenecks in real time.</p>
+      <div class="links">
+        <a class="btn primary" href="./DEPLOYMENT_GUIDE.md">Deployment guide</a>
+        <a class="btn secondary" href="./ARCHITECTURE.md">Architecture</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Core assets</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Cloudflare Worker</h3>
+          <p>Original worker implementation for ED routing, metrics caching, and webhook fan-out.</p>
+          <a class="btn secondary" href="./ed-flow-worker.ts">Open source</a>
+        </article>
+        <article class="card">
+          <h3>Backend system</h3>
+          <p>Python FastAPI backend for check-in, triage, bed assignment, and operational metrics.</p>
+          <a class="btn secondary" href="./ed_flow_system.py">Open source</a>
+        </article>
+        <article class="card">
+          <h3>Dashboard component</h3>
+          <p>React dashboard reference for near real-time ED operational visibility.</p>
+          <a class="btn secondary" href="./EDDashboard.tsx">Open component</a>
+        </article>
+        <article class="card">
+          <h3>n8n workflow</h3>
+          <p>Automation blueprint for notifications, escalations, and workflow orchestration.</p>
+          <a class="btn secondary" href="./ed-flow-n8n-workflow.json">Open workflow</a>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

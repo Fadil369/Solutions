@@ -50,11 +50,11 @@ Doctor network and professional network platform.
 ## 🚀 Integration Points
 
 ### ED-Flow with Workers
-Deploy `ed-flow-worker.ts` to Cloudflare Workers for real-time ED flow processing:
+Deploy the dedicated `workers/ed-flow` workspace to Cloudflare Workers for real-time ED flow processing:
 
 ```bash
 cd ../workers
-# Create ed-flow-worker with bindings to D1 and R2
+npm run deploy:ed-flow
 ```
 
 ### DoctorLinc Dashboard Integration
@@ -112,9 +112,8 @@ Consolidate in main HealthBridge analytics dashboard.
 
 ## ✨ Next Steps
 
-1. Deploy ED-Flow worker to production
-2. Add DoctorLinc as new HealthBridge product
+1. Validate the deployed ED-Flow worker against the backend tunnel
+2. Add DoctorLinc as a first-class HealthBridge product module
 3. Configure Clinical Nexus data sync
 4. Set up monitoring and alerting
 5. Run integration tests
-

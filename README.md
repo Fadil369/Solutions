@@ -8,15 +8,18 @@ A collection of projects, tools, and skill frameworks.
 
 | Page | URL |
 |------|-----|
-| Main landing | `/` |
-| HealthBridge Platform | `/healthbridge/` |
-| Downloads | `/healthbridge/downloads.html` |
-| FlowClinic Kiosk Demo | `/healthbridge/demos/flowclinic-kiosk/` |
-| Dental Chart Demo | `/healthbridge/demos/dental-chart/` |
+| Main landing | `/Solutions/` |
+| Integrations hub | `/Solutions/integrations/` |
+| DoctorLinc integration | `/Solutions/integrations/doctorlinc/` |
+| ED-Flow integration | `/Solutions/integrations/ed-flow/` |
+| HealthBridge Platform | `/Solutions/healthbridge/` |
+| Downloads | `/Solutions/healthbridge/downloads.html` |
+| FlowClinic Kiosk Demo | `/Solutions/healthbridge/demos/flowclinic-kiosk/` |
+| Dental Chart Demo | `/Solutions/healthbridge/demos/dental-chart/` |
 
 ## ☁️ Cloudflare Workers
 
-Four edge workers deployed under your Cloudflare account:
+Five edge workers deployed under your Cloudflare account:
 
 | Worker | Route | Bindings |
 |--------|-------|----------|
@@ -24,6 +27,7 @@ Four edge workers deployed under your Cloudflare account:
 | `nphies-proxy` | `/api/nphies/*` | KV: FHIR cache |
 | `document-store` | `/api/documents/*` | R2: clinical docs |
 | `compliance-db` | `/api/compliance/*` | D1: CBAHI/claims DB |
+| `ed-flow` | `/ed/*`, `/webhooks/n8n/*` | KV: ED sessions, metrics |
 
 See [`workers/README.md`](workers/README.md) for full API reference and setup.
 
@@ -59,7 +63,7 @@ cp .dev.vars.example .dev.vars   # Add CF_API_TOKEN, CF_ACCOUNT_ID
 npm install
 npm run cf:setup                  # Create KV, D1, R2 resources
 npm run migrate:local             # Apply D1 schema
-npm run dev:all                   # Run all 4 workers locally
+npm run dev:all                   # Run all 5 workers locally
 npm run deploy:all                # Deploy to Cloudflare
 ```
 

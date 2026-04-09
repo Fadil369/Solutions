@@ -1,6 +1,6 @@
 # HealthBridge Cloudflare Workers
 
-Four Cloudflare Workers providing edge API services for the HealthBridge KSA platform.
+Five Cloudflare Workers providing edge API services for the HealthBridge KSA platform.
 
 ## Workers Overview
 
@@ -10,6 +10,7 @@ Four Cloudflare Workers providing edge API services for the HealthBridge KSA pla
 | `nphies-proxy` | 8788 | KV: NPHIES_CACHE_KV | NPHIES FHIR R4 proxy with caching |
 | `document-store` | 8789 | R2: DOCUMENTS_R2 | Clinical document upload/retrieval |
 | `compliance-db` | 8790 | D1: COMPLIANCE_DB | CBAHI findings, claims, audit log |
+| `ed-flow` | 8791 | KV: SESSION_KV, METRICS_KV | ED orchestration and metrics caching |
 
 ## Prerequisites
 
@@ -43,9 +44,10 @@ npm run dev:all
 ### Manual
 ```bash
 cd workers
-npm run deploy:all          # deploy all 4 workers
+npm run deploy:all          # deploy all 5 workers
 npm run deploy:gateway      # deploy only api-gateway
 npm run deploy:compliance   # deploy only compliance-db
+npm run deploy:ed-flow      # deploy only ed-flow
 npm run migrate:remote      # apply D1 migrations to production
 ```
 
@@ -56,6 +58,11 @@ Required GitHub secrets:
 - `CF_API_TOKEN` — Cloudflare API token (Workers+KV+D1+R2 edit)
 - `CF_ACCOUNT_ID` — Cloudflare account ID
 
+Required GitHub repository variables for `ed-flow` deployment:
+- `ED_FLOW_BACKEND_URL` — FastAPI backend base URL
+- `ED_FLOW_N8N_WEBHOOK_URL` — n8n ED workflow webhook URL
+- `ED_FLOW_ALLOWED_ORIGINS` — comma-separated trusted browser origins
+
 ## Cloudflare Resources
 
 ### KV Namespaces
@@ -64,6 +71,8 @@ Required GitHub secrets:
 | `SESSIONS_KV` | api-gateway | JWT session tokens (TTL: 1 hour) |
 | `RATELIMIT_KV` | api-gateway | Rate limit counters (sliding window) |
 | `NPHIES_CACHE_KV` | nphies-proxy | Eligibility cache (5 min), claim status cache (60 sec) |
+| `SESSION_KV` | ed-flow | ED encounter sessions and audit events |
+| `METRICS_KV` | ed-flow | 60-second dashboard cache for operational metrics |
 
 ### D1 Database: `healthbridge-compliance`
 Tables:
@@ -91,6 +100,9 @@ wrangler secret put JWT_SECRET
 # From workers/nphies-proxy/
 wrangler secret put NPHIES_CLIENT_ID
 wrangler secret put NPHIES_CLIENT_SECRET
+
+# From workers/ed-flow/
+wrangler secret put JWT_SECRET
 ```
 
 ## API Reference
@@ -139,3 +151,15 @@ wrangler secret put NPHIES_CLIENT_SECRET
 | `/api/compliance/readiness/:facilityId` | GET | Compute readiness score |
 | `/api/compliance/audit` | POST | Write audit entry |
 | `/api/compliance/audit/:facilityId` | GET | Read audit log |
+
+### ED-Flow (`/ed/*`, `/webhooks/n8n/*`)
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/ed/health` | GET | Worker health check |
+| `/ed/check-in` | POST | Register ED arrival and cache session metadata |
+| `/ed/:encounterId/triage` | POST | Forward triage updates to the backend |
+| `/ed/:encounterId/assign-bed` | POST | Assign bed and update cached session |
+| `/ed/metrics` | GET | Read-through cached ED dashboard metrics |
+| `/ed/sessions` | GET | List active ED sessions (admin only) |
+| `/webhooks/n8n/ed-event` | POST | Fan out ED workflow events to n8n |

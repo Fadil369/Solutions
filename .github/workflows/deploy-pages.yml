@@ -5,6 +5,7 @@ on:
     branches: [main, develop]
     paths:
       - 'docs/**'
+      - 'integrations/**'
       - 'healthbridge/products/specialty-forms/frontend/**'
       - 'healthbridge/products/flowclinic/kiosk/**'
       - '.github/workflows/deploy-pages.yml'
@@ -34,6 +35,10 @@ jobs:
         run: |
           # Ensure .nojekyll exists to skip Jekyll processing
           touch docs/.nojekyll
+
+          # Copy integrations into docs for GitHub Pages publishing
+          mkdir -p docs/integrations
+          cp -r integrations/* docs/integrations/
 
           # Copy FlowClinic kiosk into docs for live demo
           mkdir -p docs/healthbridge/demos/flowclinic-kiosk
