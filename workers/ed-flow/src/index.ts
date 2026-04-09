@@ -168,15 +168,19 @@ async function handleEncounterUpdate(
 
   const storedSession = await env.SESSION_KV.get(`session:${encounterId}`);
   if (storedSession) {
-    const session = JSON.parse(storedSession) as EDSession;
-    session.status = status;
-    session.last_update = new Date().toISOString();
-    if (status === 'bedded' && typeof payload.bed_id === 'string') {
-      session.bed_id = payload.bed_id;
+    try {
+      const session = JSON.parse(storedSession) as EDSession;
+      session.status = status;
+      session.last_update = new Date().toISOString();
+      if (status === 'bedded' && typeof payload.bed_id === 'string') {
+        session.bed_id = payload.bed_id;
+      }
+      await env.SESSION_KV.put(`session:${encounterId}`, JSON.stringify(session), {
+        expirationTtl: SESSION_TTL_SECONDS,
+      });
+    } catch {
+      await env.SESSION_KV.delete(`session:${encounterId}`);
     }
-    await env.SESSION_KV.put(`session:${encounterId}`, JSON.stringify(session), {
-      expirationTtl: SESSION_TTL_SECONDS,
-    });
   }
 
   return jsonResponse(backendBody, request, env, backendResponse.status);
