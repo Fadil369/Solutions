@@ -7,13 +7,13 @@ compatibility_flags = ["nodejs_compat"]
 # Replace <ID> values after running: wrangler kv namespace create SESSIONS_KV
 [[kv_namespaces]]
 binding = "SESSIONS_KV"
-id = "REPLACE_WITH_SESSIONS_KV_ID"
+id = "062eab539a7049c0b1e36049441a211d"
 preview_id = "REPLACE_WITH_SESSIONS_KV_PREVIEW_ID"
 
 # Replace <ID> values after running: wrangler kv namespace create RATELIMIT_KV
 [[kv_namespaces]]
 binding = "RATELIMIT_KV"
-id = "REPLACE_WITH_RATELIMIT_KV_ID"
+id = "bfcb85398c4642f89602ec0dac7497cf"
 preview_id = "REPLACE_WITH_RATELIMIT_KV_PREVIEW_ID"
 
 # ─── Routes ───────────────────────────────────────────────────────

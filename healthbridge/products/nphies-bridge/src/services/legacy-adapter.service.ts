@@ -23,7 +23,7 @@ export interface LegacyRecord {
 
 export abstract class LegacyAdapter {
   abstract name: string;
-  abstract parse(filePath: string): Promise<LegacyRecord[]];
+  abstract parse(filePath: string): Promise<LegacyRecord[]>;
   abstract pollDb(connectionString: string): Promise<LegacyRecord[]>;
 
   protected async upsertPatient(record: LegacyRecord): Promise<string> {

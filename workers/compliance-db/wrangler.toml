@@ -8,7 +8,7 @@ compatibility_flags = ["nodejs_compat"]
 [[d1_databases]]
 binding = "COMPLIANCE_DB"
 database_name = "healthbridge-compliance"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "fd4edf57-f906-4da9-bef2-01084a33dfbf"
 migrations_dir = "migrations"
 
 [vars]

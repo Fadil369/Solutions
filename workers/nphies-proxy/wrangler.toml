@@ -7,7 +7,7 @@ compatibility_flags = ["nodejs_compat"]
 # Replace after running: wrangler kv namespace create NPHIES_CACHE_KV
 [[kv_namespaces]]
 binding = "NPHIES_CACHE_KV"
-id = "REPLACE_WITH_NPHIES_CACHE_KV_ID"
+id = "fcb1821540004213af95b95dbe9cf8b8"
 preview_id = "REPLACE_WITH_NPHIES_CACHE_KV_PREVIEW_ID"
 
 [vars]
