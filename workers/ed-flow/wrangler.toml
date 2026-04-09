@@ -15,7 +15,7 @@ preview_id = "REPLACE_WITH_ED_METRICS_KV_PREVIEW_ID"
 
 [vars]
 ENVIRONMENT = "production"
-BACKEND_URL = "https://ed-flow-backend.example.com"
-N8N_WEBHOOK_URL = "https://n8n.example.com/webhook/ed-flow"
+BACKEND_URL = "REPLACE_WITH_ED_FLOW_BACKEND_URL"
+N8N_WEBHOOK_URL = "REPLACE_WITH_ED_FLOW_N8N_WEBHOOK_URL"
 ALLOWED_ORIGINS = "https://fadil369.github.io,https://healthbridge.pages.dev"
 DEFAULT_HOSPITAL_CODE = "NGHA"

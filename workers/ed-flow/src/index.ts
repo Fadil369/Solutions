@@ -1,6 +1,9 @@
+import { extractBearerToken, verifyJwt } from '../../shared/auth';
+
 export interface Env {
   SESSION_KV: KVNamespace;
   METRICS_KV: KVNamespace;
+  JWT_SECRET: string;
   BACKEND_URL: string;
   N8N_WEBHOOK_URL: string;
   ALLOWED_ORIGINS?: string;
@@ -74,7 +77,7 @@ export default {
 };
 
 async function handleCheckIn(request: Request, env: Env): Promise<Response> {
-  const role = requireAuthorizedRole(request);
+  const role = await requireAuthorizedRole(request, env);
   if (!role) {
     return jsonError('Unauthorized', 403, request, env);
   }
@@ -104,7 +107,7 @@ async function handleCheckIn(request: Request, env: Env): Promise<Response> {
 
   const session: EDSession = {
     encounter_id: encounterId,
-    patient_id_hash: await hashPatientId(payload.patient_id),
+    patient_id_hash: await hashPatientId(payload.patient_id, env.JWT_SECRET),
     hospital_code: typeof payload.hospital_code === 'string' ? payload.hospital_code : env.DEFAULT_HOSPITAL_CODE ?? 'NGHA',
     arrival_time: new Date().toISOString(),
     status: 'waiting',
@@ -132,7 +135,7 @@ async function handleEncounterUpdate(
   encounterId: string,
   status: EDSession['status'],
 ): Promise<Response> {
-  const role = requireAuthorizedRole(request);
+  const role = await requireAuthorizedRole(request, env);
   if (!role) {
     return jsonError('Unauthorized', 403, request, env);
   }
@@ -206,7 +209,7 @@ async function handleMetrics(request: Request, env: Env): Promise<Response> {
 }
 
 async function handleSessions(request: Request, env: Env): Promise<Response> {
-  const role = requireAuthorizedRole(request);
+  const role = await requireAuthorizedRole(request, env);
   if (role !== 'admin') {
     return jsonError('Admin access required', 403, request, env);
   }
@@ -230,7 +233,7 @@ async function handleSessions(request: Request, env: Env): Promise<Response> {
 }
 
 async function handleWebhook(request: Request, env: Env): Promise<Response> {
-  const role = requireAuthorizedRole(request);
+  const role = await requireAuthorizedRole(request, env);
   if (!role) {
     return jsonError('Unauthorized', 403, request, env);
   }
@@ -271,19 +274,31 @@ async function handleWebhook(request: Request, env: Env): Promise<Response> {
   );
 }
 
-function requireAuthorizedRole(request: Request): 'nurse' | 'physician' | 'admin' | null {
-  const authHeader = request.headers.get('authorization');
+async function requireAuthorizedRole(
+  request: Request,
+  env: Env,
+): Promise<'nurse' | 'physician' | 'admin' | null> {
   const roleHeader = request.headers.get('x-user-role');
   const role =
     roleHeader === 'nurse' || roleHeader === 'physician' || roleHeader === 'admin'
       ? roleHeader
       : null;
 
-  if (!authHeader || !role) {
+  const token = extractBearerToken(request);
+  if (!token || !role) {
     return null;
   }
 
-  return role;
+  const payload = await verifyJwt(token, env.JWT_SECRET);
+  if (!payload) {
+    return null;
+  }
+
+  if (role === 'admin') {
+    return payload.role === 'admin' ? 'admin' : null;
+  }
+
+  return payload.role === 'admin' || payload.role === 'clinician' ? role : null;
 }
 
 async function proxyJson(
@@ -366,10 +381,16 @@ async function recordEvent(env: Env, key: string, payload: unknown): Promise<voi
   await env.SESSION_KV.put(key, JSON.stringify(payload), { expirationTtl: 24 * 60 * 60 });
 }
 
-async function hashPatientId(patientId: string): Promise<string> {
-  const encoded = new TextEncoder().encode(patientId);
-  const hash = await crypto.subtle.digest('SHA-256', encoded);
-  return Array.from(new Uint8Array(hash))
+async function hashPatientId(patientId: string, secret: string): Promise<string> {
+  const key = await crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign'],
+  );
+  const signature = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(patientId));
+  return Array.from(new Uint8Array(signature))
     .slice(0, 12)
     .map((value) => value.toString(16).padStart(2, '0'))
     .join('');
