@@ -4,3 +4,12 @@ dist/
 .env.local
 .DS_Store
 *.log
+
+# Cloudflare Workers
+workers/.dev.vars
+workers/**/.dev.vars
+.wrangler/
+workers/**/.wrangler/
+
+# Build outputs
+workers/**/dist/

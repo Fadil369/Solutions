@@ -2,6 +2,31 @@
 
 A collection of projects, tools, and skill frameworks.
 
+## 🌐 Live Pages
+
+**GitHub Pages site:** `https://fadil369.github.io/Solutions/`
+
+| Page | URL |
+|------|-----|
+| Main landing | `/` |
+| HealthBridge Platform | `/healthbridge/` |
+| Downloads | `/healthbridge/downloads.html` |
+| FlowClinic Kiosk Demo | `/healthbridge/demos/flowclinic-kiosk/` |
+| Dental Chart Demo | `/healthbridge/demos/dental-chart/` |
+
+## ☁️ Cloudflare Workers
+
+Four edge workers deployed under your Cloudflare account:
+
+| Worker | Route | Bindings |
+|--------|-------|----------|
+| `api-gateway` | `/api/*` | KV: sessions, rate-limit |
+| `nphies-proxy` | `/api/nphies/*` | KV: FHIR cache |
+| `document-store` | `/api/documents/*` | R2: clinical docs |
+| `compliance-db` | `/api/compliance/*` | D1: CBAHI/claims DB |
+
+See [`workers/README.md`](workers/README.md) for full API reference and setup.
+
 ## Projects
 
 ### HealthBridge — KSA Digital Health Platform
@@ -19,6 +44,27 @@ A collection of projects, tools, and skill frameworks.
 ### Frameworks
 - **NHexic Framework** — Modular framework architecture
 - **Packages** — Shared libraries (jest-docblock, pretty-format)
+
+## Deployment
+
+### GitHub Pages
+Automatically deployed on push to `main`. Source: `docs/` directory.
+
+Enable in repo Settings → Pages → Source: **GitHub Actions**.
+
+### Cloudflare Workers
+```bash
+cd workers
+cp .dev.vars.example .dev.vars   # Add CF_API_TOKEN, CF_ACCOUNT_ID
+npm install
+npm run cf:setup                  # Create KV, D1, R2 resources
+npm run migrate:local             # Apply D1 schema
+npm run dev:all                   # Run all 4 workers locally
+npm run deploy:all                # Deploy to Cloudflare
+```
+
+CI/CD: push to `main` triggers `.github/workflows/deploy-workers.yml`.
+Required secrets: `CF_API_TOKEN`, `CF_ACCOUNT_ID`.
 
 ## Skills System
 

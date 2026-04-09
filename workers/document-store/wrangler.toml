@@ -1,0 +1,16 @@
+name = "healthbridge-document-store"
+main = "src/index.ts"
+compatibility_date = "2024-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+# ─── R2 Bucket ────────────────────────────────────────────────────
+# Create with: wrangler r2 bucket create healthbridge-documents
+[[r2_buckets]]
+binding = "DOCUMENTS_R2"
+bucket_name = "healthbridge-documents"
+preview_bucket_name = "healthbridge-documents-preview"
+
+[vars]
+ENVIRONMENT = "production"
+MAX_UPLOAD_SIZE_MB = "50"
+ALLOWED_TYPES = "application/pdf,image/jpeg,image/png,image/tiff,application/dicom"

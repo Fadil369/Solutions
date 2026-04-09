@@ -1,0 +1,21 @@
+# HealthBridge Workers — Local Development Variables
+# Copy this to .dev.vars (gitignored) and fill in your values.
+# NEVER commit actual secrets.
+
+# ── Cloudflare Account ────────────────────────────────────────────
+CF_API_TOKEN=your_cloudflare_api_token_here
+CF_ACCOUNT_ID=your_cloudflare_account_id_here
+
+# ── API Gateway secrets (set via: wrangler secret put JWT_SECRET) ─
+JWT_SECRET=your_jwt_signing_secret_minimum_32_chars
+
+# ── NPHIES Credentials (facility-level, from NPHIES portal) ───────
+NPHIES_CLIENT_ID=your_nphies_client_id
+NPHIES_CLIENT_SECRET=your_nphies_client_secret
+
+# ── Notes ─────────────────────────────────────────────────────────
+# - JWT_SECRET: generate with: openssl rand -base64 32
+# - NPHIES_CLIENT_ID / SECRET: obtain from the NPHIES facility portal
+# - CF_API_TOKEN: create at dash.cloudflare.com/profile/api-tokens
+#   Required permissions: Workers Scripts:Edit, KV Storage:Edit,
+#   D1:Edit, R2 Storage:Edit, Account Settings:Read

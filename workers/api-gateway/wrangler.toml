@@ -1,0 +1,33 @@
+name = "healthbridge-api-gateway"
+main = "src/index.ts"
+compatibility_date = "2024-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+# ─── KV Namespaces ────────────────────────────────────────────────
+# Replace <ID> values after running: wrangler kv namespace create SESSIONS_KV
+[[kv_namespaces]]
+binding = "SESSIONS_KV"
+id = "REPLACE_WITH_SESSIONS_KV_ID"
+preview_id = "REPLACE_WITH_SESSIONS_KV_PREVIEW_ID"
+
+# Replace <ID> values after running: wrangler kv namespace create RATELIMIT_KV
+[[kv_namespaces]]
+binding = "RATELIMIT_KV"
+id = "REPLACE_WITH_RATELIMIT_KV_ID"
+preview_id = "REPLACE_WITH_RATELIMIT_KV_PREVIEW_ID"
+
+# ─── Routes ───────────────────────────────────────────────────────
+# Uncomment and set your zone after deployment:
+# routes = [{ pattern = "api.yourdomain.com/api/*", zone_name = "yourdomain.com" }]
+
+# ─── Environment Variables ────────────────────────────────────────
+[vars]
+ENVIRONMENT = "production"
+NPHIES_PROXY_URL = "https://healthbridge-nphies-proxy.workers.dev"
+DOCUMENT_STORE_URL = "https://healthbridge-document-store.workers.dev"
+COMPLIANCE_DB_URL = "https://healthbridge-compliance-db.workers.dev"
+RATE_LIMIT_REQUESTS = "100"
+RATE_LIMIT_WINDOW_SECONDS = "60"
+
+# Secrets (set via: wrangler secret put JWT_SECRET)
+# JWT_SECRET — must be set as a secret, not here
