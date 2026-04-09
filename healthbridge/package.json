@@ -1,0 +1,28 @@
+{
+  "name": "healthbridge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HealthBridge KSA Digital Health Platform — Monorepo",
+  "workspaces": [
+    "shared/*",
+    "products/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "dev:all": "concurrently \"npm run dev -w @healthbridge/nphies-bridge\" \"npm run dev -w @healthbridge/flowclinic\" \"npm run dev -w @healthbridge/cbahi-suite\" \"npm run dev -w @healthbridge/specialty-forms\"",
+    "docker:up": "docker-compose -f infra/docker/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f infra/docker/docker-compose.yml down",
+    "demo:reset": "bash tools/reset-demo.sh",
+    "data:generate": "node tools/synthetic-data/generate.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.4.0",
+    "@types/node": "^20.11.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

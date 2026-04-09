@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>FlowClinic Kiosk</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Inline RTL/LTR handling */
+    [dir="ltr"] { text-align: left; }
+    [dir="rtl"] { text-align: right; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- Language Selector Screen -->
+    <div id="screen-language" class="screen active">
+      <div class="logo">🏥 FlowClinic</div>
+      <h1 id="welcome-title">Welcome to the Clinic</h1>
+      <div class="language-grid" id="language-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- Main Menu Screen -->
+    <div id="screen-menu" class="screen">
+      <div class="header">
+        <button class="btn-back" onclick="showScreen('screen-language')">←</button>
+        <div class="logo-sm">🏥</div>
+      </div>
+      <h1 id="menu-title"></h1>
+      <div class="menu-buttons">
+        <button class="btn-menu btn-new" onclick="showScreen('screen-register')">
+          <span class="btn-icon">📋</span>
+          <span id="btn-new-text"></span>
+        </button>
+        <button class="btn-menu btn-returning" onclick="showScreen('screen-checkin')">
+          <span class="btn-icon">🔄</span>
+          <span id="btn-returning-text"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Registration Screen -->
+    <div id="screen-register" class="screen">
+      <div class="header">
+        <button class="btn-back" onclick="showScreen('screen-menu')">←</button>
+        <h2 id="register-title"></h2>
+      </div>
+      <form id="register-form" onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label id="label-national-id" for="reg-national-id"></label>
+          <input type="text" id="reg-national-id" inputmode="numeric" maxlength="10"
+                 placeholder="1xxxxxxxxx" required>
+          <div class="field-hint" id="national-id-hint"></div>
+        </div>
+        <div class="form-group">
+          <label id="label-name-ar" for="reg-name-ar">الاسم بالعربية</label>
+          <input type="text" id="reg-name-ar" placeholder="الاسم الكامل">
+        </div>
+        <div class="form-group">
+          <label id="label-name-en" for="reg-name-en">الاسم بالإنجليزية</label>
+          <input type="text" id="reg-name-en" placeholder="Full Name">
+        </div>
+        <div class="form-group">
+          <label id="label-phone" for="reg-phone"></label>
+          <input type="tel" id="reg-phone" inputmode="tel" placeholder="05xxxxxxxx" required>
+        </div>
+        <div class="form-group">
+          <label id="label-insurance" for="reg-insurance"></label>
+          <input type="text" id="reg-insurance" placeholder="">
+        </div>
+        <div class="form-group">
+          <label id="label-department" for="reg-department"></label>
+          <select id="reg-department" required>
+            <option value="">—</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit" id="btn-register-submit"></button>
+      </form>
+      <div id="register-error" class="error-msg" style="display:none"></div>
+    </div>
+
+    <!-- Check-in Screen -->
+    <div id="screen-checkin" class="screen">
+      <div class="header">
+        <button class="btn-back" onclick="showScreen('screen-menu')">←</button>
+        <h2 id="checkin-title"></h2>
+      </div>
+      <div class="checkin-tabs">
+        <button class="tab active" onclick="switchCheckinTab('national-id')" id="tab-national-id"></button>
+        <button class="tab" onclick="switchCheckinTab('phone')" id="tab-phone"></button>
+      </div>
+      <form id="checkin-form" onsubmit="handleCheckIn(event)">
+        <div class="form-group" id="checkin-national-id-group">
+          <label id="label-checkin-national" for="checkin-national-id"></label>
+          <input type="text" id="checkin-national-id" inputmode="numeric" maxlength="10" placeholder="1xxxxxxxxx">
+        </div>
+        <div class="form-group" id="checkin-phone-group" style="display:none">
+          <label id="label-checkin-phone" for="checkin-phone"></label>
+          <input type="tel" id="checkin-phone" inputmode="tel" placeholder="05xxxxxxxx">
+        </div>
+        <div class="form-group">
+          <label id="label-checkin-dept" for="checkin-department"></label>
+          <select id="checkin-department" required>
+            <option value="">—</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit" id="btn-checkin-submit"></button>
+      </form>
+      <div id="checkin-error" class="error-msg" style="display:none"></div>
+    </div>
+
+    <!-- Ticket Screen -->
+    <div id="screen-ticket" class="screen">
+      <div class="ticket">
+        <div class="ticket-header">🏥</div>
+        <div class="ticket-label" id="ticket-your-number-label"></div>
+        <div class="ticket-number" id="ticket-number">#—</div>
+        <div class="ticket-department" id="ticket-department"></div>
+        <div class="ticket-wait">
+          <span id="ticket-wait-label"></span>
+          <span id="ticket-wait-time">—</span>
+          <span id="ticket-minutes-label"></span>
+        </div>
+        <div class="ticket-please-wait" id="ticket-please-wait"></div>
+        <div class="ticket-qr" id="ticket-qr">
+          <canvas id="qr-canvas" width="150" height="150"></canvas>
+        </div>
+        <button class="btn-new-ticket" onclick="resetToLanguage()"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

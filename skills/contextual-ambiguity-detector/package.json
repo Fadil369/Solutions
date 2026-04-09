@@ -1,0 +1,12 @@
+{
+  "name": "contextual-ambiguity-detector",
+  "version": "1.0.0",
+  "description": "Scans codebases for hardcoded assumptions about user behavior, tech stack, UI patterns, or edge cases. Flags where the code chose one solution without documenting why alternatives were rejected. Makes invisible decisions visible and reversible.",
+  "scripts": {
+    "scan": "node bin/detect.js",
+    "test": "node test/test.js",
+    "report": "node bin/report.js"
+  },
+  "keywords": ["code-review", "ambiguity", "assumptions", "architecture", "tech-debt"],
+  "license": "MIT"
+}

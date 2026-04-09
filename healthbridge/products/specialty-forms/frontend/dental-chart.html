@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dental Chart — HealthBridge Specialty Forms</title>
+  <link rel="stylesheet" href="dental-chart.css">
+</head>
+<body>
+  <div class="app-container" id="app">
+    <header class="app-header">
+      <h1>🦷 Dental Chart</h1>
+      <div class="header-controls">
+        <button class="btn btn-rtl" onclick="toggleRTL()">عربي / EN</button>
+        <div class="patient-selector">
+          <label for="patientId">Patient ID:</label>
+          <input type="text" id="patientId" placeholder="Enter patient UUID" />
+          <button class="btn btn-primary" onclick="loadChart()">Load Chart</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- Upper Jaw -->
+      <section class="jaw-section">
+        <h3 class="jaw-label" data-ar="الفك العلوي">Upper Jaw</h3>
+        <div class="teeth-row upper" id="upperJaw">
+          <!-- Teeth 1-16 rendered by JS -->
+        </div>
+      </section>
+
+      <!-- Lower Jaw -->
+      <section class="jaw-section">
+        <div class="teeth-row lower" id="lowerJaw">
+          <!-- Teeth 17-32 rendered by JS -->
+        </div>
+        <h3 class="jaw-label" data-ar="الفك السفلي">Lower Jaw</h3>
+      </section>
+    </main>
+
+    <!-- Tooth Detail Panel -->
+    <aside class="detail-panel" id="detailPanel">
+      <div class="panel-header">
+        <h3 id="panelTitle">Select a tooth</h3>
+        <button class="btn-close" onclick="closePanel()">×</button>
+      </div>
+      <div class="panel-body" id="panelBody">
+        <div class="surface-selector" id="surfaceSelector">
+          <label>Surface:</label>
+          <div class="surface-grid">
+            <button class="surface-btn" data-surface="mesial" data-ar="近中">Mesial</button>
+            <button class="surface-btn" data-surface="distal" data-ar="远中">Distal</button>
+            <button class="surface-btn" data-surface="occlusal" data-ar="咬合面">Occlusal</button>
+            <button class="surface-btn" data-surface="buccal" data-ar="颊面">Buccal</button>
+            <button class="surface-btn" data-surface="lingual" data-ar="舌面">Lingual</button>
+          </div>
+        </div>
+        <div class="procedure-search">
+          <label>Procedure:</label>
+          <input type="text" id="procedureSearch" placeholder="Search procedures (e.g. D2140, amalgam)" oninput="searchProcedures(this.value)" />
+          <div class="search-results" id="searchResults"></div>
+        </div>
+        <div class="notes-field">
+          <label>Notes:</label>
+          <textarea id="procedureNotes" rows="3" placeholder="Clinical notes..."></textarea>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="addProcedure()">Add Procedure</button>
+      </div>
+    </aside>
+
+    <!-- Treatment Plan Sidebar -->
+    <aside class="treatment-sidebar" id="treatmentSidebar">
+      <h3>📋 Treatment Plan</h3>
+      <div class="treatment-items" id="treatmentItems">
+        <p class="empty-state">No procedures added yet</p>
+      </div>
+      <div class="treatment-summary">
+        <div class="summary-row">
+          <span>Total Estimated:</span>
+          <strong id="totalCost">SAR 0.00</strong>
+        </div>
+        <div class="summary-row" id="preauthWarning" style="display:none;">
+          <span class="warning">⚠️ Pre-authorization required</span>
+        </div>
+      </div>
+      <div class="treatment-actions">
+        <button class="btn btn-success btn-block" onclick="saveTreatmentPlan()">Save Treatment Plan</button>
+      </div>
+    </aside>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-item"><span class="legend-color healthy"></span> Healthy</div>
+      <div class="legend-item"><span class="legend-color treated"></span> Treated</div>
+      <div class="legend-item"><span class="legend-color needs-attention"></span> Needs Attention</div>
+      <div class="legend-item"><span class="legend-color missing"></span> Missing</div>
+    </div>
+  </div>
+
+  <script src="dental-chart.js"></script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+/* ── Dental Chart Styles ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #dc2626;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  --tooth-healthy: #ffffff;
+  --tooth-treated: #93c5fd;
+  --tooth-needs-attention: #fca5a5;
+  --tooth-missing: #9ca3af;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-900);
+  min-height: 100vh;
+}
+
+body[dir="rtl"] { font-family: 'Segoe UI', Tahoma, 'Noto Sans Arabic', sans-serif; }
+
+.app-container {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  gap: 0;
+}
+
+/* ── Header ── */
+.app-header {
+  grid-column: 1 / -1;
+  background: white;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--gray-200);
+  box-shadow: var(--shadow);
+}
+
+.app-header h1 { font-size: 1.4rem; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.patient-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.patient-selector input {
+  padding: 6px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  width: 280px;
+}
+
+/* ── Buttons ── */
+.btn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-success { background: var(--success); color: white; }
+.btn-success:hover { opacity: 0.9; }
+.btn-rtl { background: var(--gray-200); color: var(--gray-700); }
+.btn-block { width: 100%; }
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--gray-500);
+  padding: 0 8px;
+}
+
+/* ── Main Content (Jaw Diagram) ── */
+.main-content {
+  grid-column: 1;
+  grid-row: 2;
+  padding: 24px;
+  overflow: auto;
+}
+
+.jaw-section {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.jaw-label {
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  margin: 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.teeth-row {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  flex-wrap: nowrap;
+  padding: 16px 8px;
+}
+
+/* ── Individual Tooth ── */
+.tooth {
+  width: 56px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  position: relative;
+}
+
+.tooth:hover { transform: scale(1.08); }
+.tooth.selected { transform: scale(1.12); }
+.tooth.selected .tooth-crown { stroke: var(--primary); stroke-width: 2.5; }
+
+.tooth-number {
+  font-size: 10px;
+  text-align: center;
+  color: var(--gray-500);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.tooth-svg {
+  width: 48px;
+  height: 64px;
+  display: block;
+  margin: 0 auto;
+}
+
+.tooth-crown {
+  fill: var(--tooth-healthy);
+  stroke: var(--gray-300);
+  stroke-width: 1.5;
+  transition: fill 0.2s ease;
+}
+
+.tooth-crown.healthy { fill: var(--tooth-healthy); }
+.tooth-crown.treated { fill: var(--tooth-treated); }
+.tooth-crown.needs-attention { fill: var(--tooth-needs-attention); }
+.tooth-crown.missing { fill: var(--tooth-missing); }
+
+/* ── Surface indicators ── */
+.surface-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.tooth.has-procedures .surface-dot { opacity: 1; }
+.surface-dot.treated { background: var(--primary); }
+.surface-dot.needs-attention { background: var(--danger); }
+
+/* ── Detail Panel ── */
+.detail-panel {
+  grid-column: 2;
+  grid-row: 2;
+  background: white;
+  border-left: 1px solid var(--gray-200);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+.panel-header h3 { font-size: 1rem; }
+
+.panel-body { padding: 16px; flex: 1; }
+
+.surface-selector { margin-bottom: 16px; }
+.surface-selector label { display: block; font-size: 0.8rem; color: var(--gray-500); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.surface-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.surface-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  background: white;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.15s;
+}
+
+.surface-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.surface-btn:hover:not(.active) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.procedure-search { margin-bottom: 16px; }
+.procedure-search label { display: block; font-size: 0.8rem; color: var(--gray-500); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.procedure-search input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+}
+
+.search-results {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  margin-top: 4px;
+  display: none;
+}
+
+.search-results.active { display: block; }
+
+.search-result-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 0.85rem;
+}
+
+.search-result-item:hover { background: var(--gray-50); }
+.search-result-item .code { font-weight: 600; color: var(--primary); }
+.search-result-item .cost { color: var(--gray-500); float: right; }
+
+.notes-field { margin-bottom: 16px; }
+.notes-field label { display: block; font-size: 0.8rem; color: var(--gray-500); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.notes-field textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  resize: vertical;
+}
+
+/* ── Treatment Sidebar ── */
+.treatment-sidebar {
+  background: white;
+  border-top: 1px solid var(--gray-200);
+  padding: 16px;
+  grid-column: 1 / -1;
+}
+
+.treatment-sidebar h3 { font-size: 1rem; margin-bottom: 12px; }
+
+.treatment-items { margin-bottom: 12px; max-height: 200px; overflow-y: auto; }
+
+.empty-state { color: var(--gray-500); font-size: 0.875rem; text-align: center; padding: 24px; }
+
+.treatment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+}
+
+.treatment-item .tooth-num { font-weight: 600; color: var(--primary); }
+.treatment-item .proc-desc { flex: 1; margin: 0 12px; }
+.treatment-item .cost { font-weight: 500; }
+.treatment-item .remove-btn {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0 4px;
+}
+
+.treatment-summary {
+  padding: 12px;
+  background: var(--gray-50);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.summary-row .warning { color: var(--warning); font-weight: 500; }
+
+/* ── Legend ── */
+.legend {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 12px;
+  background: white;
+  border-top: 1px solid var(--gray-200);
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+.legend-item { display: flex; align-items: center; gap: 6px; }
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--gray-300);
+}
+
+.legend-color.healthy { background: var(--tooth-healthy); }
+.legend-color.treated { background: var(--tooth-treated); }
+.legend-color.needs-attention { background: var(--tooth-needs-attention); }
+.legend-color.missing { background: var(--tooth-missing); }
+
+/* ── RTL Support ── */
+[dir="rtl"] .app-header { direction: rtl; }
+[dir="rtl"] .detail-panel { border-left: none; border-right: 1px solid var(--gray-200); }
+[dir="rtl"] .treatment-item .cost { margin-left: 0; margin-right: 12px; }
+[dir="rtl"] .jaw-label { direction: rtl; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+  }
+  .detail-panel { grid-column: 1; grid-row: 3; border-left: none; border-top: 1px solid var(--gray-200); }
+  .treatment-sidebar { grid-column: 1; grid-row: 4; }
+  .legend { grid-row: 5; }
+  .tooth { width: 44px; }
+  .tooth-svg { width: 38px; height: 50px; }
+}

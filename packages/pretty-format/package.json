@@ -1,0 +1,9 @@
+{
+  "name": "pretty-format",
+  "version": "24.9.0",
+  "description": "Stringify any JavaScript value with ANSI color and JSX support",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "repository": "https://github.com/bundlers/pretty-format.git",
+  "license": "MIT"
+}
