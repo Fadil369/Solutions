@@ -105,10 +105,16 @@ async function handleCheckIn(request: Request, env: Env): Promise<Response> {
     return jsonError('Backend did not return encounter_id', 502, request, env);
   }
 
+  const hospitalCode =
+    typeof payload.hospital_code === 'string' ? payload.hospital_code : env.DEFAULT_HOSPITAL_CODE;
+  if (!hospitalCode) {
+    return jsonError('hospital_code is required when DEFAULT_HOSPITAL_CODE is not configured', 400, request, env);
+  }
+
   const session: EDSession = {
     encounter_id: encounterId,
     patient_id_hash: await hashPatientId(payload.patient_id, env.JWT_SECRET),
-    hospital_code: typeof payload.hospital_code === 'string' ? payload.hospital_code : env.DEFAULT_HOSPITAL_CODE ?? 'NGHA',
+    hospital_code: hospitalCode,
     arrival_time: new Date().toISOString(),
     status: 'waiting',
     triage_level: typeof payload.triage_level === 'string' ? payload.triage_level : undefined,
