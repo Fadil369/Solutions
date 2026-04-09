@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CME Tracker - DoctorLinc</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#191c1e",
+                    "error": "#ba1a1a",
+                    "primary-container": "#008080",
+                    "on-tertiary-container": "#fff9f7",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "surface-dim": "#d8dadc",
+                    "secondary-fixed": "#dce1ff",
+                    "secondary-fixed-dim": "#b6c4ff",
+                    "on-surface-variant": "#3e4949",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "outline": "#6e7979",
+                    "on-primary-container": "#e3fffe",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#76d6d5",
+                    "primary": "#006565",
+                    "background": "#f7f9fb",
+                    "on-secondary-fixed-variant": "#264191",
+                    "on-tertiary-fixed": "#341100",
+                    "tertiary-fixed": "#ffdbcb",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary": "#4059aa",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#191c1e",
+                    "on-secondary-fixed": "#00164e",
+                    "inverse-surface": "#2d3133",
+                    "inverse-on-surface": "#eff1f3",
+                    "tertiary-container": "#a96039",
+                    "on-tertiary-fixed-variant": "#733512",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-tint": "#006a6a",
+                    "surface-container-high": "#e6e8ea",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e0e3e5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#1d3989",
+                    "on-primary-fixed": "#002020",
+                    "surface-container": "#eceef0",
+                    "tertiary": "#8b4823",
+                    "outline-variant": "#bdc9c8",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#93f2f2",
+                    "surface": "#f7f9fb",
+                    "primary-fixed-dim": "#76d6d5",
+                    "secondary-container": "#8fa7fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .editorial-gradient {
+            background: linear-gradient(135deg, #006565 0%, #008080 100%);
+        }
+        .asymmetric-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+        @media (max-width: 1024px) {
+            .asymmetric-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-teal-800 dark:text-teal-300 font-headline tracking-tight">DoctorLinc</span>
+<div class="hidden md:flex items-center gap-6">
+<nav class="flex gap-6">
+<a class="text-slate-500 hover:text-teal-500 transition-colors cursor-pointer active:scale-95 font-medium" href="#">Dashboard</a>
+<a class="text-teal-600 font-semibold hover:text-teal-500 transition-colors cursor-pointer active:scale-95" href="#">CME Tracker</a>
+<a class="text-slate-500 hover:text-teal-500 transition-colors cursor-pointer active:scale-95 font-medium" href="#">Shift Swaps</a>
+<a class="text-slate-500 hover:text-teal-500 transition-colors cursor-pointer active:scale-95 font-medium" href="#">Verification</a>
+</nav>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-1.5 rounded-xl bg-surface-container-high border-none text-sm focus:ring-2 focus:ring-primary w-64 transition-all" placeholder="Search modules..." type="text"/>
+</div>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-teal-500">notifications</span>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-teal-500">verified_user</span>
+<img alt="Physician Profile" class="w-8 h-8 rounded-full object-cover border-2 border-primary-fixed shadow-sm" data-alt="professional headshot of a male cardiologist in clinical attire with a friendly and confident expression, soft clinical lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXfquVzO19MDjehD3BNVrriAjalUDDFaZhF9QQVJfgHpFz4BJSwV-OiEjFDz256XgS5GmkXdi7IqKFLMerqliRI7BBKhW5GEid1PwApwhF5MTALq2hjhH8dFLmCXBx5e4ATXcBW--mdK2ldstM-trrMhM8TTrDLQs8FKsOU-0N71X8SIDYjqeW5whQuRQN1Svnk_8CXqEPolkRkxNroP-cIsrwE0I1JpEiZYiDm6up1RhrKRCUHtFJ3VX90obshCQEd6kfQI-TGg"/>
+</div>
+</header>
+<div class="flex pt-16 min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-[calc(100vh-64px)] py-8 px-4 w-72 bg-slate-50 dark:bg-slate-950 sticky top-16">
+<div class="mb-10 px-4">
+<div class="flex items-center gap-3 mb-2">
+<img alt="Medical Practitioner Avatar" class="w-12 h-12 rounded-xl object-cover" data-alt="high-quality medical professional profile picture, cardiologist specialist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwcO2nyl1rGHOqQ_77ltLjxumLjnaf8EYj2N6GL1XlMwFUVpwo8II64bNE9pt9HqQPdnf-cOFoXID3bkaLRCw_bmAy5Jwwz0BZJ82kUCNk2SxB5yQ1fnLPib5iaAxFF9oOz7RDfx42nhpYO1YX2CTn58ycDnUOk3R6qfwLiYw3KOzIUCEyzerqLo_8PjnzZp7TPHiPEVpKAsFLDp6QluoQm3W6VJ2zbV0SfLIO_cBRbowYB9w4JYJjzC5_ObuaWt8Wzk_8WJDiig"/>
+<div>
+<p class="text-teal-900 dark:text-teal-100 font-black text-lg leading-tight">Dr. Al-Saud</p>
+<p class="text-slate-500 text-xs font-medium">Cardiologist • Verified</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-teal-700 dark:text-teal-300 font-bold border-r-4 border-teal-600 bg-teal-50/50 dark:bg-teal-900/20 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span>CME Tracker</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span>Shift Swaps</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span>Verification</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-200 dark:border-slate-800 space-y-1">
+<button class="w-full editorial-gradient text-white py-3 rounded-xl font-bold mb-4 shadow-lg shadow-primary/20 active:scale-95 transition-all">
+                    Start Consultation
+                </button>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-6 md:p-10 overflow-y-auto">
+<div class="max-w-7xl mx-auto">
+<!-- Header Section -->
+<header class="mb-12 flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<span class="label-md uppercase font-bold text-primary tracking-widest block mb-2">2024 Licensing Cycle</span>
+<h1 class="text-4xl md:text-5xl font-black text-on-surface tracking-tighter leading-none">Learning Path</h1>
+<p class="mt-4 text-on-surface-variant max-w-xl body-lg leading-relaxed">
+                            Track your continuous medical education progress. You have completed 32 of 50 required Category 1 credits for this biennial period.
+                        </p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-md bg-surface-container-high font-bold text-on-surface-variant hover:bg-surface-container-highest transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-xl">download</span>
+                            Certificate Vault
+                        </button>
+</div>
+</header>
+<div class="asymmetric-grid">
+<!-- Left Column: Journey Map & Achievement Badges -->
+<div class="space-y-12">
+<!-- Journey Map -->
+<section class="relative">
+<h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+<span class="w-2 h-8 editorial-gradient rounded-full"></span>
+                                Current Progress
+                            </h2>
+<div class="bg-surface-container-low rounded-xl p-8 relative overflow-hidden">
+<!-- The Journey Visual -->
+<div class="flex justify-between items-center relative z-10">
+<div class="flex flex-col items-center gap-3 relative">
+<div class="w-12 h-12 rounded-full editorial-gradient flex items-center justify-center text-white shadow-xl">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="text-xs font-bold text-on-surface">CORE</span>
+</div>
+<div class="flex-1 h-1 bg-primary-fixed relative mx-2">
+<div class="absolute top-1/2 left-0 w-full h-1 bg-primary -translate-y-1/2 scale-x-[0.65] origin-left"></div>
+</div>
+<div class="flex flex-col items-center gap-3 relative">
+<div class="w-12 h-12 rounded-full border-4 border-primary bg-surface-container-lowest flex items-center justify-center text-primary shadow-lg">
+<span class="material-symbols-outlined font-variation-settings: 'FILL' 1;">local_hospital</span>
+</div>
+<span class="text-xs font-bold text-primary">SPECIALTY</span>
+</div>
+<div class="flex-1 h-1 bg-surface-container-highest relative mx-2"></div>
+<div class="flex flex-col items-center gap-3 opacity-40">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<span class="text-xs font-bold">ETHICS</span>
+</div>
+<div class="flex-1 h-1 bg-surface-container-highest relative mx-2"></div>
+<div class="flex flex-col items-center gap-3 opacity-40">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<span class="text-xs font-bold">RENEWAL</span>
+</div>
+</div>
+<div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-lg">
+<p class="text-xs text-on-surface-variant font-bold uppercase">Completed</p>
+<p class="text-2xl font-black text-primary">32.5</p>
+<p class="text-[10px] text-outline font-medium">CME CREDITS</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-lg border-l-4 border-tertiary-container">
+<p class="text-xs text-on-surface-variant font-bold uppercase">Pending</p>
+<p class="text-2xl font-black text-tertiary">17.5</p>
+<p class="text-[10px] text-outline font-medium">REMAINING</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-lg">
+<p class="text-xs text-on-surface-variant font-bold uppercase">Deadline</p>
+<p class="text-2xl font-black text-on-surface">142</p>
+<p class="text-[10px] text-outline font-medium">DAYS LEFT</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-lg">
+<p class="text-xs text-on-surface-variant font-bold uppercase">Rank</p>
+<p class="text-2xl font-black text-secondary">Top 5%</p>
+<p class="text-[10px] text-outline font-medium">PEER BENCHMARK</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Achievement Badges -->
+<section>
+<div class="flex justify-between items-end mb-8">
+<h2 class="text-2xl font-bold flex items-center gap-3">
+<span class="w-2 h-8 bg-secondary-container rounded-full"></span>
+                                    Specialty Badges
+                                </h2>
+<button class="text-sm font-bold text-primary hover:underline">View All Collections</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+<!-- Badge Card -->
+<div class="bg-surface-container-lowest p-6 rounded-xl text-center group hover:scale-[1.02] transition-all border border-transparent hover:border-primary/10">
+<div class="w-20 h-20 mx-auto mb-4 relative">
+<div class="absolute inset-0 bg-primary-fixed/30 rounded-full blur-xl group-hover:bg-primary-fixed/50 transition-all"></div>
+<div class="relative z-10 w-full h-full rounded-full bg-surface-container-low flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">cardiology</span>
+</div>
+</div>
+<h3 class="font-bold text-sm">Advanced ECG</h3>
+<p class="text-xs text-outline mt-1 italic">Master Tier</p>
+</div>
+<!-- Badge Card -->
+<div class="bg-surface-container-lowest p-6 rounded-xl text-center group hover:scale-[1.02] transition-all">
+<div class="w-20 h-20 mx-auto mb-4 relative">
+<div class="absolute inset-0 bg-secondary-fixed/30 rounded-full blur-xl"></div>
+<div class="relative z-10 w-full h-full rounded-full bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-4xl">radiology</span>
+</div>
+</div>
+<h3 class="font-bold text-sm">MR Interpretation</h3>
+<p class="text-xs text-outline mt-1">Level 2</p>
+</div>
+<!-- Badge Card -->
+<div class="bg-surface-container-lowest p-6 rounded-xl text-center group hover:scale-[1.02] transition-all">
+<div class="w-20 h-20 mx-auto mb-4 relative">
+<div class="absolute inset-0 bg-tertiary-fixed/30 rounded-full blur-xl"></div>
+<div class="relative z-10 w-full h-full rounded-full bg-surface-container-low flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-4xl">neurology</span>
+</div>
+</div>
+<h3 class="font-bold text-sm">Stroke Protocol</h3>
+<p class="text-xs text-outline mt-1 italic">Expert Tier</p>
+</div>
+<!-- Badge Card (Locked) -->
+<div class="bg-surface-container-lowest p-6 rounded-xl text-center opacity-50 grayscale">
+<div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full bg-surface-container-high">
+<span class="material-symbols-outlined text-4xl text-outline">lock</span>
+</div>
+<h3 class="font-bold text-sm">Pediatric Care</h3>
+<p class="text-xs text-outline mt-1">Locked</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Learn Now & Telegram Integration -->
+<aside class="space-y-8">
+<!-- Learn Now Section -->
+<div class="bg-surface-container-high rounded-xl p-8 relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
+<h2 class="text-xl font-black mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                                Learn Now
+                            </h2>
+<p class="text-sm text-on-surface-variant mb-8 leading-relaxed font-medium">
+                                Squeeze in a 15-minute high-yield module between patients. Syncs instantly to your ledger.
+                            </p>
+<div class="space-y-4">
+<div class="group bg-surface-container-lowest p-4 rounded-lg flex items-center gap-4 cursor-pointer hover:bg-primary hover:text-white transition-all">
+<div class="w-12 h-12 rounded-md bg-primary-fixed/20 group-hover:bg-white/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">medication</span>
+</div>
+<div>
+<h4 class="font-bold text-sm">New Anticoagulants</h4>
+<p class="text-[10px] uppercase tracking-wider font-bold opacity-60">15 MIN • 0.5 CREDITS</p>
+</div>
+</div>
+<div class="group bg-surface-container-lowest p-4 rounded-lg flex items-center gap-4 cursor-pointer hover:bg-primary hover:text-white transition-all">
+<div class="w-12 h-12 rounded-md bg-primary-fixed/20 group-hover:bg-white/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">heart_broken</span>
+</div>
+<div>
+<h4 class="font-bold text-sm">HFpEF Guidelines 2024</h4>
+<p class="text-[10px] uppercase tracking-wider font-bold opacity-60">12 MIN • 0.5 CREDITS</p>
+</div>
+</div>
+</div>
+<!-- Telegram Integration Card -->
+<div class="mt-10 pt-10 border-t border-outline-variant/30 text-center">
+<div class="bg-[#24A1DE] text-white p-6 rounded-2xl shadow-xl shadow-[#24A1DE]/20 transform -rotate-1">
+<div class="flex items-center justify-center gap-2 mb-4">
+<svg class="w-8 h-8 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.303.48-.429-.012-1.253-.245-1.865-.444-.752-.244-1.348-.372-1.296-.786.027-.216.323-.437.888-.664 3.483-1.517 5.805-2.518 6.968-3.002 3.313-1.378 4-1.617 4.451-1.625z"></path></svg>
+<span class="font-bold text-lg">Telegram Learning</span>
+</div>
+<p class="text-xs font-medium mb-6 leading-tight opacity-90">
+                                        Get daily clinical cases and 15-min modules sent directly to your phone.
+                                    </p>
+<button class="w-full bg-white text-[#24A1DE] py-2.5 rounded-lg font-black text-sm hover:bg-slate-50 transition-colors">
+                                        CONNECT BOT
+                                    </button>
+</div>
+</div>
+</div>
+<!-- Credential Stack -->
+<div class="bg-white rounded-xl overflow-hidden shadow-sm">
+<div class="p-6 bg-surface-container-low border-b border-outline-variant/10">
+<h3 class="font-bold text-sm uppercase tracking-wider text-outline">Verified Credentials</h3>
+</div>
+<div class="divide-y divide-surface-container-low">
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="text-sm font-semibold">American Board of Cardiology</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm">verified</span>
+</div>
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="text-sm font-semibold">State License #82910</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm">verified</span>
+</div>
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">clinical_notes</span>
+<span class="text-sm font-semibold">ACLS Certification</span>
+</div>
+<span class="text-[10px] font-bold bg-error-container text-on-error-container px-2 py-1 rounded-full">EXPIRES SOON</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Footer List: Case Carousel Concept -->
+<section class="mt-16">
+<h2 class="text-2xl font-bold mb-8">Peer-Reviewed Case Studies</h2>
+<div class="flex gap-6 overflow-x-auto pb-8 snap-x no-scrollbar">
+<div class="flex-shrink-0 w-80 snap-start bg-surface-bright p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="h-32 mb-4 rounded-lg bg-surface-container-low overflow-hidden">
+<img alt="Case Study Image" class="w-full h-full object-cover" data-alt="microscopic view of cardiovascular tissue sample, professional pathology slide with detailed cellular structure" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlcwyKOjWsCYj7ktEme46_iXlLFaCYtmqun1zTkOx832H6pTCYNNiwEW9GU-5p_AuxAcmOke_WWW9BqWkSHtXy7IymvSLxUr1Cpu0bLGSVbnP7MqggGgwk9GXEf0uXrkuEt3p9_BJwnI8hqxAD71O4J_ZVtB9AWyP8zTW4jp1gWEsoWuYz07pia7eUV8ILrRLhhBH-3ApSyeIIYsW-W3DGhysF7FMGwQiYF_J2ltrCG4ZRi1QtSKTAYKkSsSLgw5DPwQM6ARB-pw"/>
+</div>
+<span class="text-[10px] font-bold text-primary-container px-2 py-0.5 rounded bg-primary-fixed mb-3 inline-block">2.0 CME</span>
+<h4 class="font-bold text-md leading-tight mb-2">Unusual Presentations of Myocarditis in Post-Viral Patients</h4>
+<div class="flex items-center gap-2 mt-4">
+<span class="material-symbols-outlined text-sm text-outline">thumb_up</span>
+<span class="text-xs font-bold text-outline">128 Docs approved</span>
+</div>
+</div>
+<div class="flex-shrink-0 w-80 snap-start bg-surface-bright p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="h-32 mb-4 rounded-lg bg-surface-container-low overflow-hidden">
+<img alt="Case Study Image" class="w-full h-full object-cover" data-alt="abstract visualization of a brain scan with neon neural pathways and glowing medical data points" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuFBkrgbEH7ViycechEDmTuI99286yQ0Pyq2U9kx0ev-Luody7TqLx62ehz8BIxi1N7JN35c2MIOXhyjfnFoI-Hmm9EmbG4Tl583oW9nsVXA1cTPNCVN6e-Sh-tcEoF6_xyyJtb2zBL0Bll49ev4J1YsHEdPVu6XrAyttHp_5uKUFLIvRZuxGpazaujDPlSFs2Oy6I7-5p7cAJr61jYrnAnXqX9lJWKPCZllgEBNb-wri01WJC186BHsb1AAP9bYCUQ1so0HydiQ"/>
+</div>
+<span class="text-[10px] font-bold text-secondary px-2 py-0.5 rounded bg-secondary-fixed mb-3 inline-block">1.5 CME</span>
+<h4 class="font-bold text-md leading-tight mb-2">Neurological Manifestations of Chronic Sleep Apnea</h4>
+<div class="flex items-center gap-2 mt-4">
+<span class="material-symbols-outlined text-sm text-outline">thumb_up</span>
+<span class="text-xs font-bold text-outline">84 Docs approved</span>
+</div>
+</div>
+<div class="flex-shrink-0 w-80 snap-start bg-surface-bright p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="h-32 mb-4 rounded-lg bg-surface-container-low overflow-hidden">
+<img alt="Case Study Image" class="w-full h-full object-cover" data-alt="close up of a medical laboratory glass flask with teal colored liquid and reflections of clinical lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGcj50ui2RKJbPhu_eQmlbzLrcNaclH_17AOamiowalQEB_7dFqmnARtmK5qefB3d-HzDgzYlryxuY8UmvslnZyj2sv2-nGpEQGPHl-QZ9wwCM5Af8w46loSSyY-yRUGJ-alZFLp8goGAbDLzOcFb9OO2tAE34Sc_nd0WZnig_HD65ER2G-cKQ7XabsNMimOmypcGxLB8QJKra-83KdEOjdF_s58L-7neRa9sYfcSdDgKbgJ3JMxI4GvcPw_AuNFZSCGT6_ylDbw"/>
+</div>
+<span class="text-[10px] font-bold text-tertiary-container px-2 py-0.5 rounded bg-tertiary-fixed mb-3 inline-block">3.0 CME</span>
+<h4 class="font-bold text-md leading-tight mb-2">Breakthroughs in Lipid-Lowering Gene Therapies</h4>
+<div class="flex items-center gap-2 mt-4">
+<span class="material-symbols-outlined text-sm text-outline">thumb_up</span>
+<span class="text-xs font-bold text-outline">215 Docs approved</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Navigation Shell (Relevance Check: True) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white/90 backdrop-blur-md flex items-center justify-around px-2 z-50">
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold">DASHBOARD</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-teal-600" href="#">
+<span class="material-symbols-outlined font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="text-[10px] font-bold">CME</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="text-[10px] font-bold">SWAPS</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">PROFILE</span>
+</a>
+</nav>
+<!-- Contextual FAB (Relevance Check: Dashboard/Home equivalent) -->
+<button class="fixed bottom-20 md:bottom-10 right-6 md:right-10 w-14 h-14 rounded-full editorial-gradient text-white shadow-2xl flex items-center justify-center cursor-pointer active:scale-95 transition-all z-40 group">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform">add</span>
+<span class="absolute right-full mr-4 bg-on-surface text-white text-xs py-2 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Log New Credit</span>
+</button>
+</body></html>

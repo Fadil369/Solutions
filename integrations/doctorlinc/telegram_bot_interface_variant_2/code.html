@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DoctorLinc Creator Mode - Clinical Ledger</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#191c1e",
+                        "error": "#ba1a1a",
+                        "primary-container": "#008080",
+                        "on-tertiary-container": "#fff9f7",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "surface-dim": "#d8dadc",
+                        "secondary-fixed": "#dce1ff",
+                        "secondary-fixed-dim": "#b6c4ff",
+                        "on-surface-variant": "#3e4949",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "outline": "#6e7979",
+                        "on-primary-container": "#e3fffe",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#76d6d5",
+                        "primary": "#006565",
+                        "background": "#f7f9fb",
+                        "on-secondary-fixed-variant": "#264191",
+                        "on-tertiary-fixed": "#341100",
+                        "tertiary-fixed": "#ffdbcb",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary": "#4059aa",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "on-secondary-fixed": "#00164e",
+                        "inverse-surface": "#2d3133",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-container": "#a96039",
+                        "on-tertiary-fixed-variant": "#733512",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-tint": "#006a6a",
+                        "surface-container-high": "#e6e8ea",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#1d3989",
+                        "on-primary-fixed": "#002020",
+                        "surface-container": "#eceef0",
+                        "tertiary": "#8b4823",
+                        "outline-variant": "#bdc9c8",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#93f2f2",
+                        "surface": "#f7f9fb",
+                        "primary-fixed-dim": "#76d6d5",
+                        "secondary-container": "#8fa7fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #006565 0%, #008080 100%);
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 glass-header shadow-sm flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-teal-800 dark:text-teal-300 font-headline tracking-tight">DoctorLinc</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-teal-600 font-semibold cursor-pointer active:scale-95 transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 hover:text-teal-500 transition-colors cursor-pointer active:scale-95" href="#">CME Tracker</a>
+<a class="text-slate-500 hover:text-teal-500 transition-colors cursor-pointer active:scale-95" href="#">Shift Swaps</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex bg-slate-100 dark:bg-slate-800 rounded-full px-4 py-1.5 items-center gap-2">
+<span class="material-symbols-outlined text-slate-500 text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48" placeholder="Search insights..." type="text"/>
+</div>
+<span class="material-symbols-outlined text-teal-700 cursor-pointer p-2 hover:bg-teal-50 rounded-full">notifications</span>
+<div class="flex items-center gap-2 border-l border-slate-200 pl-4 ml-2">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-slate-200">
+<img class="w-full h-full object-cover" data-alt="professional medical headshot of a Middle Eastern male doctor with kind eyes and glasses in a clean clinical environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrX1ykLzw_wz7Yh8Fi0geesxSJI1o5gfflnHOj8nu4BxhJW7ytXAFOOBWQvS8WDe2emfQJMoflM4iFjkQy83H9CV8TctS_MO1IxlbQlv-0GfeCbXYDe061sC7XUAQvIhdgCjEPBAj6Hh2UedZ-sUJTKs906cDkq8iLZPGJV3v1BrPnDEUk4Cpt-p6an_aTvu-tEGGtCHg99Yqi4fWlwQ0DcFHMzjL6GZ3ZyQr0V1cikgGQJ1gRIg1fxg47iNM-tRgS9FtfSNzY0A"/>
+</div>
+</div>
+</div>
+</nav>
+<div class="flex pt-16 h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-full py-8 px-6 bg-slate-50 w-72 shrink-0">
+<div class="mb-8">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-primary-container ring-offset-2">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a senior physician looking authoritative and trustworthy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO1esEZqH9OcZlHO3keIRsGpPAkyi-eV4wgIfF6xIjQWCUEKdKdlznV2H9uQTTWm6F_Z1PBzelPz2b4rbZlSLo0YRpiEbR4xmB9WPQ4gVq8tIWLetlyNuz2NJl-x8dKWJCurYk8aTqeO-hz5WZy5bGLB6b2t8mbY5If2RkuhtkmXeSUH_oxrr3U6mDLHz1TTKFbc-9AMX-YPzZEp9CyTC2ObYtFGFFDVPY98udwbP7NTDgvXdfxHnlG4HpB2ZwAvSn8qK_UjENcQ"/>
+</div>
+<div>
+<p class="font-black text-on-surface font-headline leading-tight">Dr. Al-Saud</p>
+<p class="text-xs text-on-surface-variant">Cardiologist • Verified</p>
+</div>
+</div>
+<button class="w-full signature-gradient text-white font-semibold py-3 rounded-md active:scale-[0.98] transition-all shadow-md">
+                    Start Consultation
+                </button>
+</div>
+<div class="flex flex-col gap-1 grow">
+<div class="flex items-center gap-3 px-4 py-3 text-slate-600 font-medium hover:bg-slate-200 transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-teal-700 font-bold border-r-4 border-teal-600 bg-teal-50/50 rounded-xl cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span>CME Creator</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-slate-600 font-medium hover:bg-slate-200 transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span>Shift Swaps</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-slate-600 font-medium hover:bg-slate-200 transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined">fact_check</span>
+<span>Verification</span>
+</div>
+</div>
+<div class="border-t border-slate-200 pt-6 mt-auto">
+<div class="flex items-center gap-3 px-4 py-3 text-slate-600 font-medium hover:bg-slate-200 transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-slate-600 font-medium hover:bg-slate-200 transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined">help</span>
+<span>Support</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area (Telegram Mockup) -->
+<main class="flex-1 bg-surface-container-low overflow-y-auto px-4 md:px-8 py-8 flex justify-center">
+<div class="w-full max-w-4xl flex flex-col gap-6">
+<!-- Multi-Agent Status Bar (Floating) -->
+<div class="bg-surface-container-lowest rounded-full px-6 py-3 flex items-center justify-between shadow-sm border border-outline-variant/15">
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold uppercase tracking-widest text-primary">Creator Mode Active</span>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 opacity-50">
+<span class="material-symbols-outlined text-sm">architecture</span>
+<span class="text-xs font-medium">Planner</span>
+</div>
+<div class="flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined text-sm animate-pulse">edit_note</span>
+<span class="text-xs">Writer</span>
+</div>
+<div class="flex items-center gap-2 opacity-50">
+<span class="material-symbols-outlined text-sm">school</span>
+<span class="text-xs font-medium">Teacher</span>
+</div>
+</div>
+</div>
+<div class="flex gap-1">
+<div class="h-1.5 w-8 bg-primary rounded-full"></div>
+<div class="h-1.5 w-8 bg-primary/20 rounded-full"></div>
+<div class="h-1.5 w-8 bg-primary/10 rounded-full"></div>
+</div>
+</div>
+<!-- Chat Interface -->
+<div class="flex flex-col gap-8 pb-20">
+<!-- Message 1: User Command -->
+<div class="flex flex-col items-end gap-2">
+<div class="bg-primary text-white px-6 py-4 rounded-xl rounded-tr-none max-w-[80%] shadow-md">
+<p class="font-mono text-sm opacity-80 mb-1">/teaching</p>
+<p class="body-lg">I've compiled some notes on New-Onset Atrial Fibrillation protocols from my last week's rounds. Can we turn this into a 2-credit CME module for our fellows?</p>
+</div>
+<span class="text-[10px] text-on-surface-variant font-medium">10:42 AM • Read</span>
+</div>
+<!-- Message 2: File Upload -->
+<div class="flex flex-col items-end gap-2">
+<div class="bg-surface-container-lowest p-2 rounded-xl border border-outline-variant/20 shadow-sm flex items-center gap-4 max-w-[80%]">
+<div class="w-12 h-12 bg-secondary-fixed rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-fixed">description</span>
+</div>
+<div class="pr-4">
+<p class="text-sm font-bold">afib_rounds_notes.pdf</p>
+<p class="text-[10px] text-on-surface-variant">4.2 MB • Clinical Notes</p>
+</div>
+</div>
+</div>
+<!-- Message 3: Bot Response (Clarifying Questions) -->
+<div class="flex flex-col items-start gap-2">
+<div class="flex items-center gap-2 ml-1">
+<div class="w-6 h-6 rounded-full signature-gradient flex items-center justify-center text-[10px] text-white font-bold">DL</div>
+<span class="text-[11px] font-bold text-primary uppercase tracking-tighter">DoctorLinc Bot</span>
+</div>
+<div class="bg-surface-container-lowest px-6 py-4 rounded-xl rounded-tl-none max-w-[85%] shadow-sm border border-outline-variant/10">
+<p class="body-lg mb-4">Received. The Planner has outlined the core structure. To refine the Writer's draft, could you clarify these two points from your notes?</p>
+<div class="space-y-4">
+<div class="bg-surface-container-low p-4 rounded-lg">
+<p class="text-sm font-bold text-primary mb-1">1. Target Audience Depth</p>
+<p class="text-sm text-on-surface-variant">You mentioned "fellows," but the dosage titration section is quite granular. Should we include advanced electrophysiology components or keep it to general management?</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg">
+<p class="text-sm font-bold text-primary mb-1">2. Case Focus</p>
+<p class="text-sm text-on-surface-variant">Would you like to highlight the 68-year old patient case from Tuesday as the central longitudinal study for this module?</p>
+</div>
+</div>
+<div class="mt-6 flex flex-wrap gap-2">
+<button class="px-4 py-2 bg-primary-fixed text-on-primary-fixed text-xs font-bold rounded-full hover:bg-primary-fixed-dim transition-colors">Include advanced EP</button>
+<button class="px-4 py-2 border border-outline-variant text-on-surface-variant text-xs font-bold rounded-full hover:bg-surface-container-high transition-colors">General management only</button>
+<button class="px-4 py-2 border border-outline-variant text-on-surface-variant text-xs font-bold rounded-full hover:bg-surface-container-high transition-colors">Yes, use Tuesday's case</button>
+</div>
+</div>
+</div>
+<!-- Message 4: Final Draft Presentation -->
+<div class="flex flex-col items-start gap-2 mt-4">
+<div class="flex items-center gap-2 ml-1">
+<div class="w-6 h-6 rounded-full signature-gradient flex items-center justify-center text-[10px] text-white font-bold">DL</div>
+<span class="text-[11px] font-bold text-primary uppercase tracking-tighter">DoctorLinc Bot</span>
+</div>
+<!-- CME Draft Card -->
+<div class="bg-surface-bright rounded-xl overflow-hidden shadow-xl border border-primary/20 max-w-[95%]">
+<div class="signature-gradient p-6 text-white">
+<div class="flex justify-between items-start mb-4">
+<span class="px-2 py-1 bg-white/20 rounded text-[10px] font-bold uppercase tracking-widest">DRAFT FOR APPROVAL</span>
+<div class="flex gap-2">
+<div class="flex items-center gap-1 bg-white/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-xs">timer</span>
+<span class="text-[10px]">45 Min</span>
+</div>
+<div class="flex items-center gap-1 bg-white/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-xs">stars</span>
+<span class="text-[10px]">2.0 AMA Credits</span>
+</div>
+</div>
+</div>
+<h2 class="text-2xl font-black font-headline leading-tight">Advanced AFib Management: From Acute Bedside to Long-Term Rhythm Control</h2>
+<p class="text-white/80 text-sm mt-2 italic">Creator: Dr. Al-Saud • Verified Practitioner Edition</p>
+</div>
+<div class="p-6 bg-white">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<h3 class="text-xs font-bold text-primary uppercase mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">list_alt</span>
+                                            Module Syllabus
+                                        </h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<span class="w-5 h-5 rounded-full bg-primary-fixed flex items-center justify-center text-[10px] font-bold shrink-0">01</span>
+<p class="text-sm font-medium">Pathophysiology of New-Onset AFib in Post-Op Patients</p>
+</li>
+<li class="flex items-start gap-3">
+<span class="w-5 h-5 rounded-full bg-primary-fixed flex items-center justify-center text-[10px] font-bold shrink-0">02</span>
+<p class="text-sm font-medium">Rate vs Rhythm Control: Interactive Decision Tree</p>
+</li>
+<li class="flex items-start gap-3">
+<span class="w-5 h-5 rounded-full bg-primary-fixed flex items-center justify-center text-[10px] font-bold shrink-0">03</span>
+<p class="text-sm font-medium">Case Study: 68-year old Male with Persistent Instability</p>
+</li>
+</ul>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl border-l-4 border-primary">
+<h3 class="text-xs font-bold text-primary uppercase mb-2">Editor's Note</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                                            The Writer has synthesized your clinical notes with current ACC/AHA guidelines. The assessment includes 5 peer-reviewed questions tailored for cardiovascular fellows.
+                                        </p>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 bg-primary text-white py-2 rounded-md text-xs font-bold shadow-md hover:brightness-110 transition-all">Publish to Peer Net</button>
+<button class="px-3 border border-outline text-on-surface-variant rounded-md hover:bg-white transition-all">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Input Area (Floating) -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4">
+<div class="bg-white rounded-2xl shadow-2xl p-2 flex items-center gap-2 border border-outline-variant/30">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<input class="flex-1 border-none focus:ring-0 text-sm py-2" placeholder="Reply to DoctorLinc Bot..." type="text"/>
+<button class="signature-gradient p-3 rounded-xl text-white shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

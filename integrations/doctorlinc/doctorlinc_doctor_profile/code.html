@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#a96039",
+                    "primary-fixed": "#93f2f2",
+                    "secondary-fixed": "#dce1ff",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f7f9fb",
+                    "on-secondary-fixed-variant": "#264191",
+                    "primary-fixed-dim": "#76d6d5",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-container": "#8fa7fe",
+                    "on-secondary-container": "#1d3989",
+                    "on-secondary-fixed": "#00164e",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "outline": "#6e7979",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "tertiary": "#8b4823",
+                    "inverse-surface": "#2d3133",
+                    "outline-variant": "#bdc9c8",
+                    "on-tertiary-fixed-variant": "#733512",
+                    "surface-tint": "#006a6a",
+                    "on-tertiary-fixed": "#341100",
+                    "on-background": "#191c1e",
+                    "error": "#ba1a1a",
+                    "surface-container": "#eceef0",
+                    "on-surface": "#191c1e",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#3e4949",
+                    "on-tertiary-container": "#fff9f7",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#ffdbcb",
+                    "surface": "#f7f9fb",
+                    "on-primary-container": "#e3fffe",
+                    "surface-container-high": "#e6e8ea",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary": "#006565",
+                    "background": "#f7f9fb",
+                    "on-primary-fixed": "#002020",
+                    "surface-variant": "#e0e3e5",
+                    "surface-dim": "#d8dadc",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#76d6d5",
+                    "secondary-fixed-dim": "#b6c4ff",
+                    "secondary": "#4059aa",
+                    "primary-container": "#008080"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #006565 0%, #008080 100%);
+        }
+        .shadow-ambient {
+            box-shadow: 0 8px 32px rgba(25, 28, 30, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-6 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 shadow-sm dark:shadow-none">
+<div class="flex items-center gap-8">
+<h1 class="text-2xl font-bold tracking-tighter text-teal-800 dark:text-teal-200">DoctorLinc</h1>
+<div class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 rounded-full px-4 py-1.5 gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-64 text-on-surface placeholder-on-surface-variant/60" placeholder="Search physicians, cases, or journals..." type="text"/>
+</div>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-teal-700 dark:text-teal-400 font-semibold border-b-2 border-teal-700 py-5 transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 px-3 py-1.5 rounded-lg transition-colors" href="#">Clinical Network</a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 px-3 py-1.5 rounded-lg transition-colors" href="#">Case Reviews</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-slate-50 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<img alt="User physician profile" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container" data-alt="professional portrait of a male doctor in clinical attire with a warm confident expression, soft studio lighting, medical office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrXoKX0It07z_0VfKewM4v6-PYyOwKtStfo5-g4HskrFq_8c4Zygf_4SeJHppn8N3iaWNo1kgKtbDA-FBTjS32ApcVv4yq8_n-kPpgFtQtBcAGPlSK095CEcYabF7Wm2pippQD_1dzs9i7QUpZBY7HMBH8HZrRLQWnIS7K0c0wHprIozLJAaGj2N-krNocdHtITNa7cEdXcC8CiOGV8ZgylCu-QnEHvmMHW_RLAT2PtKPcI_qRThILbQoLMAGIK4EpGdf-byS2sw"/>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 p-4 gap-2 bg-slate-50 dark:bg-slate-950 transition-all duration-300 ease-in-out border-r-0">
+<div class="mb-6 px-4 py-4">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">MA</div>
+<div>
+<p class="text-sm font-black text-teal-900 dark:text-teal-100 leading-none">Dr. Clinical Ledger</p>
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant mt-1">Verified Surgeon</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-teal-50/50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium Inter">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-900 text-teal-700 shadow-sm rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="text-sm font-medium Inter">My Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-teal-50/50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="text-sm font-medium Inter">Shift Swaps</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-teal-50/50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">group_add</span>
+<span class="text-sm font-medium Inter">Referrals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-teal-50/50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="text-sm font-medium Inter">CME Tracker</span>
+</a>
+</nav>
+<div class="mt-auto p-4">
+<button class="w-full signature-gradient text-white py-3 rounded-md font-semibold text-sm shadow-ambient active:scale-95 duration-200">
+                Start Consultation
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-24 pb-12 px-6 min-h-screen bg-surface">
+<div class="max-w-6xl mx-auto">
+<!-- Asymmetric Profile Header -->
+<div class="relative grid grid-cols-1 md:grid-cols-12 gap-8 items-end mb-12">
+<div class="md:col-span-4 lg:col-span-3">
+<div class="relative">
+<img alt="Dr. Mohamed Ali Profile" class="w-full aspect-square object-cover rounded-xl shadow-ambient border-4 border-white" data-alt="close-up portrait of a middle-eastern male cardiologist in professional medical white coat, confident smile, clean clinical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVgQP5QQa3s52AH-MBhTUtYAyCvUy4AG-Piz9p5z7sMbCEg6BOU1ytOsyg3KX4S8icmWtjGnP6nByDT4lWzZRRNRa6ELJGpKpGYH8Sz8D7ce43lFRjlmQs7jHDjoRUb1xyU4fFZNU-rAk-w5MLh9UQ2FavM7OQuvp1BiGbt9sva7NQ4m_EVo7y2Uiy455Yhp7sKIudZ9ArNmvij_bQcN_Jg2ZfF39fVeG39TJh713vR0NUAjpCIj1TlRryOdeCFIl_7t7b2-uDoA"/>
+<div class="absolute -bottom-4 -right-4 bg-secondary-fixed text-on-secondary-fixed px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-xs font-bold uppercase tracking-widest">Trust Level 2</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-8 lg:col-span-6 pb-2">
+<p class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-2">Senior Medical Consultant</p>
+<h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-on-surface mb-3">Dr. Mohamed Ali</h2>
+<div class="flex flex-wrap items-center gap-4 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary">cardiology</span>
+<span class="font-medium">Consultant Cardiologist</span>
+</div>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary">location_on</span>
+<span class="font-medium">Riyadh, Saudi Arabia</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-3 flex flex-col items-end pb-2">
+<div class="bg-surface-container-highest/50 p-6 rounded-xl border-l-4 border-primary text-right">
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Linc Score</p>
+<p class="text-5xl font-black text-primary tracking-tighter">42</p>
+<p class="text-xs text-on-surface-variant mt-1">Top 5% in Cardiology</p>
+</div>
+</div>
+</div>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Verification Section (High Prominence) -->
+<section class="md:col-span-2 bg-surface-container-lowest rounded-xl p-8 shadow-ambient relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-9xl">shield_person</span>
+</div>
+<div class="relative z-10">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-xl font-bold tracking-tight">Verification Progress</h3>
+<span class="text-xs font-bold text-primary bg-primary-fixed px-3 py-1 rounded-full">Level 2 of 3</span>
+</div>
+<div class="space-y-6">
+<!-- Level 1 -->
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white shrink-0">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Level 1: Community Verified</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Endorsed by 15+ verified peers in Riyadh Medical Network.</p>
+</div>
+</div>
+<!-- Level 2 -->
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white shrink-0">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Level 2: Document Verified</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Identity and medical degree certificates have been manually reviewed.</p>
+</div>
+</div>
+<!-- Level 3 (In Progress) -->
+<div class="flex items-start gap-4 p-4 rounded-xl bg-surface-container-low border border-dashed border-outline-variant">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-lg">sync</span>
+</div>
+<div class="flex-1">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h4 class="font-bold text-on-surface">Level 3: Authority Verified (SCFHS)</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Link your Saudi Commission for Health Specialties (SCFHS) license.</p>
+</div>
+<button class="signature-gradient text-white text-xs font-bold px-5 py-2.5 rounded-md hover:shadow-lg transition-all whitespace-nowrap">
+                                            Verify with SCFHS
+                                        </button>
+</div>
+<div class="mt-4 h-1.5 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Professional Details (Density Card) -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-ambient">
+<h3 class="text-xl font-bold tracking-tight mb-8">Clinical Focus</h3>
+<div class="space-y-6">
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-outline mb-1.5">Primary Facility</p>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">domain</span>
+<span class="font-semibold text-on-surface">King Faisal Specialist Hospital</span>
+</div>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-outline mb-1.5">Education</p>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">school</span>
+<span class="font-semibold text-on-surface">U of Khartoum, 2005</span>
+</div>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-outline mb-1.5">Languages</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container px-3 py-1 rounded-full text-xs font-bold">Arabic (Native)</span>
+<span class="bg-surface-container px-3 py-1 rounded-full text-xs font-bold">English (Fluent)</span>
+</div>
+</div>
+</div>
+<div class="mt-10 pt-6 border-t border-surface-container">
+<div class="grid grid-cols-2 gap-4">
+<button class="bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container p-3 rounded-xl transition-all flex flex-col items-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-xl">recommend</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Endorse</span>
+</button>
+<button class="bg-surface-container-high hover:bg-secondary-container hover:text-on-secondary-container p-3 rounded-xl transition-all flex flex-col items-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-xl">person_add</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Refer Patient</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Floating Bottom Actions (Contextual) -->
+<div class="md:col-span-3 mt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+<button class="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-on-surface text-surface rounded-xl font-bold shadow-ambient hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">mail</span>
+                        Message Dr. Mohamed
+                    </button>
+<button class="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border-2 border-primary text-primary rounded-xl font-bold hover:bg-primary/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined">calendar_month</span>
+                        Schedule Appointment
+                    </button>
+</div>
+</div>
+<!-- Case Carousel / Credentials Placeholder -->
+<section class="mt-12">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-xl font-bold tracking-tight">Recent Case Insights</h3>
+<a class="text-primary font-bold text-sm flex items-center gap-1" href="#">View Full Journal <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<div class="flex overflow-x-auto gap-6 pb-4 no-scrollbar">
+<div class="min-w-[320px] bg-surface-bright rounded-xl p-6 border border-outline-variant/10 shadow-sm">
+<span class="bg-tertiary-container/10 text-tertiary font-bold text-[10px] px-2 py-1 rounded mb-4 inline-block">PEER REVIEWED</span>
+<h4 class="font-bold text-lg leading-snug mb-2">Management of Acute Coronary Syndrome in Diabetic Patients</h4>
+<p class="text-sm text-on-surface-variant line-clamp-2">A retrospective analysis of 45 cases treated at KFSH between 2022-2023...</p>
+<div class="mt-4 flex items-center gap-2">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-blue-100 border-2 border-white"></div>
+<div class="w-6 h-6 rounded-full bg-teal-100 border-2 border-white"></div>
+</div>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">12 Endorsements</span>
+</div>
+</div>
+<div class="min-w-[320px] bg-surface-bright rounded-xl p-6 border border-outline-variant/10 shadow-sm opacity-60">
+<span class="bg-primary-container/10 text-primary font-bold text-[10px] px-2 py-1 rounded mb-4 inline-block">CASE STUDY</span>
+<h4 class="font-bold text-lg leading-snug mb-2">Advancements in Minimally Invasive Valve Repair</h4>
+<p class="text-sm text-on-surface-variant line-clamp-2">Early findings on the long-term efficacy of robotic-assisted mitral...</p>
+<div class="mt-4 flex items-center gap-2">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-pink-100 border-2 border-white"></div>
+</div>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">8 Endorsements</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Mobile Nav Bar (JSON Spec) -->
+<footer class="md:hidden fixed bottom-0 w-full bg-white/90 backdrop-blur-md flex justify-around items-center h-16 border-t border-surface-container z-50">
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-teal-700 font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="text-[10px]">Profile</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">school</span>
+<span class="text-[10px]">Tracker</span>
+</button>
+</footer>
+</body></html>

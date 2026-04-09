@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#191c1e",
+                    "error": "#ba1a1a",
+                    "primary-container": "#008080",
+                    "on-tertiary-container": "#fff9f7",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "surface-dim": "#d8dadc",
+                    "secondary-fixed": "#dce1ff",
+                    "secondary-fixed-dim": "#b6c4ff",
+                    "on-surface-variant": "#3e4949",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "outline": "#6e7979",
+                    "on-primary-container": "#e3fffe",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#76d6d5",
+                    "primary": "#006565",
+                    "background": "#f7f9fb",
+                    "on-secondary-fixed-variant": "#264191",
+                    "on-tertiary-fixed": "#341100",
+                    "tertiary-fixed": "#ffdbcb",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary": "#4059aa",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#191c1e",
+                    "on-secondary-fixed": "#00164e",
+                    "inverse-surface": "#2d3133",
+                    "inverse-on-surface": "#eff1f3",
+                    "tertiary-container": "#a96039",
+                    "on-tertiary-fixed-variant": "#733512",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-tint": "#006a6a",
+                    "surface-container-high": "#e6e8ea",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e0e3e5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#1d3989",
+                    "on-primary-fixed": "#002020",
+                    "surface-container": "#eceef0",
+                    "tertiary": "#8b4823",
+                    "outline-variant": "#bdc9c8",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#93f2f2",
+                    "surface": "#f7f9fb",
+                    "primary-fixed-dim": "#76d6d5",
+                    "secondary-container": "#8fa7fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body { font-family: 'Inter', sans-serif; }
+      .clinical-gradient {
+        background: linear-gradient(135deg, #006565 0%, #008080 100%);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+      }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-teal-800 dark:text-teal-300 font-inter tracking-tight">DoctorLinc</span>
+<div class="hidden md:flex gap-6">
+<a class="text-slate-500 hover:text-teal-500 transition-colors cursor-pointer active:scale-95 font-medium" href="#">Dashboard</a>
+<a class="text-teal-600 font-semibold hover:text-teal-500 transition-colors cursor-pointer active:scale-95" href="#">CME Tracker</a>
+<a class="text-slate-500 hover:text-teal-500 transition-colors cursor-pointer active:scale-95 font-medium" href="#">Shift Swaps</a>
+<a class="text-slate-500 hover:text-teal-500 transition-colors cursor-pointer active:scale-95 font-medium" href="#">Verification</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-teal-700 cursor-pointer p-2">notifications</span>
+<span class="material-symbols-outlined text-teal-700 cursor-pointer p-2">verified_user</span>
+<img alt="Physician Profile" class="w-10 h-10 rounded-full border-2 border-surface-container-high" data-alt="professional portrait of a middle-aged male cardiologist in a white lab coat with a warm and trustworthy expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq4bGX7xMXUqGn5O1X7cgjFlsrd-CwmPyXieXm890PlpUW98CmiqskttrswsqR__ZD8ahH2ijvAARXLMniwbRRf5nuPLRZrEkE36BNe-Fc9MtCjDGfTiBeYCVaV-evdgWQyoJJsL7XCwdAzHQ-mKbUhpiSrqucVoWD3x2u8r1r9rWXGsjy_zbUZb1M5WRlMBycA0JzWg-IuuV7NGJdLEj9u1D-pBfu_Elxc-08_qie0G9hnfJArN7XFgcdxtI0JGyB5p3j_BYZhg"/>
+</div>
+</nav>
+<div class="flex pt-16 min-h-screen">
+<!-- Sidebar -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-4rem)] w-72 bg-slate-50 dark:bg-slate-950 py-8 px-4 fixed left-0 border-r-0 overflow-y-auto">
+<div class="mb-10 px-4">
+<h2 class="text-2xl font-black text-teal-900 dark:text-teal-100 mb-1">Dr. Al-Saud</h2>
+<p class="text-slate-600 dark:text-slate-400 font-medium text-sm">Cardiologist • Verified</p>
+</div>
+<div class="space-y-1 flex-grow">
+<div class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 rounded-xl text-teal-700 dark:text-teal-300 font-bold border-r-4 border-teal-600 bg-teal-50/50 dark:bg-teal-900/20 duration-200 ease-in-out cursor-pointer">
+<span class="material-symbols-outlined">menu_book</span>
+<span>CME Tracker</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all cursor-pointer">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span>Shift Swaps</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all cursor-pointer">
+<span class="material-symbols-outlined">fact_check</span>
+<span>Verification</span>
+</div>
+</div>
+<div class="mt-auto space-y-1 px-2">
+<button class="clinical-gradient text-white w-full py-3 rounded-xl font-bold shadow-md hover:opacity-90 active:scale-95 transition-all mb-4">
+                    Start Consultation
+                </button>
+<div class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all cursor-pointer">
+<span class="material-symbols-outlined">help</span>
+<span>Support</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-grow md:ml-72 p-6 md:p-10">
+<header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2 font-headline">CME Ledger</h1>
+<p class="text-on-surface-variant text-lg">Maintaining your clinical excellence through continuous learning.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-high px-5 py-2.5 rounded-md font-semibold text-on-surface hover:bg-surface-container-highest transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">file_upload</span>
+                        Upload Certificate
+                    </button>
+</div>
+</header>
+<!-- Bento Grid Dashboard -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+<!-- Main Progress Card -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-10">
+<div>
+<span class="uppercase tracking-widest text-xs font-bold text-primary mb-1 block">Cycle Progress</span>
+<h2 class="text-5xl font-black text-on-surface">42 <span class="text-on-surface-variant font-light text-3xl">/ 90 hrs</span></h2>
+</div>
+<div class="text-right">
+<span class="uppercase tracking-widest text-xs font-bold text-error mb-1 block">Renewal Deadline</span>
+<p class="text-xl font-bold text-on-surface">Oct 24, 2024</p>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-4 rounded-full overflow-hidden mb-4">
+<div class="clinical-gradient h-full w-[46.6%] rounded-full"></div>
+</div>
+<div class="flex justify-between text-sm font-semibold text-on-surface-variant">
+<span>46% Complete</span>
+<span>48 hours remaining</span>
+</div>
+</div>
+<!-- Decorative element -->
+<div class="absolute -right-16 -top-16 w-64 h-64 clinical-gradient opacity-5 rounded-full blur-3xl"></div>
+</div>
+<!-- Breakdown Card -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-xl p-8">
+<h3 class="text-xl font-bold text-on-surface mb-6 font-headline">Category Split</h3>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-sm font-semibold">Clinical</span>
+<span class="text-sm font-bold">28 hrs</span>
+</div>
+<div class="h-2 bg-surface-container-low rounded-full">
+<div class="bg-primary h-full rounded-full" style="width: 70%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-sm font-semibold">Research</span>
+<span class="text-sm font-bold">10 hrs</span>
+</div>
+<div class="h-2 bg-surface-container-low rounded-full">
+<div class="bg-secondary h-full rounded-full" style="width: 40%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-sm font-semibold">Teaching</span>
+<span class="text-sm font-bold">4 hrs</span>
+</div>
+<div class="h-2 bg-surface-container-low rounded-full">
+<div class="bg-tertiary h-full rounded-full" style="width: 20%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recommended Activities Feed -->
+<div class="md:col-span-12">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-2xl font-extrabold text-on-surface font-headline">Recommended for You</h3>
+<a class="text-primary font-bold hover:underline flex items-center gap-1" href="#">
+                            Browse all activities
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Activity Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden hover:translate-y-[-4px] transition-transform duration-300">
+<div class="h-48 w-full relative">
+<img alt="Webinar thumbnail" class="w-full h-full object-cover" data-alt="close up of a stethoscope and a digital tablet showing a heart rate monitor on a clean white desk in a bright clinic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyH0FUrsaa139eYHdv8OteOT_v3GByZ2YsoDSzPwylo9uTyaFxeqRjaPAoSf740FNPlOUzJ-xun_W-47to-xXYR07wTAvf2c3DG3YiSJx5G-9qYRGLGSd4-LISwWMlb-0sO9EliJOikms5LwsZ5Wj0kMKrrv95YZKaFKxQEI63_cTUvwjO9T8FyOAvzVzqosxkmPXTwSQu_itadylwLcElkKdtwt62am6TkIcqPIawhgQetcgSWqo299U2FHZLIoEv2wIe_OYa9w"/>
+<div class="absolute top-4 right-4 bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">Webinar</div>
+</div>
+<div class="p-6">
+<div class="flex gap-2 mb-3">
+<span class="bg-primary-fixed text-on-primary-fixed text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Clinical</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">3.5 Credits</span>
+</div>
+<h4 class="text-lg font-bold text-on-surface mb-3 leading-snug">Advanced Diagnostic Approaches in Pediatric Cardiology</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm mb-6">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Aug 15, 2024 • 14:00 GMT</span>
+</div>
+<button class="w-full border border-outline-variant text-primary font-bold py-3 rounded-md hover:bg-primary/5 transition-colors">Register Now</button>
+</div>
+</div>
+<!-- Activity Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden hover:translate-y-[-4px] transition-transform duration-300">
+<div class="h-48 w-full relative">
+<img alt="Workshop thumbnail" class="w-full h-full object-cover" data-alt="abstract architectural close-up of a modern research facility with glass and steel elements and bright airy lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY81stz7EGkoNeTHacIgONI_l6QiLgVG-0f0fsc2YKEGbOk20PW1Un3ck9XbumRzTSdBYtPfnEBaZUu_fXdM_tdLTlHZFUHrZFBWPJwWYYl15LiwY2Lq47koaQN8lf_8snJGqCrj5TMSNyI9OTsnY_cbcxkQfM8xWc2lxIhDxxx9CWfmznk4sZKiLQbRcha2_ILsYB2MguvXpT1birpioBP2hT-apN6aq97WKPnOmiOWUkG_W2RBLBpAMswXM2t6SC0Z9e2lAyLQ"/>
+<div class="absolute top-4 right-4 bg-tertiary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">Workshop</div>
+</div>
+<div class="p-6">
+<div class="flex gap-2 mb-3">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Research</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">5.0 Credits</span>
+</div>
+<h4 class="text-lg font-bold text-on-surface mb-3 leading-snug">Clinical Trial Design: From Hypothesis to Publication</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm mb-6">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span>Hybrid • Johns Hopkins Center</span>
+</div>
+<button class="w-full border border-outline-variant text-primary font-bold py-3 rounded-md hover:bg-primary/5 transition-colors">View Details</button>
+</div>
+</div>
+<!-- Activity Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden hover:translate-y-[-4px] transition-transform duration-300">
+<div class="h-48 w-full relative">
+<img alt="Self-paced thumbnail" class="w-full h-full object-cover" data-alt="overhead view of high-quality medical journals and professional research papers on a dark wooden surface with a single focused spotlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQb8LTUrIYrjJyPvcMOjc9uNMwxnOx7EeDWyz2zd1JJcI16RFM-dxmXZCi7RptNSXt2FXwBNf-bPPvKD3NQuq8Rr4NnFbTbuf-3RUM5FtzrCZvF5tkYAFHqTnXXE4EK4SVmWEJfP24qaHL9rNexvx_FWhZGp0d5HXxZF70i_2Er5B3xIJqHBy-AqT2tFAfEeYZWuqoLHmMXn8fyrUJVFOnzgCXYYa211CXZOjimMUV6O52x2ssW2ix196ce_cq8UeKRBLUqoO9eQ"/>
+<div class="absolute top-4 right-4 bg-secondary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">Self-Paced</div>
+</div>
+<div class="p-6">
+<div class="flex gap-2 mb-3">
+<span class="bg-primary-fixed text-on-primary-fixed text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Teaching</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">2.0 Credits</span>
+</div>
+<h4 class="text-lg font-bold text-on-surface mb-3 leading-snug">Effective Mentorship in Medical Residencies</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm mb-6">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>Approx. 2 hours to complete</span>
+</div>
+<button class="w-full border border-outline-variant text-primary font-bold py-3 rounded-md hover:bg-primary/5 transition-colors">Start Module</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity Table-less list -->
+<div class="md:col-span-12 mt-4">
+<h3 class="text-2xl font-extrabold text-on-surface mb-6 font-headline">Activity History</h3>
+<div class="space-y-4">
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-wrap items-center justify-between gap-4 group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface">Ethics in Modern Telemedicine</h5>
+<p class="text-sm text-on-surface-variant">Completed July 12, 2024 • Clinical Category</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<span class="font-black text-xl text-primary">+4.0 hrs</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-on-surface">file_download</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-wrap items-center justify-between gap-4 group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">biotech</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface">Novel Biomarkers for Early Detection of Myocardial Infarction</h5>
+<p class="text-sm text-on-surface-variant">Completed June 04, 2024 • Research Category</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<span class="font-black text-xl text-secondary">+10.0 hrs</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-on-surface">file_download</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-wrap items-center justify-between gap-4 group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface">Annual Faculty Symposium on Medical Education</h5>
+<p class="text-sm text-on-surface-variant">Completed May 21, 2024 • Teaching Category</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<span class="font-black text-xl text-tertiary">+4.0 hrs</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-on-surface">file_download</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Bottom Nav for Mobile -->
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md px-6 py-4 flex justify-around items-center z-50 border-t-0 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+<span class="material-symbols-outlined text-slate-500">dashboard</span>
+<span class="material-symbols-outlined text-teal-600 font-bold">menu_book</span>
+<span class="material-symbols-outlined text-slate-500">swap_horiz</span>
+<span class="material-symbols-outlined text-slate-500">fact_check</span>
+<span class="material-symbols-outlined text-slate-500">settings</span>
+</div>
+</body></html>

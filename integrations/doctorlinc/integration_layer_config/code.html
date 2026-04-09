@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DoctorLinc Integration Layer | Clinical Ledger Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e0e3e5",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#dce1ff",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "secondary": "#4059aa",
+                    "primary-container": "#008080",
+                    "on-surface": "#191c1e",
+                    "primary": "#006565",
+                    "outline-variant": "#bdc9c8",
+                    "secondary-container": "#8fa7fe",
+                    "inverse-primary": "#76d6d5",
+                    "inverse-surface": "#2d3133",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-primary-container": "#e3fffe",
+                    "surface-bright": "#f7f9fb",
+                    "primary-fixed": "#93f2f2",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-fixed-dim": "#b6c4ff",
+                    "on-secondary-container": "#1d3989",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#a96039",
+                    "on-primary-fixed": "#002020",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "on-secondary": "#ffffff",
+                    "background": "#f7f9fb",
+                    "tertiary-fixed": "#ffdbcb",
+                    "surface": "#f7f9fb",
+                    "on-secondary-fixed-variant": "#264191",
+                    "on-secondary-fixed": "#00164e",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-container": "#eceef0",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#006a6a",
+                    "on-tertiary-fixed-variant": "#733512",
+                    "outline": "#6e7979",
+                    "surface-dim": "#d8dadc",
+                    "tertiary": "#8b4823",
+                    "on-surface-variant": "#3e4949",
+                    "on-tertiary-container": "#fff9f7",
+                    "primary-fixed-dim": "#76d6d5",
+                    "on-background": "#191c1e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #006565 0%, #008080 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md flex justify-between items-center px-8 py-3 w-full border-b border-slate-200/10">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold tracking-tighter text-teal-800 dark:text-teal-300">Clinical Ledger Intelligence</span>
+<div class="h-6 w-px bg-slate-300 mx-4"></div>
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-teal-600 transition-all" href="#">Geospatial Map</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-teal-600 transition-all" href="#">Institution Deep-Dives</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-teal-600 transition-all" href="#">Agent Orchestration</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-200/40 rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-200/40 rounded-full transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="Chief Medical Officer Profile" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container" data-alt="Professional portrait of a senior medical executive in a white coat with a confident and clinical expression, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2kLdYRwU4DpfvimEqi14tr8xPf8E2snDq9amMGvQ5I9pomhe_5dzk5cPhNmb5A06w_8MEk8y6n3XVHIMTVfPl_uR6ZbhyWsYn5c4s14WaJeSk3aGuJrL0KBXy4juu0E684jtrGiEX_Uh-MZGXHRsgzdZB3WmRYbrakG2yYwIkgWJOS3J9vqxlbOYRLjEseexozk3oqKaAIPYS9dhRUZ7a4QSyq5odXJ2XUhxZMGaE78tQ0lchQuDiv1Xsd5Bl34xXfaWAMWojTw"/>
+</div>
+</header>
+<aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-slate-50 dark:bg-slate-950 flex flex-col border-r border-slate-200/10 dark:border-slate-800/10 z-40">
+<div class="px-6 py-8">
+<div class="flex flex-col gap-1">
+<h3 class="font-inter label-md uppercase tracking-wider text-teal-700 dark:text-teal-400">Strategy Command</h3>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">Healthcare Leadership Portal</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-6 py-4 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-inter label-md uppercase tracking-wider">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 bg-teal-50 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300 border-r-4 border-teal-600 px-6 py-4" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-inter label-md uppercase tracking-wider">Analytics</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-6 py-4 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-inter label-md uppercase tracking-wider">Map View</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-6 py-4 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-inter label-md uppercase tracking-wider">Institutions</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-6 py-4 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-inter label-md uppercase tracking-wider">Agents</span>
+</a>
+</nav>
+<div class="p-6 border-t border-slate-200/10">
+<button class="w-full signature-gradient text-white font-semibold py-3 px-4 rounded-md shadow-lg text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Analysis
+            </button>
+</div>
+</aside>
+<main class="ml-64 pt-20 p-8 min-h-screen">
+<header class="mb-10 flex justify-between items-end">
+<div>
+<nav class="flex items-center gap-2 text-on-surface-variant text-sm mb-2">
+<span>Integrations</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-semibold">DoctorLinc Integration Layer</span>
+</nav>
+<h1 class="text-4xl font-bold tracking-tight text-on-surface">Integration Command Center</h1>
+<p class="text-on-surface-variant mt-2 max-w-2xl">Manage the high-fidelity link between Clinical Ledger (BOS) and DoctorLinc physician networks. Real-time verification, credentialing, and talent pipeline synchronization.</p>
+</div>
+<div class="flex gap-3">
+<div class="bg-surface-container-low px-4 py-2 rounded-xl flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">System Status: Optimal</span>
+</div>
+</div>
+</header>
+<section class="grid grid-cols-12 gap-6">
+<div class="col-span-12">
+<h2 class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-4">The Three Integration Pillars</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'FILL' 1;">badge</span>
+</div>
+<div class="w-12 h-12 bg-secondary-container text-on-secondary-container flex items-center justify-center rounded-lg mb-4">
+<span class="material-symbols-outlined">fingerprint</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Identity Federation</h3>
+<p class="text-on-surface-variant text-sm mb-4 leading-relaxed">Unified Single Sign-On and physician credential verification across hospital nodes. NPI/MCI auto-matching enabled.</p>
+<div class="flex items-center gap-2 text-xs font-semibold text-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                            99.9% Sync Accuracy
+                        </div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div class="w-12 h-12 bg-primary-container text-on-primary-container flex items-center justify-center rounded-lg mb-4">
+<span class="material-symbols-outlined">sync_alt</span>
+</div>
+<h3 class="text-xl font-bold mb-2">CPD &amp; Learning Sync</h3>
+<p class="text-on-surface-variant text-sm mb-4 leading-relaxed">Automated Continuous Professional Development tracking. Credit hours earned in DoctorLinc reflect in BOS profiles.</p>
+<div class="flex items-center gap-2 text-xs font-semibold text-primary">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                            Real-time Event Bridge
+                        </div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<div class="w-12 h-12 bg-tertiary-container text-on-tertiary-container flex items-center justify-center rounded-lg mb-4">
+<span class="material-symbols-outlined">work</span>
+</div>
+<h3 class="text-xl font-bold mb-2">BOT Talent Pipeline</h3>
+<p class="text-on-surface-variant text-sm mb-4 leading-relaxed">Direct recruitment orchestration for Build-Operate-Transfer healthcare projects via specialized talent agents.</p>
+<div class="flex items-center gap-2 text-xs font-semibold text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                            Active Recruitment Pulse
+                        </div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<div class="bg-surface-container-lowest rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-bold text-lg">API Gateway Monitoring</h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-low text-[10px] font-bold uppercase tracking-wider rounded-full">BOS → DoctorLinc</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border-l-4 border-green-500">
+<div class="flex items-center gap-4">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded">POST</span>
+<div>
+<code class="text-xs font-mono text-on-surface">/integrations/doctorlinc/verify</code>
+<p class="text-[10px] text-on-surface-variant mt-1">Credential Verification Handshake</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-xs font-bold">24ms</div>
+<div class="text-[10px] text-green-600 font-bold">200 OK</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border-l-4 border-green-500">
+<div class="flex items-center gap-4">
+<span class="bg-secondary text-white text-[10px] font-bold px-2 py-1 rounded">GET</span>
+<div>
+<code class="text-xs font-mono text-on-surface">/api/v2/physicians/sync</code>
+<p class="text-[10px] text-on-surface-variant mt-1">Directory Metadata Refresh</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-xs font-bold">112ms</div>
+<div class="text-[10px] text-green-600 font-bold">200 OK</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border-l-4 border-amber-500">
+<div class="flex items-center gap-4">
+<span class="bg-tertiary text-white text-[10px] font-bold px-2 py-1 rounded">PATCH</span>
+<div>
+<code class="text-xs font-mono text-on-surface">/webhook/cme/completion</code>
+<p class="text-[10px] text-on-surface-variant mt-1">Continuing Ed. Record Update</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-xs font-bold">342ms</div>
+<div class="text-[10px] text-amber-600 font-bold">202 Accepted</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6">
+<h3 class="font-bold text-lg mb-6">Cross-Platform Workflow Visualization</h3>
+<div class="relative py-12 px-4 flex justify-between items-center bg-slate-50 rounded-xl overflow-hidden">
+<div class="absolute inset-0 opacity-5 pointer-events-none">
+<div class="w-full h-full" style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 20px 20px;"></div>
+</div>
+<div class="z-10 flex flex-col items-center gap-3 w-32">
+<div class="w-16 h-16 rounded-2xl signature-gradient flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-white text-3xl">clinical_notes</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-tighter text-center">BOS Project Opportunity</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center relative px-4">
+<div class="w-full h-[2px] bg-slate-200 absolute top-1/2 -translate-y-1/2"></div>
+<div class="bg-white px-3 py-1 border border-slate-200 rounded-full text-[9px] font-bold z-10 text-teal-600 mb-6">INTEL AGENT SCORING</div>
+<div class="w-2 h-2 rounded-full bg-teal-500 absolute top-1/2 -translate-y-1/2 left-1/4 animate-ping"></div>
+</div>
+<div class="z-10 flex flex-col items-center gap-3 w-32">
+<div class="w-16 h-16 rounded-2xl bg-white border-4 border-teal-500 flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-teal-600 text-3xl">smart_toy</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-tighter text-center">Agent Matching</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center relative px-4">
+<div class="w-full h-[2px] bg-slate-200 absolute top-1/2 -translate-y-1/2"></div>
+<div class="bg-white px-3 py-1 border border-slate-200 rounded-full text-[9px] font-bold z-10 text-blue-600 mb-6">PUSH TRIGGER</div>
+</div>
+<div class="z-10 flex flex-col items-center gap-3 w-32">
+<div class="w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-white text-3xl">send</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-tighter text-center">DoctorLinc Notification</span>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 bg-on-surface-variant/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">terminal</span>
+</div>
+<div>
+<h3 class="font-bold">Sidecar Status</h3>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Node: HOS-WEST-04</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Container ID</span>
+<span class="font-mono text-xs">dlin-sidecar-ff82</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Localization</span>
+<span class="font-semibold">On-Premises Hub</span>
+</div>
+<div class="pt-4 border-t border-slate-100">
+<div class="flex justify-between items-center mb-2">
+<span class="text-[10px] font-bold uppercase">Memory Usage</span>
+<span class="text-[10px] font-bold">42%</span>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[42%]"></div>
+</div>
+</div>
+<div class="flex gap-2 pt-2">
+<span class="px-2 py-1 rounded bg-green-50 text-[9px] text-green-700 font-bold border border-green-200">HEALTHY</span>
+<span class="px-2 py-1 rounded bg-blue-50 text-[9px] text-blue-700 font-bold border border-blue-200">K8S MANAGED</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-0 overflow-hidden shadow-sm">
+<div class="p-6 border-b border-slate-100 flex justify-between items-center">
+<h3 class="font-bold">Webhook Event Log</h3>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">history</span>
+</div>
+<div class="divide-y divide-slate-50">
+<div class="p-4 hover:bg-slate-50 transition-colors">
+<div class="flex justify-between mb-1">
+<span class="text-[10px] font-extrabold text-primary">DOCTOR_VERIFIED</span>
+<span class="text-[9px] text-on-surface-variant">2m ago</span>
+</div>
+<p class="text-xs font-medium">Physician ID: #DL-99281</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Status: Credential match confirmed via BOS.</p>
+</div>
+<div class="p-4 hover:bg-slate-50 transition-colors">
+<div class="flex justify-between mb-1">
+<span class="text-[10px] font-extrabold text-secondary">CME_COMPLETED</span>
+<span class="text-[9px] text-on-surface-variant">14m ago</span>
+</div>
+<p class="text-xs font-medium">Advanced Trauma Unit 4</p>
+<p class="text-[10px] text-on-surface-variant mt-1">2.5 Credits pushed to central ledger.</p>
+</div>
+<div class="p-4 hover:bg-slate-50 transition-colors">
+<div class="flex justify-between mb-1">
+<span class="text-[10px] font-extrabold text-tertiary">TALENT_MATCHED</span>
+<span class="text-[9px] text-on-surface-variant">48m ago</span>
+</div>
+<p class="text-xs font-medium">BOT Project 'Heal-Global'</p>
+<p class="text-[10px] text-on-surface-variant mt-1">12 specialists matched for oncology wing.</p>
+</div>
+</div>
+<button class="w-full py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant bg-slate-50 hover:bg-slate-100 transition-colors">
+                        View Full Event Stream
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<footer class="ml-64 bg-surface-container-low p-8 mt-12 border-t border-slate-200/50">
+<div class="flex justify-between items-center max-w-6xl mx-auto">
+<div class="flex gap-8">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Environment</span>
+<span class="text-sm font-semibold">Production-Global-01</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Version</span>
+<span class="text-sm font-semibold">v4.2.1-stable</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Support</span>
+<span class="text-sm font-semibold text-primary underline underline-offset-4 cursor-pointer">Technical Documentation</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant">© 2024 Clinical Ledger Intelligence. All integration protocols encrypted.</p>
+</div>
+</footer>
+</body></html>

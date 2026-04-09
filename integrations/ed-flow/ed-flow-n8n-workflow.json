@@ -1,0 +1,318 @@
+{
+  "name": "ED Flow - Patient Triage & Notification Workflow",
+  "description": "Automated ED queue management with bilingual notifications (Arabic/English) via SMS, Email, and push notifications. Integrates with BrainSAIT ED Flow backend.",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 300],
+      "webhookId": "ed-flow-webhook-id",
+      "disabled": false,
+      "webHookMethods": ["POST"],
+      "webHookData": {
+        "executionMode": "requestMethod"
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "encounter_id",
+              "value": "={{ $json.encounter_id }}",
+              "type": "string"
+            },
+            {
+              "id": "action",
+              "value": "={{ $json.action }}",
+              "type": "string"
+            },
+            {
+              "id": "patient_phone",
+              "value": "={{ $json.details.patient_phone }}",
+              "type": "string"
+            },
+            {
+              "id": "triage_level",
+              "value": "={{ $json.details.triage_level }}",
+              "type": "string"
+            },
+            {
+              "id": "hospital_code",
+              "value": "NGHA",
+              "type": "string"
+            },
+            {
+              "id": "language",
+              "value": "={{ $json.language || 'en' }}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "set-context",
+      "name": "Set Context Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [300, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "conditions": [
+            {
+              "id": "condition_1",
+              "operator": {
+                "name": "filter.operator.equals",
+                "type": "string",
+                "value": "equals"
+              },
+              "type": "string",
+              "value": "action",
+              "comparator": "PATIENT_CHECK_IN"
+            }
+          ]
+        }
+      },
+      "id": "check-action-type",
+      "name": "Route: Check-In vs. Update vs. Alert",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// BILINGUAL: Generate SMS message (Arabic/English)\nconst language = $input.all()[0].json.language || 'en';\nconst triageLevel = $input.all()[0].json.triage_level;\nconst encounterId = $input.all()[0].json.encounter_id;\n\nconst messages = {\n  en: {\n    check_in: `Welcome to ED. Your case ID: ${encounterId}. Wait time: ~120 min. Reply HELP for support.`,\n    esi_1: 'URGENT: You are critical. Specialist assigned. Standby.',\n    esi_2: 'HIGH PRIORITY: Rapid assessment underway.'\n  },\n  ar: {\n    check_in: `مرحبا في قسم الطوارئ. رقم حالتك: ${encounterId}. وقت الانتظار: ~120 دقيقة`,\n    esi_1: 'عاجل: حالتك حرجة. متخصص معين. انتظر.',\n    esi_2: 'أولوية عالية: التقييم السريع جاري.'\n  }\n};\n\nconst msg = triageLevel <= 2 \n  ? messages[language].esi_1 \n  : messages[language].check_in;\n\nreturn {\n  sms_message: msg,\n  language,\n  encounter_id: encounterId,\n  triage_level: triageLevel\n};"
+      },
+      "id": "generate-sms",
+      "name": "Generate Bilingual SMS",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [700, 200]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "message",
+        "operation": "send",
+        "phoneNumber": "={{ $json.patient_phone }}",
+        "message": "={{ $json.sms_message }}"
+      },
+      "id": "send-sms",
+      "name": "Send SMS (Twilio)",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [900, 200],
+      "credentials": {
+        "twilioApi": "twilio-account"
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// MEDICAL: Determine specialist to alert based on triage + chief complaint\nconst triageLevel = $input.all()[0].json.triage_level;\nconst chiefComplaint = $input.all()[0].json.details.chief_complaint || '';\n\nconst specialists = {\n  'chest pain': 'cardiology',\n  'shortness of breath': 'respiratory',\n  'abdominal pain': 'surgery',\n  'head injury': 'neurology',\n  'trauma': 'trauma_surgery'\n};\n\nlet specialist = 'general_medicine';\nfor (const [complaint, dept] of Object.entries(specialists)) {\n  if (chiefComplaint.toLowerCase().includes(complaint)) {\n    specialist = dept;\n    break;\n  }\n}\n\nreturn {\n  specialist_department: specialist,\n  alert_priority: triageLevel <= 2 ? 'CRITICAL' : 'NORMAL',\n  encounter_id: $input.all()[0].json.encounter_id\n};"
+      },
+      "id": "route-specialist",
+      "name": "Route to Specialist (CDS)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [700, 400]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "url": "https://slack.webhook.office.com/webhooks/your-teams-webhook-id",
+        "options": {},
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"@type\": \"MessageCard\",\n  \"@context\": \"https://schema.org/extensions\",\n  \"summary\": \"ED Alert: {{ $json.specialist_department }}\",\n  \"themeColor\": \"{{ $json.alert_priority === 'CRITICAL' ? 'f44336' : '2196f3' }}\",\n  \"sections\": [\n    {\n      \"activityTitle\": \"Specialist Alert\",\n      \"activitySubtitle\": \"{{ $json.specialist_department }} department\",\n      \"facts\": [\n        {\n          \"name\": \"Case ID\",\n          \"value\": \"{{ $json.encounter_id }}\"\n        },\n        {\n          \"name\": \"Priority\",\n          \"value\": \"{{ $json.alert_priority }}\"\n        }\n      ],\n      \"potentialAction\": [\n        {\n          \"@type\": \"OpenUri\",\n          \"name\": \"View in Portal\",\n          \"targets\": [\n            {\n              \"os\": \"default\",\n              \"uri\": \"https://brainsait.org/ed/portal?encounter={{ $json.encounter_id }}\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+      },
+      "id": "alert-teams",
+      "name": "Alert Specialists (Teams)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [900, 400]
+    },
+    {
+      "parameters": {
+        "resource": "record",
+        "operation": "read",
+        "table": "tbl_ed_encounters",
+        "where": "encounter_id = '{{ $json.encounter_id }}'"
+      },
+      "id": "lookup-airtable",
+      "name": "Lookup Encounter (Airtable)",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [500, 500],
+      "credentials": {
+        "airtableTokenAuth": "airtable-api-key"
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "url": "https://api.brainsait.org/ed/update-status",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"encounter_id\": \"{{ $json.encounter_id }}\",\n  \"status\": \"notification_sent\",\n  \"timestamp\": \"{{ $now.toISOString() }}\",\n  \"notification_method\": [\"sms\", \"teams\"],\n  \"specialist_alerted\": \"{{ $json.specialist_department }}\"\n}"
+      },
+      "id": "update-backend",
+      "name": "Update Backend Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [1100, 300],
+      "credentials": {
+        "httpHeaderAuth": "brainsait-api-key"
+      }
+    },
+    {
+      "parameters": {
+        "resource": "record",
+        "operation": "update",
+        "table": "tbl_ed_encounters",
+        "idField": "encounter_id",
+        "fieldsToSet": {\n          "notification_status\": \"sent\",\n          \"specialist_department\": \"{{ $json.specialist_department }}\",\n          \"last_update\": \"{{ $now.toISOString() }}\"\n        }\n      },\n      "id": "update-airtable",\n      "name": "Update Airtable Record",\n      "type": "n8n-nodes-base.airtable",\n      "typeVersion": 2,
+      "position": [1100, 500]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Log workflow execution for audit trail\nreturn {\n  workflow_execution_id: $execution.id,\n  encounter_id: $input.all()[0].json.encounter_id,\n  actions_completed: [\n    'sms_sent',\n    'specialist_alerted',\n    'backend_updated',\n    'audit_logged'\n  ],\n  timestamp: new Date().toISOString(),\n  status: 'success'\n};"
+      },
+      "id": "audit-log",
+      "name": "Audit Log (KV)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [1300, 300]
+    }
+  ],
+  "connections": {
+    "webhook-trigger": {
+      "main": [
+        [
+          {
+            "node": "set-context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set-context": {
+      "main": [
+        [
+          {
+            "node": "check-action-type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check-action-type": {
+      "main": [
+        [
+          {
+            "node": "generate-sms",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "route-specialist",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "lookup-airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "generate-sms": {
+      "main": [
+        [
+          {
+            "node": "send-sms",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send-sms": {
+      "main": [
+        [
+          {
+            "node": "update-backend",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "route-specialist": {
+      "main": [
+        [
+          {
+            "node": "alert-teams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "alert-teams": {
+      "main": [
+        [
+          {
+            "node": "update-backend",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "lookup-airtable": {
+      "main": [
+        [
+          {
+            "node": "update-airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update-backend": {
+      "main": [
+        [
+          {
+            "node": "audit-log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update-airtable": {
+      "main": [
+        [
+          {
+            "node": "audit-log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "versionId": "1.0.0"
+}

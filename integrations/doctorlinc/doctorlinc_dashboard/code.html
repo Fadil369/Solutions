@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DoctorLinc Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#a96039",
+                    "primary-fixed": "#93f2f2",
+                    "secondary-fixed": "#dce1ff",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f7f9fb",
+                    "on-secondary-fixed-variant": "#264191",
+                    "primary-fixed-dim": "#76d6d5",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-container": "#8fa7fe",
+                    "on-secondary-container": "#1d3989",
+                    "on-secondary-fixed": "#00164e",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "outline": "#6e7979",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "tertiary": "#8b4823",
+                    "inverse-surface": "#2d3133",
+                    "outline-variant": "#bdc9c8",
+                    "on-tertiary-fixed-variant": "#733512",
+                    "surface-tint": "#006a6a",
+                    "on-tertiary-fixed": "#341100",
+                    "on-background": "#191c1e",
+                    "error": "#ba1a1a",
+                    "surface-container": "#eceef0",
+                    "on-surface": "#191c1e",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#3e4949",
+                    "on-tertiary-container": "#fff9f7",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#ffdbcb",
+                    "surface": "#f7f9fb",
+                    "on-primary-container": "#e3fffe",
+                    "surface-container-high": "#e6e8ea",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary": "#006565",
+                    "background": "#f7f9fb",
+                    "on-primary-fixed": "#002020",
+                    "surface-variant": "#e0e3e5",
+                    "surface-dim": "#d8dadc",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#76d6d5",
+                    "secondary-fixed-dim": "#b6c4ff",
+                    "secondary": "#4059aa",
+                    "primary-container": "#008080"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #006565 0%, #008080 100%);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-6 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 shadow-sm dark:shadow-none font-sans antialiased tracking-tight">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-teal-800 dark:text-teal-200">DoctorLinc</span>
+<div class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 rounded-full px-4 py-1.5 gap-2">
+<span class="material-symbols-outlined text-slate-500 text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-64" placeholder="Search colleagues or hospitals..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 text-slate-600">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden bg-slate-200">
+<img alt="User physician profile" class="w-full h-full object-cover" data-alt="professional headshot of a Sudanese male physician wearing a white lab coat and stethoscope with a friendly confident smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPGvykilE1FbV31y3_XuIPrNrpBUiicGk7Ird51zirSPFgFN_GCwwYyLB5FdiLwV9JkqJwh-aCfkGU-3DRvIRBWOGlt6sIr6qi4TnJM-MXN090YFZBdtsB0ryo29YZieEYfNppnJBq6yHKx9Ymo4mni4EPn--DjyS3JL7wr3L1CtOX2B_CA5ruHj9750YZn4ZKgehypkuoBat3qJtTVpt5UOz_s_UOH9UjVTgO1UCDiNfBPpMjEMOdmunLVxRyR16Vd315ouh2qg"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="hidden lg:flex flex-col fixed left-0 top-0 h-full w-64 p-4 gap-2 bg-slate-50 dark:bg-slate-950 pt-20">
+<div class="mb-6 px-2">
+<h2 class="text-xl font-black text-teal-900 dark:text-teal-100">Dr. Clinical Ledger</h2>
+<p class="text-xs text-slate-500 font-medium">Verified Surgeon</p>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-900 text-teal-700 dark:text-teal-400 shadow-sm rounded-lg transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium Inter">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-teal-600 hover:bg-teal-50/50 dark:hover:bg-teal-900/20 rounded-lg transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-sm font-medium Inter">My Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-teal-600 hover:bg-teal-50/50 dark:hover:bg-teal-900/20 rounded-lg transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="text-sm font-medium Inter">Shift Swaps</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-teal-600 hover:bg-teal-50/50 dark:hover:bg-teal-900/20 rounded-lg transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">group_add</span>
+<span class="text-sm font-medium Inter">Referrals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-teal-600 hover:bg-teal-50/50 dark:hover:bg-teal-900/20 rounded-lg transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="text-sm font-medium Inter">CME Tracker</span>
+</a>
+<div class="mt-auto p-4 bg-teal-900/5 dark:bg-teal-900/10 rounded-xl">
+<button class="w-full py-3 signature-gradient text-white text-sm font-bold rounded-md shadow-lg active:scale-95 transition-transform">
+                Start Consultation
+            </button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="lg:ml-64 pt-24 px-6 pb-12 bg-surface">
+<div class="max-w-6xl mx-auto">
+<!-- Hero Stats / Identity -->
+<div class="flex flex-col md:flex-row gap-6 mb-10 items-end">
+<div class="flex-1">
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Welcome, Dr. Khalid</h1>
+<p class="text-on-surface-variant max-w-lg">Your clinical activity across Riyadh and your Sudanese network connections for today.</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-surface-container-lowest p-5 rounded-xl flex items-center gap-4 shadow-sm min-w-[180px]">
+<div class="bg-primary/10 p-3 rounded-full text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">Linc Score</p>
+<p class="text-2xl font-black text-primary leading-tight">842</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl flex items-center gap-4 shadow-sm min-w-[180px]">
+<div class="bg-secondary/10 p-3 rounded-full text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">Verification</p>
+<p class="text-sm font-black text-secondary leading-tight">Tier 1 Elite</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Grid: Quick Actions -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<!-- Shift Swaps -->
+<div class="bg-surface-container-lowest p-6 rounded-xl hover:bg-surface-bright transition-all group border border-transparent hover:border-outline-variant/20">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-teal-50 text-teal-700 rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">swap_horiz</span>
+</div>
+<span class="px-2 py-1 bg-teal-100 text-teal-800 text-[10px] font-bold rounded uppercase">Active</span>
+</div>
+<h3 class="text-lg font-bold mb-1">Shift Swaps</h3>
+<p class="text-sm text-on-surface-variant mb-4">Manage your schedule gaps</p>
+<p class="text-3xl font-black text-on-surface">3 <span class="text-sm font-medium text-on-surface-variant">open requests</span></p>
+</div>
+<!-- Referrals -->
+<div class="bg-surface-container-lowest p-6 rounded-xl hover:bg-surface-bright transition-all group border border-transparent hover:border-outline-variant/20">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary/10 text-secondary rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">group_add</span>
+</div>
+<span class="px-2 py-1 bg-secondary-fixed-dim text-secondary text-[10px] font-bold rounded uppercase">Action required</span>
+</div>
+<h3 class="text-lg font-bold mb-1">Referrals</h3>
+<p class="text-sm text-on-surface-variant mb-4">Pending specialist reviews</p>
+<p class="text-3xl font-black text-on-surface">2 <span class="text-sm font-medium text-on-surface-variant">pending</span></p>
+</div>
+<!-- CME Tracker -->
+<div class="bg-surface-container-lowest p-6 rounded-xl hover:bg-surface-bright transition-all group border border-transparent hover:border-outline-variant/20">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary/10 text-tertiary rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">school</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-1">CME Tracker</h3>
+<p class="text-sm text-on-surface-variant mb-4">License renewal progress</p>
+<div class="flex items-baseline gap-2">
+<p class="text-3xl font-black text-on-surface">12</p>
+<p class="text-sm font-medium text-on-surface-variant">/ 30 credits</p>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="bg-tertiary-container h-full w-[40%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Sections: Recommended and Hospital Activity -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Recommended for You -->
+<div class="lg:col-span-2">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-xl font-extrabold tracking-tight">Recommended for You</h2>
+<button class="text-primary text-sm font-bold flex items-center gap-1">
+                            View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-4">
+<!-- Profile 1 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex items-center gap-6 relative overflow-hidden group">
+<div class="h-20 w-20 rounded-xl overflow-hidden shrink-0">
+<img alt="Dr. Ahmed Ali" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="close-up portrait of a Sudanese cardiologist in his 40s wearing business casual with a white coat, professional medical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt7BVgSC62sWbjqagvB4hcovGkSpdn8DGrsma_5XngHzsOiBJB6MFSEjQ3XWDHnDORGyLtQNaxmOw5JwZjeZ4QRTjWtr-SviLesP3BjU5peOOUhj0wHC0kYcx6jWTPHSazWmIsnu0bp1-1K0CIH2wsFTu1F6K8lo04SpeLfdX_5vaAqCO_k7zotpFdUcVW0oPS6y_z2y6vEIHDpLeZMqbQwNWaR7Zul5jyUsLAyw_VjvlGJF4ltnagCayU9LAB01e_sA_-ZJD0Fw"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-bold text-lg">Dr. Ahmed Ali</h4>
+<span class="material-symbols-outlined text-secondary text-base" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-2">Cardiologist • King Faisal Hospital</p>
+<div class="flex gap-2">
+<span class="px-2 py-0.5 bg-surface-container rounded-full text-[10px] font-bold text-on-surface-variant">Riyadh</span>
+<span class="px-2 py-0.5 bg-surface-container rounded-full text-[10px] font-bold text-on-surface-variant">15+ Years</span>
+</div>
+</div>
+<button class="px-5 py-2 border-2 border-primary text-primary font-bold text-sm rounded-md hover:bg-primary hover:text-white transition-colors">
+                                Connect
+                            </button>
+</div>
+<!-- Profile 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex items-center gap-6 relative overflow-hidden group">
+<div class="h-20 w-20 rounded-xl overflow-hidden shrink-0">
+<img alt="Dr. Sarah Osman" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="professional portrait of a Sudanese female pediatrician smiling warmly, modern bright clinical environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6GlCWgu0n7Mmeu7XmwkzvprDMnxyQWw4Jrwgmk7w252xp9Sv6UoCRnJcFN5_FE25Qv5G3P2tNyup9z6s0rtIXg1rn5MnyQR9Wes_xoxO_7fQzbP4mcV4h2zqdpPSacdghizAxFauwjR9_yPxCCEjhDF7R1an6rPu9Y7ac-y5erx1vGRMy2y_0mFapmFudNg8mBdF-gz2cToTNrvxRKF1qfLm77bDDW8PaID6gaKGnBbbt4pCy5p9rxCWPnekoRhTT0H5_48MV7g"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-bold text-lg">Dr. Sarah Osman</h4>
+<span class="material-symbols-outlined text-secondary text-base" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-2">Pediatrician • Saudi German Hospital</p>
+<div class="flex gap-2">
+<span class="px-2 py-0.5 bg-surface-container rounded-full text-[10px] font-bold text-on-surface-variant">Jeddah</span>
+<span class="px-2 py-0.5 bg-surface-container rounded-full text-[10px] font-bold text-on-surface-variant">Available</span>
+</div>
+</div>
+<button class="px-5 py-2 border-2 border-primary text-primary font-bold text-sm rounded-md hover:bg-primary hover:text-white transition-colors">
+                                Connect
+                            </button>
+</div>
+</div>
+</div>
+<!-- Hospital Activity Widget -->
+<div>
+<h2 class="text-xl font-extrabold tracking-tight mb-6">Hospital Activity</h2>
+<div class="bg-white rounded-xl shadow-sm overflow-hidden border border-slate-100">
+<div class="h-40 relative">
+<img alt="King Saud Medical City" class="w-full h-full object-cover" data-alt="modern glass hospital building exterior in Riyadh with palm trees and clear blue desert sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn7NivlI_SjrZ44w-l7YscYPdTWD1GDstpg6tvcLr1EqrGybGMpyxJFzmwbmaNjbeATsTTZVD0EPE9SVu1p9hg0sZD7pBGaIVqeL9O6PbeOzT4ZcWNWXMiVBJvxpTFXwdeE4LQbpfKDt4xYPUkzKjc4slyQEGQMnnJ6wS1csplLdFgyV_D0osLtSkpuULNb6o5WgvY83sDyWPsiwkGwL1T1jk-uyRCCgFxO5wiXiFGH8PpeQEnqcny7n5aXjs12RtbTR-ECvYbXQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4">
+<h3 class="text-white font-bold text-lg leading-tight">King Saud Medical City</h3>
+<p class="text-white/80 text-xs">Riyadh, KSA</p>
+</div>
+</div>
+<div class="p-5 space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-1.5 bg-blue-50 text-blue-600 rounded">
+<span class="material-symbols-outlined text-lg">group</span>
+</div>
+<span class="text-sm font-semibold">Sudanese Doctors</span>
+</div>
+<span class="text-sm font-black text-blue-600">12</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-1.5 bg-teal-50 text-teal-600 rounded">
+<span class="material-symbols-outlined text-lg">calendar_today</span>
+</div>
+<span class="text-sm font-semibold">Open Shifts</span>
+</div>
+<span class="text-sm font-black text-teal-600">2</span>
+</div>
+<hr class="border-slate-100"/>
+<button class="w-full py-2.5 bg-slate-50 text-on-surface-variant font-bold text-sm rounded-lg hover:bg-slate-100 transition-colors">
+                                View Facility Board
+                            </button>
+</div>
+</div>
+<!-- Credential Stack Placeholder -->
+<div class="mt-8 bg-surface-container-low p-5 rounded-xl">
+<h4 class="text-[10px] uppercase tracking-widest font-black text-on-surface-variant mb-4">Upcoming Deadlines</h4>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-1.5 rounded-full bg-error"></div>
+<p class="text-xs font-medium">SCFHS License Renewal (14 days)</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+<p class="text-xs font-medium">BLS Certification (90 days)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar for Mobile -->
+<nav class="md:hidden fixed bottom-0 w-full bg-white/95 backdrop-blur-lg px-6 py-3 flex justify-between items-center z-50 border-t border-slate-100">
+<button class="flex flex-col items-center gap-1 text-teal-700">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="text-[10px] font-bold">Swaps</span>
+</button>
+<div class="relative -top-6">
+<button class="signature-gradient w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg ring-4 ring-surface">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">group_add</span>
+<span class="text-[10px] font-bold">Refer</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</nav>
+</body></html>

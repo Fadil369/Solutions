@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#191c1e",
+                        "error": "#ba1a1a",
+                        "primary-container": "#008080",
+                        "on-tertiary-container": "#fff9f7",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "surface-dim": "#d8dadc",
+                        "secondary-fixed": "#dce1ff",
+                        "secondary-fixed-dim": "#b6c4ff",
+                        "on-surface-variant": "#3e4949",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "outline": "#6e7979",
+                        "on-primary-container": "#e3fffe",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#76d6d5",
+                        "primary": "#006565",
+                        "background": "#f7f9fb",
+                        "on-secondary-fixed-variant": "#264191",
+                        "on-tertiary-fixed": "#341100",
+                        "tertiary-fixed": "#ffdbcb",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary": "#4059aa",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "on-secondary-fixed": "#00164e",
+                        "inverse-surface": "#2d3133",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-container": "#a96039",
+                        "on-tertiary-fixed-variant": "#733512",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-tint": "#006a6a",
+                        "surface-container-high": "#e6e8ea",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#1d3989",
+                        "on-primary-fixed": "#002020",
+                        "surface-container": "#eceef0",
+                        "tertiary": "#8b4823",
+                        "outline-variant": "#bdc9c8",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#93f2f2",
+                        "surface": "#f7f9fb",
+                        "primary-fixed-dim": "#76d6d5",
+                        "secondary-container": "#8fa7fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .clinical-ledger-shadow {
+            box-shadow: 0 8px 32px rgba(25, 28, 30, 0.06);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #006565 0%, #008080 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body overflow-hidden h-screen flex">
+<!-- SideNavBar Anchor -->
+<aside class="hidden md:flex flex-col h-full py-8 px-4 bg-slate-50 dark:bg-slate-950 w-72 border-r-0 z-40">
+<div class="mb-10 px-4">
+<h1 class="text-2xl font-black text-teal-900 dark:text-teal-100 tracking-tight">DoctorLinc</h1>
+</div>
+<div class="flex items-center gap-4 px-4 py-4 mb-8 bg-surface-container-low rounded-xl">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Professional portrait of a male cardiologist in a white coat with a stethoscope, looking focused and authoritative" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPo9dNNkXwB0D2cQjrCoYkR1cMlSr2x3jw2FwPOj3G6NT_t9nCZBCI28AmHXqck95u-H5x1UAmdPRkGR6Xpldj8rH2p7gDJbaFwlweWacb-MwzFjQ2uwqE6RW5Bq9eQ3iu9po85D_3mJmPIItHCSTcigyutvBI9rOh7t-XM9GhVuBYY935rQLjJbwdvoWm7STvt0qIeXioLcotdmRSoOi9lCTJv6I8p7oVyww4o2rjyPgteZJ8ygSkKclFS_uoSiYSbicmh0lp0A"/>
+<div>
+<p class="font-bold text-teal-700 dark:text-teal-300">Dr. Al-Saud</p>
+<p class="text-xs text-on-surface-variant">Cardiologist • Verified</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<div class="flex items-center gap-4 px-4 py-3 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all cursor-pointer rounded-xl duration-200 ease-in-out">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 text-teal-700 dark:text-teal-300 font-bold border-r-4 border-teal-600 bg-teal-50/50 dark:bg-teal-900/20 transition-all cursor-pointer rounded-l-xl duration-200 ease-in-out">
+<span class="material-symbols-outlined">developer_mode</span>
+<span>Bot Commander</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all cursor-pointer rounded-xl duration-200 ease-in-out">
+<span class="material-symbols-outlined">menu_book</span>
+<span>CME Tracker</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all cursor-pointer rounded-xl duration-200 ease-in-out">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span>Shift Swaps</span>
+</div>
+</nav>
+<div class="mt-auto space-y-2">
+<div class="flex items-center gap-4 px-4 py-3 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 transition-all cursor-pointer rounded-xl">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</div>
+<button class="w-full mt-4 signature-gradient text-white py-3 rounded-md font-semibold text-sm active:scale-95 transition-transform">
+                Start Consultation
+            </button>
+</div>
+</aside>
+<main class="flex-1 flex flex-col relative overflow-hidden">
+<!-- TopNavBar Anchor -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md flex justify-between items-center px-6 h-16 shadow-sm">
+<div class="flex items-center gap-8">
+<span class="md:hidden font-bold text-teal-800 dark:text-teal-300 text-xl">DoctorLinc</span>
+<div class="hidden lg:flex items-center bg-slate-100 dark:bg-slate-800 px-4 py-1.5 rounded-full w-96">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full outline-none" placeholder="Search clinical protocols..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2 mr-4">
+<span class="material-symbols-outlined text-teal-700 dark:text-teal-400 cursor-pointer p-2 hover:bg-teal-50 rounded-full transition-colors">notifications</span>
+<span class="material-symbols-outlined text-teal-700 dark:text-teal-400 cursor-pointer p-2 hover:bg-teal-50 rounded-full transition-colors">verified_user</span>
+</div>
+<img alt="Physician Profile" class="w-9 h-9 rounded-full object-cover ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7UedFbs2VNZpikOctcezIX_Wi2srU7bjLo7c2DfW2Kv5ANFeTOQjSMFIPC5zjLUI-jL-SABB4gQRVQHWcxzkO_T3nUHkRup-3lPw8RVDQQw1PkgIhYFBd1ILCgnbGu7XSb36O2NHyJ6-gYD6dsYQNgX7BEoMt1fW2xW9hCgAn0gmy6BXVTC5UddqFOHPK7Xm8z6igrvQMAjbnTujwGYRWSYw20dhU7ZU8OngUrrFRubHZKvR3XLzTW6oOtAg9N-jC8ChWPZ9QKA"/>
+</div>
+</header>
+<!-- Main Content Area: Bot Interaction Canvas -->
+<section class="mt-16 flex-1 flex flex-row overflow-hidden">
+<!-- Bot Commander Control Panel (Left Side) -->
+<div class="hidden xl:flex w-80 bg-surface-container-low p-6 flex-col gap-6 border-r border-outline-variant/10">
+<div class="space-y-1">
+<h2 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Active Instance</h2>
+<div class="p-4 bg-surface-container-lowest rounded-xl clinical-ledger-shadow border-l-4 border-primary">
+<p class="text-sm font-bold">Bot Commander v3.4</p>
+<p class="text-xs text-primary mt-1 flex items-center gap-1">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                            Orchestrating Simulation
+                        </p>
+</div>
+</div>
+<div class="space-y-4">
+<h2 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Bot Squad</h2>
+<div class="space-y-3">
+<div class="flex items-center gap-3 p-3 bg-surface-container-lowest/50 rounded-lg">
+<div class="bg-secondary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">neurology</span>
+</div>
+<div>
+<p class="text-sm font-semibold">Clinical Brain</p>
+<p class="text-[10px] text-on-surface-variant">Protocol Validation</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-lowest/50 rounded-lg">
+<div class="bg-tertiary-container/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-tertiary-container" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<div>
+<p class="text-sm font-semibold">Sim Architect</p>
+<p class="text-[10px] text-on-surface-variant">Logic &amp; Branching</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-lowest/50 rounded-lg">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+</div>
+<div>
+<p class="text-sm font-semibold">Chronicler</p>
+<p class="text-[10px] text-on-surface-variant">Memory Persistence</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto p-4 bg-primary-container/10 rounded-xl">
+<p class="text-xs font-bold text-primary mb-2">DEVELOPER MODE</p>
+<p class="text-[11px] text-on-surface-variant leading-relaxed">
+                        Simulation assets are being generated in real-time. Outputting YAML structures for clinical approval.
+                    </p>
+</div>
+</div>
+<!-- Chat/Interaction Panel (Center) -->
+<div class="flex-1 flex flex-col bg-surface relative">
+<!-- Chat History -->
+<div class="flex-1 overflow-y-auto p-6 lg:p-10 space-y-8 pb-32">
+<!-- Persistent Memory Alert -->
+<div class="flex justify-center">
+<div class="bg-secondary-fixed/30 px-6 py-3 rounded-full flex items-center gap-3 border border-secondary/10">
+<span class="material-symbols-outlined text-secondary text-sm">memory</span>
+<span class="text-xs font-medium text-on-secondary-container">Retrieved context from previous discussion (Oct 12): "High-altitude pulmonary edema complications"</span>
+</div>
+</div>
+<!-- Bot Message: Commander Intro -->
+<div class="flex gap-4 max-w-3xl">
+<div class="w-10 h-10 rounded-lg bg-teal-900 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="space-y-2">
+<div class="flex items-baseline gap-3">
+<span class="font-bold text-sm">Bot Commander</span>
+<span class="text-[10px] text-on-surface-variant">14:02</span>
+</div>
+<div class="bg-surface-container-low p-5 rounded-r-2xl rounded-bl-2xl clinical-ledger-shadow text-on-surface">
+<p class="body-lg leading-relaxed">Good afternoon, Dr. Al-Saud. I've initialized <strong>Developer Mode</strong>. I recall our previous session regarding HAPE protocols. <br/><br/>Would you like to build the new simulation on top of that framework, or start a fresh clinical path?</p>
+</div>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex gap-4 max-w-3xl flex-row-reverse ml-auto">
+<img class="w-10 h-10 rounded-full object-cover shrink-0" data-alt="Portrait of the doctor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAW2EWZUEgxuOyR6JMNABqVHWg7oTnn3TacTCxhLezNj9DOERmNR4SfncuDn8O9CnyO8qapa5sDEZ6yjDiRXYKiSWHYK5u5dpLt1X3y0Rj-2wTDJkoB95Js9dGUuVzgIM4JoNGwkQanoKacRPhW0xWcZl_Z6ANUYZHcLgf-4W8ufSZJtEtsQtiedpC130dyEGTQdZJ9Wx3NSNhqrrP4QBrjEHKWu4lnMBZ4SPDPDWwnBexQcyFLFyfofPlnUebEYrIiSP0XCjqMA"/>
+<div class="space-y-2 text-right">
+<div class="flex items-baseline gap-3 justify-end">
+<span class="text-[10px] text-on-surface-variant">14:05</span>
+<span class="font-bold text-sm">Dr. Al-Saud</span>
+</div>
+<div class="signature-gradient p-5 rounded-l-2xl rounded-br-2xl text-white clinical-ledger-shadow">
+<p class="body-lg leading-relaxed">Let's branch from the HAPE protocol. I want to simulate a 45yo male climber at 4000m showing early signs of neurological deficit. We need to test the user's decision speed on supplemental oxygen vs. immediate descent.</p>
+</div>
+</div>
+</div>
+<!-- Bot Squad Execution -->
+<div class="flex gap-4 max-w-3xl">
+<div class="w-10 h-10 rounded-lg bg-teal-900 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="space-y-4 w-full">
+<div class="flex items-baseline gap-3">
+<span class="font-bold text-sm">Bot Commander</span>
+<span class="text-[10px] text-on-surface-variant">14:06</span>
+</div>
+<!-- Orchestration Steps -->
+<div class="space-y-3">
+<div class="flex items-center gap-4 bg-surface-container-highest/30 p-3 rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-secondary animate-pulse">sync</span>
+<span class="text-sm font-medium">Clinical Brain: Integrating neurological branching (HACE suspicion)...</span>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-highest/30 p-3 rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-tertiary-container">done_all</span>
+<span class="text-sm font-medium">Sim Architect: Environment parameters set to 4000m AMSL.</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-5 rounded-r-2xl rounded-bl-2xl clinical-ledger-shadow border border-primary/5">
+<p class="mb-4 font-semibold text-primary">Simulation Schema v0.1-Alpha Generated:</p>
+<div class="bg-inverse-surface text-inverse-on-surface p-4 rounded-lg font-mono text-xs leading-relaxed overflow-x-auto">
+<span class="text-teal-400">patient:</span><br/>
+                                      <span class="text-teal-400">age:</span> 45<br/>
+                                      <span class="text-teal-400">sex:</span> M<br/>
+                                      <span class="text-teal-400">symptoms:</span> [ataxia, confusion, dyspnea]<br/>
+<span class="text-teal-400">branching_logic:</span><br/>
+                                      <span class="text-teal-400">choice_a:</span> Descend (Primary Recommendation)<br/>
+                                      <span class="text-teal-400">choice_b:</span> O2 + Dexamethasone (Wait &amp; Watch)
+                                </div>
+<p class="mt-4 body-lg">Shall I proceed with generating the visual assets for the climber's vitals monitor?</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Input Area (Bottom Fixed Glass) -->
+<div class="absolute bottom-6 left-6 right-6 lg:left-10 lg:right-10">
+<div class="glass-panel clinical-ledger-shadow rounded-full p-2 pr-6 border border-outline-variant/20 flex items-center gap-3">
+<button class="w-12 h-12 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm font-medium" placeholder="Describe clinical nuances or confirm schema..." type="text"/>
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="w-10 h-10 signature-gradient rounded-full flex items-center justify-center text-white shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 600;">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Contextual Sidebar (Right Side) -->
+<div class="hidden 2xl:flex w-96 bg-surface p-8 flex-col gap-10 border-l border-outline-variant/10">
+<div class="space-y-6">
+<h3 class="headline-sm font-bold tracking-tight">Active Memory</h3>
+<div class="bg-surface-container-lowest p-6 rounded-xl clinical-ledger-shadow relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 -mr-8 -mt-8 opacity-5">
+<span class="material-symbols-outlined text-[80px]">history</span>
+</div>
+<p class="text-xs font-bold text-secondary mb-2 uppercase">Historical Context</p>
+<p class="text-sm font-medium mb-4">Patient 8821 Discussion</p>
+<p class="text-xs text-on-surface-variant leading-relaxed italic">
+                            "Remember to emphasize that Dexamethasone is NOT a substitute for descent in high-risk HACE cases."
+                        </p>
+<div class="mt-4 pt-4 border-t border-outline-variant/10 flex items-center justify-between">
+<span class="text-[10px] font-bold text-on-surface-variant">Linked to Simulation #412</span>
+<span class="material-symbols-outlined text-sm text-secondary">link</span>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<h3 class="headline-sm font-bold tracking-tight">Vitals Preview</h3>
+<div class="bg-slate-900 p-6 rounded-xl shadow-2xl space-y-6">
+<div class="flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-[10px] text-teal-400 font-bold">SPO2</span>
+<span class="text-2xl font-mono text-white">82%</span>
+</div>
+<div class="h-8 w-24 overflow-hidden opacity-50">
+<svg class="w-full h-full stroke-teal-400 fill-none stroke-2" viewbox="0 0 100 20">
+<polyline points="0,10 5,10 8,2 12,18 15,10 100,10"></polyline>
+</svg>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-[10px] text-error font-bold">HEART RATE</span>
+<span class="text-2xl font-mono text-white">118 <span class="text-xs">BPM</span></span>
+</div>
+<div class="h-8 w-24 overflow-hidden">
+<svg class="w-full h-full stroke-error fill-none stroke-2" viewbox="0 0 100 20">
+<polyline points="0,10 5,10 8,1 10,19 12,10 20,10 23,1 25,19 27,10 100,10"></polyline>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto">
+<div class="bg-surface-container-high p-5 rounded-2xl">
+<p class="text-xs font-bold mb-3">SIMULATION METRICS</p>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase">Complexity</p>
+<p class="text-lg font-bold">Tier 4</p>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase">Nodes</p>
+<p class="text-lg font-bold">12</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar for Mobile -->
+<nav class="md:hidden fixed bottom-0 w-full bg-white/95 backdrop-blur-md flex justify-around items-center py-3 px-4 z-50">
+<div class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-teal-600 font-semibold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">developer_mode</span>
+<span class="text-[10px]">Commander</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px]">CME</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px]">Settings</span>
+</div>
+</nav>
+</body></html>

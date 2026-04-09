@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCFHS Verification Detail | DoctorLinc</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#191c1e",
+                        "error": "#ba1a1a",
+                        "primary-container": "#008080",
+                        "on-tertiary-container": "#fff9f7",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "surface-dim": "#d8dadc",
+                        "secondary-fixed": "#dce1ff",
+                        "secondary-fixed-dim": "#b6c4ff",
+                        "on-surface-variant": "#3e4949",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "outline": "#6e7979",
+                        "on-primary-container": "#e3fffe",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#76d6d5",
+                        "primary": "#006565",
+                        "background": "#f7f9fb",
+                        "on-secondary-fixed-variant": "#264191",
+                        "on-tertiary-fixed": "#341100",
+                        "tertiary-fixed": "#ffdbcb",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary": "#4059aa",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "on-secondary-fixed": "#00164e",
+                        "inverse-surface": "#2d3133",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-container": "#a96039",
+                        "on-tertiary-fixed-variant": "#733512",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-tint": "#006a6a",
+                        "surface-container-high": "#e6e8ea",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#1d3989",
+                        "on-primary-fixed": "#002020",
+                        "surface-container": "#eceef0",
+                        "tertiary": "#8b4823",
+                        "outline-variant": "#bdc9c8",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#93f2f2",
+                        "surface": "#f7f9fb",
+                        "primary-fixed-dim": "#76d6d5",
+                        "secondary-container": "#8fa7fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #006565 0%, #008080 100%);
+        }
+        .tonal-shift-bg {
+            background-color: #f2f4f6;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-teal-800 dark:text-teal-300 font-inter tracking-tight headline-lg">DoctorLinc</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-teal-600 font-semibold cursor-pointer active:scale-95 transition-colors" href="#">Verification</a>
+<a class="text-slate-500 hover:text-teal-500 cursor-pointer active:scale-95 transition-colors" href="#">Directory</a>
+<a class="text-slate-500 hover:text-teal-500 cursor-pointer active:scale-95 transition-colors" href="#">Consultations</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-high border-none rounded-xl focus:ring-2 focus:ring-primary text-sm w-64" placeholder="Search practitioners..." type="text"/>
+</div>
+<span class="material-symbols-outlined text-teal-700 dark:text-teal-400 cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-teal-700 dark:text-teal-400 cursor-pointer">verified_user</span>
+<img alt="Physician Profile" class="w-8 h-8 rounded-full border-2 border-primary-container" data-alt="portrait of a confident male middle eastern physician with a neat beard wearing a white coat and stethoscope in a professional setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAa9Ku_Xa5mJAkGc4_7-vyNAW3Y8xEy6GeOiyMxQx3WOfJKiImdpC1Rhuc_8BNu1Q5UHEFF7Opi18nBjzQ-6PEyzPsYv60z2axk1pON1uaIP4rflJIzOc1WYTApY4qMcEk7Z2-JbWF6C0N-SoRRoDaaCBuuCs5-J_cIVzuXf3IQdV44wtPAhB1pQj1livOReT_Z0yZ0CGvbfwKVvvAQ_kny1tImi6R_cnEvDxCEBN2nK_ut7j-jO6yrY2SPBXQF7prKe87drK7WA"/>
+</div>
+</nav>
+<div class="flex pt-16 min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-screen w-72 bg-slate-50 dark:bg-slate-950 py-8 px-4 fixed left-0 border-r-0 overflow-y-auto">
+<div class="flex items-center gap-3 mb-10 px-2">
+<img class="w-12 h-12 rounded-xl object-cover" data-alt="close up headshot of a middle eastern cardiologist professional with a focused and warm expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6Mm96bhU2JsLZZJ_Bz_0JdObUDZ2Gu9NL-tgyCLvKNCWYyOpIeWCe2lQIX4bLWHrrrsbIwejdJqADts7WgCi0LLI_AqdeI3M5hdrV0lYBz41xIgiiGItVXMMOvL4YQbpu5aEyJqkGEiY0qJcMVZSWhPCR-9_gwEZgRSSkg04oInqRGllhU6yfK4083eWkDJ-obanoF26i7Ux0E7osKO8ZRFX1cPMRFHd1_2qwh1jNp_M7e4wpNRJ9ALvCrYCipl8qzEnAQrKJQA"/>
+<div>
+<h3 class="text-teal-900 dark:text-teal-100 font-black text-sm">Dr. Al-Saud</h3>
+<p class="text-slate-500 text-xs font-medium">Cardiologist • Verified</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-3 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all rounded-xl duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all rounded-xl duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span>CME Tracker</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all rounded-xl duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span>Shift Swaps</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-teal-700 dark:text-teal-300 font-bold border-r-4 border-teal-600 bg-teal-50/50 dark:bg-teal-900/20 rounded-l-xl duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fact_check</span>
+<span>Verification</span>
+</a>
+</nav>
+<button class="mt-8 mb-8 mx-2 py-3 px-4 signature-gradient text-white font-semibold rounded-xl text-sm shadow-md active:scale-95 transition-transform">
+                Start Consultation
+            </button>
+<div class="mt-auto space-y-1 border-t border-slate-200 dark:border-slate-800 pt-6">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all rounded-xl duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-sm">settings</span>
+<span class="text-sm">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-all rounded-xl duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-sm">help</span>
+<span class="text-sm">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-72 p-6 md:p-10">
+<!-- Header Section -->
+<header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-secondary font-bold text-xs uppercase tracking-widest bg-secondary-fixed/30 px-3 py-1 rounded-full">Credential Audit</span>
+<span class="text-slate-400 text-xs">ID: SCFHS-2409-TX-88</span>
+</div>
+<h1 class="text-4xl font-extrabold text-on-surface tracking-tight leading-none mb-4">SCFHS Verification Detail</h1>
+<p class="text-on-surface-variant max-w-2xl leading-relaxed font-medium">Cross-referencing practitioner-submitted documentation with live Mumaris+ regulatory data to maintain network integrity.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-6 py-2.5 bg-surface-container-high text-on-surface font-semibold rounded-xl hover:bg-surface-container-highest transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">download</span>
+                        Export Report
+                    </button>
+<button class="px-6 py-2.5 signature-gradient text-white font-semibold rounded-xl shadow-lg active:scale-95 transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">verified</span>
+                        Approve Credentials
+                    </button>
+</div>
+</header>
+<!-- Grid Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Trust Score Card (Left Column) -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<div class="bg-surface-container-lowest rounded-full p-8 flex flex-col items-center text-center relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/10 rounded-bl-full -mr-16 -mt-16 transition-all duration-700 group-hover:scale-150"></div>
+<div class="relative mb-6">
+<svg class="w-40 h-40 transform -rotate-90">
+<circle class="text-surface-container-high" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary transition-all duration-1000 ease-out" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="44" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-black text-on-surface">94<span class="text-lg">%</span></span>
+<span class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter">Trust Score</span>
+</div>
+</div>
+<h2 class="text-xl font-bold mb-2">High Confidence Match</h2>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6">Automated matching algorithms detected a near-perfect alignment between documentation and the Saudi Commission database.</p>
+<div class="w-full space-y-3">
+<div class="flex justify-between items-center text-xs font-semibold p-3 bg-surface-container-low rounded-xl">
+<span class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Identity Match
+                                </span>
+<span class="text-on-surface">100%</span>
+</div>
+<div class="flex justify-between items-center text-xs font-semibold p-3 bg-surface-container-low rounded-xl">
+<span class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    License Number
+                                </span>
+<span class="text-on-surface">100%</span>
+</div>
+<div class="flex justify-between items-center text-xs font-semibold p-3 bg-surface-container-low rounded-xl">
+<span class="flex items-center gap-2 text-tertiary text-sm">warning</span>
+<span class="text-on-surface-variant">Expiry Variance</span>
+</div>
+</div>
+</div>
+<!-- Verification History -->
+<div class="bg-surface-container-low rounded-full p-8">
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Verification Logs</h3>
+<div class="space-y-6 relative before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant/30">
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 bg-primary rounded-full border-4 border-white flex items-center justify-center"></div>
+<p class="text-xs font-bold text-on-surface">Final Automated Pass</p>
+<p class="text-[11px] text-on-surface-variant mb-1">Today, 10:42 AM</p>
+<div class="text-[11px] bg-white p-2 rounded-lg text-slate-600 italic">Score increased from 91% to 94% following optical analysis update.</div>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 bg-surface-container-highest rounded-full border-4 border-white"></div>
+<p class="text-xs font-bold text-on-surface">Document Re-scan</p>
+<p class="text-[11px] text-on-surface-variant mb-1">Yesterday, 04:15 PM</p>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 bg-surface-container-highest rounded-full border-4 border-white"></div>
+<p class="text-xs font-bold text-on-surface">Mumaris+ API Sync</p>
+<p class="text-[11px] text-on-surface-variant mb-1">Oct 12, 09:30 AM</p>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 bg-surface-container-highest rounded-full border-4 border-white"></div>
+<p class="text-xs font-bold text-on-surface">Initial Submission</p>
+<p class="text-[11px] text-on-surface-variant mb-1">Oct 11, 02:12 PM</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Comparison View (Right Column) -->
+<div class="col-span-12 lg:col-span-8 space-y-8">
+<!-- The Side-by-Side Panel -->
+<div class="bg-white rounded-full overflow-hidden border border-slate-100 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<!-- Left: Uploaded Document -->
+<div class="p-8 border-r border-slate-50">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">description</span>
+<h3 class="text-sm font-bold uppercase tracking-tight">Source: Practitioner</h3>
+</div>
+<span class="text-[10px] bg-slate-100 px-2 py-1 rounded font-bold text-slate-500">PDF • 4.2MB</span>
+</div>
+<div class="aspect-[4/5] bg-slate-900 rounded-xl overflow-hidden relative group cursor-zoom-in">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="high quality scan of a medical professional license document with official stamps and signatures on high quality textured paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA49_9Jwm-AiVkvT5Rb99SeitEg_Key3cMQEUrCbTjUUyJog9I6TU4zDwghtIomdTPpNn9j7tSmKy39yOVO-mAbHZl6_xE3-C87x8TpHss8pLVuxEolbIXJc2_zVSJVY0mUIMRW1syYQfmnn8TTfew_CAXart6LS-eyRm-v3nmiVvjW2yPh33roX9eE2hMSIf90spCCOhxrqypIueq_Mo-v5wPmtI7n_2OwivXEn2pZpDgxLkAY-Inxi_GOtDC4L5VUb7cqqo6X9w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+<div class="text-white">
+<p class="text-xs font-medium opacity-80">Filename:</p>
+<p class="text-sm font-bold truncate">SCFHS_License_AlSaud_2024.pdf</p>
+</div>
+</div>
+<div class="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 bg-white/20 backdrop-blur-md rounded-lg text-white hover:bg-white/40"><span class="material-symbols-outlined">zoom_in</span></button>
+<button class="p-2 bg-white/20 backdrop-blur-md rounded-lg text-white hover:bg-white/40"><span class="material-symbols-outlined">fullscreen</span></button>
+</div>
+</div>
+<div class="mt-8 space-y-6">
+<div class="group">
+<label class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Licensee Name</label>
+<p class="text-lg font-bold text-on-surface">Dr. Ahmed Faisal Al-Saud</p>
+</div>
+<div class="group">
+<label class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">License Number</label>
+<p class="text-lg font-bold text-on-surface">09-R-M-008271</p>
+</div>
+<div class="group">
+<label class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Specialty</label>
+<p class="text-lg font-bold text-on-surface">Cardiology / Internal Med</p>
+</div>
+</div>
+</div>
+<!-- Right: Mumaris+ Verified Data -->
+<div class="p-8 bg-surface-container-low/30">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+<h3 class="text-sm font-bold text-secondary uppercase tracking-tight">Authority: Mumaris+</h3>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-[10px] font-bold text-emerald-600">Live API Link</span>
+</div>
+</div>
+<div class="aspect-[4/5] bg-white rounded-xl shadow-inner border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center p-8 text-center">
+<div class="w-16 h-16 bg-primary-fixed/50 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<h4 class="text-on-surface font-bold">Official Record View</h4>
+<p class="text-xs text-on-surface-variant px-4 mt-2 leading-relaxed">Regulatory data retrieved directly from SCFHS National Practitioner Database.</p>
+<div class="mt-6 w-full space-y-2">
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full w-4/5 bg-primary"></div>
+</div>
+<p class="text-[10px] font-bold text-slate-400 uppercase">Verification Integrity: Strong</p>
+</div>
+</div>
+<div class="mt-8 space-y-6">
+<div class="flex items-start justify-between">
+<div>
+<label class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">System Name Match</label>
+<p class="text-lg font-bold text-on-surface">Ahmed F. Al-Saud</p>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+<div class="flex items-start justify-between">
+<div>
+<label class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">System License Match</label>
+<p class="text-lg font-bold text-on-surface">09-R-M-008271</p>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+<div class="flex items-start justify-between">
+<div>
+<label class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Expiration Date</label>
+<p class="text-lg font-bold text-tertiary">2024-12-15</p>
+<p class="text-[10px] text-tertiary italic">Document claims 2025-01-01</p>
+</div>
+<span class="material-symbols-outlined text-tertiary">error</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Credential Variance Chips -->
+<div class="flex flex-wrap gap-4">
+<div class="bg-surface-container-high p-5 rounded-xl flex-1 min-w-[200px]">
+<p class="text-[10px] font-bold text-slate-500 uppercase mb-2">Classification</p>
+<div class="flex items-center gap-3">
+<div class="p-2 bg-white rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary">clinical_notes</span>
+</div>
+<p class="font-bold text-on-surface">Senior Registrar</p>
+</div>
+</div>
+<div class="bg-surface-container-high p-5 rounded-xl flex-1 min-w-[200px]">
+<p class="text-[10px] font-bold text-slate-500 uppercase mb-2">License Status</p>
+<div class="flex items-center gap-3">
+<div class="p-2 bg-white rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-emerald-600">how_to_reg</span>
+</div>
+<p class="font-bold text-on-surface">Active / Good Standing</p>
+</div>
+</div>
+<div class="bg-surface-container-high p-5 rounded-xl flex-1 min-w-[200px]">
+<p class="text-[10px] font-bold text-slate-500 uppercase mb-2">Workplace</p>
+<div class="flex items-center gap-3">
+<div class="p-2 bg-white rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<p class="font-bold text-on-surface">King Faisal Medical City</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Navigation Suppressed as per Task Rules for Focused Detail Views -->
+</body></html>

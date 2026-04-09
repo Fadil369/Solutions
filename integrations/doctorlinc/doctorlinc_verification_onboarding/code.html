@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DoctorLinc Verification Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#a96039",
+                    "primary-fixed": "#93f2f2",
+                    "secondary-fixed": "#dce1ff",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f7f9fb",
+                    "on-secondary-fixed-variant": "#264191",
+                    "primary-fixed-dim": "#76d6d5",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-container": "#8fa7fe",
+                    "on-secondary-container": "#1d3989",
+                    "on-secondary-fixed": "#00164e",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "outline": "#6e7979",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "tertiary": "#8b4823",
+                    "inverse-surface": "#2d3133",
+                    "outline-variant": "#bdc9c8",
+                    "on-tertiary-fixed-variant": "#733512",
+                    "surface-tint": "#006a6a",
+                    "on-tertiary-fixed": "#341100",
+                    "on-background": "#191c1e",
+                    "error": "#ba1a1a",
+                    "surface-container": "#eceef0",
+                    "on-surface": "#191c1e",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#3e4949",
+                    "on-tertiary-container": "#fff9f7",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#ffdbcb",
+                    "surface": "#f7f9fb",
+                    "on-primary-container": "#e3fffe",
+                    "surface-container-high": "#e6e8ea",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary": "#006565",
+                    "background": "#f7f9fb",
+                    "on-primary-fixed": "#002020",
+                    "surface-variant": "#e0e3e5",
+                    "surface-dim": "#d8dadc",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#76d6d5",
+                    "secondary-fixed-dim": "#b6c4ff",
+                    "secondary": "#4059aa",
+                    "primary-container": "#008080"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #006565 0%, #008080 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-6 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm z-50">
+<div class="flex items-center gap-4">
+<span class="text-2xl font-bold tracking-tighter text-teal-800 dark:text-teal-200">DoctorLinc</span>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-slate-600 cursor-pointer" data-icon="notifications">notifications</span>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User physician profile" data-alt="professional portrait of a male physician in a clinical setting with soft natural lighting and warm tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRpUUnm5AwVdMPONlfZWwZjD9OCMuQ8OfJq7g8rviqQFrpxX3zw1OixUH6uvvwmj5v7q9YNeUSm1RTec52f7RT1Wop92pNIhzOR2sVfUG5x6Z06RhfBqDKG25vGPHzf6a7CXevd5iPekD08Huw-55CDbaQPttvZMp8qYryou_soGoQ-3Y1zrEK4W2KcAyjhqu9jDTb-rssldN9NXdDuJ6rnjN15chLjPRYFBonvsoqyxi9xtcbzVSFAWX-ixced2kDzZQA1IP48w"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-12 px-6 max-w-6xl mx-auto flex flex-col lg:flex-row gap-12">
+<!-- Left Column: Progress & Benefits -->
+<section class="lg:w-1/3 flex flex-col gap-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-display-md font-extrabold tracking-tight text-on-surface leading-tight">Verification Hub</h1>
+<p class="text-body-lg text-on-surface-variant leading-relaxed">Complete your credentials to join the elite network of verified practitioners.</p>
+</div>
+<!-- Benefit Card -->
+<div class="p-6 bg-primary-container/10 rounded-xl border border-primary-container/20">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="verified_user">verified_user</span>
+<span class="text-label-md font-bold uppercase tracking-wider text-primary">Member Benefits</span>
+</div>
+<h3 class="text-headline-sm font-bold text-on-primary-fixed-variant mb-2">Unlock Shift Swaps and Peer Endorsements</h3>
+<p class="text-sm text-on-surface-variant">Verified members gain access to the clinical ledger, priority shift requests, and professional referral bonuses.</p>
+</div>
+<!-- Vertical Progress Tracker -->
+<div class="flex flex-col gap-8 relative">
+<!-- Vertical Line -->
+<div class="absolute left-6 top-8 bottom-8 w-0.5 bg-surface-container-highest"></div>
+<!-- Step 1 (Active) -->
+<div class="flex gap-6 relative z-10">
+<div class="w-12 h-12 rounded-full signature-gradient flex items-center justify-center text-white shadow-lg">
+<span class="font-bold">1</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-sm font-bold text-primary">Step 1: Identity</span>
+<span class="text-body-md font-medium text-on-surface">License &amp; ID Upload</span>
+<span class="text-xs text-on-surface-variant">In Progress</span>
+</div>
+</div>
+<!-- Step 2 (Pending) -->
+<div class="flex gap-6 relative z-10">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="font-bold">2</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-sm font-semibold text-on-surface-variant">Step 2: Experience</span>
+<span class="text-body-md font-medium text-on-surface-variant">Clinical Details</span>
+<span class="text-xs text-on-surface-variant">Pending</span>
+</div>
+</div>
+<!-- Step 3 (Pending) -->
+<div class="flex gap-6 relative z-10">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="font-bold">3</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-sm font-semibold text-on-surface-variant">Step 3: Authority</span>
+<span class="text-body-md font-medium text-on-surface-variant">SCFHS Integration</span>
+<span class="text-xs text-on-surface-variant">Locked</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Interactive Content -->
+<section class="lg:w-2/3 flex flex-col gap-6">
+<!-- Step 1 Content: Level 1 Verification -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/15">
+<div class="flex justify-between items-start mb-8">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-black uppercase rounded-full">Level 1</span>
+<span class="text-xs font-semibold text-outline">Est. 2 mins</span>
+</div>
+<h2 class="text-headline-md font-bold text-on-surface">Identity Verification</h2>
+<p class="text-body-md text-on-surface-variant">Please upload a clear scan of your Medical License or National Identification.</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-primary/20" data-icon="badge">badge</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<!-- Upload Box 1 -->
+<div class="group cursor-pointer border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center gap-3 transition-all hover:border-primary hover:bg-primary/5">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/20 group-hover:text-primary">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+</div>
+<div class="text-center">
+<p class="text-sm font-bold text-on-surface">Upload License</p>
+<p class="text-xs text-on-surface-variant">PDF, JPG up to 10MB</p>
+</div>
+</div>
+<!-- Upload Box 2 -->
+<div class="group cursor-pointer border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center gap-3 transition-all hover:border-primary hover:bg-primary/5">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container/20 group-hover:text-primary">
+<span class="material-symbols-outlined" data-icon="add_a_photo">add_a_photo</span>
+</div>
+<div class="text-center">
+<p class="text-sm font-bold text-on-surface">ID Document</p>
+<p class="text-xs text-on-surface-variant">Front &amp; Back Required</p>
+</div>
+</div>
+</div>
+<!-- Form Section -->
+<div class="flex flex-col gap-4">
+<label class="flex flex-col gap-2">
+<span class="text-label-md font-bold text-on-surface-variant">Full Name (As on License)</span>
+<input class="w-full bg-surface-container-high border-none rounded-md px-4 py-3 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Dr. Jane Smith" type="text"/>
+</label>
+<div class="flex gap-4">
+<label class="flex-1 flex flex-col gap-2">
+<span class="text-label-md font-bold text-on-surface-variant">License Number</span>
+<input class="w-full bg-surface-container-high border-none rounded-md px-4 py-3 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="MD-12345-678" type="text"/>
+</label>
+<label class="flex-1 flex flex-col gap-2">
+<span class="text-label-md font-bold text-on-surface-variant">Expiry Date</span>
+<input class="w-full bg-surface-container-high border-none rounded-md px-4 py-3 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" type="date"/>
+</label>
+</div>
+</div>
+</div>
+<!-- Level 2 Preview (Locked State) -->
+<div class="bg-surface-container p-6 rounded-xl border border-outline-variant/30 opacity-70">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-outline" data-icon="domain">domain</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-outline-variant/50 text-on-surface-variant text-[10px] font-black uppercase rounded-full">Level 2</span>
+<h3 class="font-bold text-on-surface">Professional Details</h3>
+</div>
+<p class="text-xs text-on-surface-variant">Hospital affiliation and specialty endorsements.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="lock">lock</span>
+</div>
+</div>
+<!-- Level 3 Preview (Locked State) -->
+<div class="bg-surface-container p-6 rounded-xl border border-outline-variant/30 opacity-70">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-outline" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-outline-variant/50 text-on-surface-variant text-[10px] font-black uppercase rounded-full">Level 3</span>
+<h3 class="font-bold text-on-surface">SCFHS Digital ID</h3>
+</div>
+<p class="text-xs text-on-surface-variant">Government-backed authority verification.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="lock">lock</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-4 flex justify-between items-center">
+<button class="px-6 py-3 text-sm font-bold text-primary hover:bg-primary-container/10 rounded-md transition-all">Save Progress &amp; Exit</button>
+<button class="signature-gradient px-10 py-3 rounded-md text-white font-bold text-sm shadow-md flex items-center gap-2 hover:scale-[1.02] active:scale-95 transition-all">
+<span>Continue to Level 2</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Contextual Footer Help -->
+<footer class="max-w-6xl mx-auto px-6 mt-12 mb-24 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-6 bg-surface-container-low rounded-xl flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="security">security</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface mb-1">Data Security</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Your documents are encrypted and stored in HIPAA-compliant medical servers.</p>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="support_agent">support_agent</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface mb-1">Live Support</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Having trouble? Our verification team is available 24/7 for assistance.</p>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="history">history</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface mb-1">Review Time</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Most verifications are processed within 4-6 hours by our clinical team.</p>
+</div>
+</div>
+</footer>
+<!-- Side Navigation Bar (Hidden on Mobile) -->
+<nav class="hidden lg:flex flex-col fixed left-0 top-0 h-full p-4 gap-2 bg-slate-50 dark:bg-slate-950 w-64 pt-20">
+<div class="flex flex-col gap-2 mb-8">
+<div class="p-4 bg-white dark:bg-slate-900 rounded-lg shadow-sm border border-slate-200/50">
+<div class="flex items-center gap-3">
+<img alt="Dr. User Profile" class="w-10 h-10 rounded-full" data-alt="close up of a professional doctor's profile photo with neutral background and sharp lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9wkZrENuXcUD7p6WGpDUV1FLCuXyYLAQWKUghXrmitk0JppMV2hN93aBpLGwOgRvJSDEIVWPLE1gOCCDY15ADtCuefgSU0_dmcnL6XJfC_mc-ZRUpWLTqVak6SdObahGsiATw1p-4ISGRT9k1XwaqHiDDZK5wXj-pJ5TngMIPZb7Xny0eR1g1emq-Yq87OHIu8zABKEIpuEJBcqznBh60je3_1rNSmZkQKmjoV6hLumkGWe__A2UWMerrSP5qjffohWSjrx1oyg"/>
+<div class="flex flex-col">
+<span class="text-sm font-black text-teal-900 dark:text-teal-100">Dr. Smith</span>
+<span class="text-[10px] font-medium text-slate-500 uppercase tracking-widest">Verified Surgeon</span>
+</div>
+</div>
+</div>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-teal-600 hover:bg-teal-50/50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-900 text-teal-700 dark:text-teal-400 shadow-sm rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="text-sm font-medium">My Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-teal-600 hover:bg-teal-50/50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="text-sm font-medium">Shift Swaps</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-teal-600 hover:bg-teal-50/50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="group_add">group_add</span>
+<span class="text-sm font-medium">Referrals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-teal-600 hover:bg-teal-50/50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="text-sm font-medium">CME Tracker</span>
+</a>
+<div class="mt-auto">
+<button class="w-full signature-gradient text-white py-3 rounded-lg font-bold text-sm hover:opacity-90 transition-all">
+                Start Consultation
+            </button>
+</div>
+</nav>
+</body></html>
