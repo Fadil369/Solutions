@@ -9,6 +9,9 @@ A collection of projects, tools, and skill frameworks.
 | Page | URL |
 |------|-----|
 | Main landing | `/` |
+| Integrations hub | `/integrations/` |
+| DoctorLinc integration | `/integrations/doctorlinc/` |
+| ED-Flow integration | `/integrations/ed-flow/` |
 | HealthBridge Platform | `/healthbridge/` |
 | Downloads | `/healthbridge/downloads.html` |
 | FlowClinic Kiosk Demo | `/healthbridge/demos/flowclinic-kiosk/` |
@@ -24,6 +27,7 @@ Four edge workers deployed under your Cloudflare account:
 | `nphies-proxy` | `/api/nphies/*` | KV: FHIR cache |
 | `document-store` | `/api/documents/*` | R2: clinical docs |
 | `compliance-db` | `/api/compliance/*` | D1: CBAHI/claims DB |
+| `ed-flow` | `/ed/*`, `/webhooks/n8n/*` | KV: ED sessions, metrics |
 
 See [`workers/README.md`](workers/README.md) for full API reference and setup.
 

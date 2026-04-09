@@ -1,0 +1,21 @@
+name = "healthbridge-ed-flow"
+main = "src/index.ts"
+compatibility_date = "2024-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+[[kv_namespaces]]
+binding = "SESSION_KV"
+id = "REPLACE_WITH_ED_SESSION_KV_ID"
+preview_id = "REPLACE_WITH_ED_SESSION_KV_PREVIEW_ID"
+
+[[kv_namespaces]]
+binding = "METRICS_KV"
+id = "REPLACE_WITH_ED_METRICS_KV_ID"
+preview_id = "REPLACE_WITH_ED_METRICS_KV_PREVIEW_ID"
+
+[vars]
+ENVIRONMENT = "production"
+BACKEND_URL = "https://ed-flow-backend.example.com"
+N8N_WEBHOOK_URL = "https://n8n.example.com/webhook/ed-flow"
+ALLOWED_ORIGINS = "https://fadil369.github.io,https://healthbridge.pages.dev"
+DEFAULT_HOSPITAL_CODE = "NGHA"

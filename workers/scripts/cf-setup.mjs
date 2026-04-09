@@ -58,6 +58,16 @@ const nphiesCacheId = nphiesCacheKv.match(/id = "([^"]+)"/)?.[1];
 const nphiesCacheKvPreview = run('npx wrangler kv namespace create NPHIES_CACHE_KV --preview');
 const nphiesCachePreviewId = nphiesCacheKvPreview.match(/id = "([^"]+)"/)?.[1];
 
+const edSessionKv = run('npx wrangler kv namespace create ED_SESSION_KV');
+const edSessionId = edSessionKv.match(/id = "([^"]+)"/)?.[1];
+const edSessionKvPreview = run('npx wrangler kv namespace create ED_SESSION_KV --preview');
+const edSessionPreviewId = edSessionKvPreview.match(/id = "([^"]+)"/)?.[1];
+
+const edMetricsKv = run('npx wrangler kv namespace create ED_METRICS_KV');
+const edMetricsId = edMetricsKv.match(/id = "([^"]+)"/)?.[1];
+const edMetricsKvPreview = run('npx wrangler kv namespace create ED_METRICS_KV --preview');
+const edMetricsPreviewId = edMetricsKvPreview.match(/id = "([^"]+)"/)?.[1];
+
 // ── D1 Database ────────────────────────────────────────────────────
 console.log('\nCreating D1 database...');
 const d1Output = run('npx wrangler d1 create healthbridge-compliance');
@@ -83,6 +93,12 @@ if (nphiesCachePreviewId) patchToml(nphiesProxyToml, 'REPLACE_WITH_NPHIES_CACHE_
 
 const complianceToml = resolve(workersDir, 'compliance-db/wrangler.toml');
 if (d1Id) patchToml(complianceToml, 'REPLACE_WITH_D1_DATABASE_ID', d1Id);
+
+const edFlowToml = resolve(workersDir, 'ed-flow/wrangler.toml');
+if (edSessionId) patchToml(edFlowToml, 'REPLACE_WITH_ED_SESSION_KV_ID', edSessionId);
+if (edSessionPreviewId) patchToml(edFlowToml, 'REPLACE_WITH_ED_SESSION_KV_PREVIEW_ID', edSessionPreviewId);
+if (edMetricsId) patchToml(edFlowToml, 'REPLACE_WITH_ED_METRICS_KV_ID', edMetricsId);
+if (edMetricsPreviewId) patchToml(edFlowToml, 'REPLACE_WITH_ED_METRICS_KV_PREVIEW_ID', edMetricsPreviewId);
 
 console.log('\n✅ Cloudflare resources created and wrangler.toml files updated!');
 console.log('\nNext steps:');
