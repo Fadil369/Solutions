@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solutions — KSA Digital Health Platform</title>
+  <meta name="description" content="HealthBridge KSA: NPHIES compliance middleware, patient flow optimization, and CBAHI accreditation tools for Saudi healthcare facilities." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0f;
+      --surface: #16161a;
+      --border: #2a2a2e;
+      --accent: #4fc3f7;
+      --accent2: #7c4dff;
+      --text: #e2e2e8;
+      --muted: #888;
+      --success: #66bb6a;
+      --warning: #ffb300;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand { font-weight: 700; color: var(--accent); font-size: 1.05em; letter-spacing: -0.01em; text-decoration: none; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9em; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 96px 24px 64px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(79,195,247,0.1); border: 1px solid rgba(79,195,247,0.25);
+      color: var(--accent); border-radius: 999px;
+      padding: 4px 14px; font-size: 0.8em; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2em, 5vw, 3.2em);
+      font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1.15; margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 1.15em; color: var(--muted);
+      max-width: 600px; margin: 0 auto 36px;
+    }
+    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 8px;
+      font-weight: 600; font-size: 0.95em; text-decoration: none;
+      transition: transform 0.15s, opacity 0.15s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-1px); opacity: 0.9; }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+
+    /* SECTION */
+    section { max-width: 1100px; margin: 0 auto; padding: 64px 24px; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75em; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 12px;
+    }
+    section > h2 {
+      font-size: clamp(1.4em, 3vw, 2em);
+      font-weight: 700; letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    section > .sub { color: var(--muted); margin-bottom: 40px; font-size: 1em; }
+
+    /* PRODUCTS GRID */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.15s, transform 0.15s;
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column;
+    }
+    .product-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .product-icon { font-size: 2em; margin-bottom: 12px; }
+    .product-card h3 { font-size: 1em; font-weight: 700; margin-bottom: 6px; }
+    .product-card p { font-size: 0.85em; color: var(--muted); flex: 1; }
+    .product-tag {
+      display: inline-block; margin-top: 12px;
+      background: rgba(79,195,247,0.1); color: var(--accent);
+      border-radius: 4px; padding: 2px 8px; font-size: 0.75em;
+    }
+
+    /* INFRA SECTION */
+    .infra-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .infra-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 20px;
+    }
+    .infra-card .icon { font-size: 1.6em; margin-bottom: 8px; }
+    .infra-card h4 { font-size: 0.9em; font-weight: 700; margin-bottom: 4px; }
+    .infra-card p { font-size: 0.8em; color: var(--muted); }
+    .infra-badge {
+      display: inline-block; margin-top: 8px;
+      border-radius: 4px; padding: 2px 8px; font-size: 0.7em; font-weight: 600;
+    }
+    .badge-kv { background: rgba(255,179,0,0.15); color: var(--warning); }
+    .badge-d1 { background: rgba(124,77,255,0.15); color: #b39ddb; }
+    .badge-r2 { background: rgba(102,187,106,0.15); color: var(--success); }
+    .badge-worker { background: rgba(79,195,247,0.15); color: var(--accent); }
+
+    /* STATS BAR */
+    .stats-bar {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px 32px;
+      margin-bottom: 48px;
+    }
+    .stat-item { flex: 1; min-width: 120px; }
+    .stat-num { font-size: 1.8em; font-weight: 800; color: var(--accent); line-height: 1; }
+    .stat-lbl { font-size: 0.8em; color: var(--muted); margin-top: 4px; }
+
+    /* WORKERS TABLE */
+    .workers-table { width: 100%; border-collapse: collapse; }
+    .workers-table th, .workers-table td {
+      text-align: left; padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875em;
+    }
+    .workers-table th { color: var(--muted); font-weight: 600; }
+    .workers-table tr:last-child td { border-bottom: none; }
+    .workers-table code {
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px; padding: 2px 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85em;
+    }
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    /* DEPLOY STEPS */
+    .steps { list-style: none; counter-reset: steps; }
+    .steps li {
+      counter-increment: steps;
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+    }
+    .steps li:last-child { border-bottom: none; }
+    .step-num {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      background: rgba(79,195,247,0.1);
+      border: 1px solid rgba(79,195,247,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8em; font-weight: 700; color: var(--accent);
+    }
+    .step-num::before { content: counter(steps); }
+    .step-body h4 { font-size: 0.9em; font-weight: 600; margin-bottom: 4px; }
+    .step-body p { font-size: 0.82em; color: var(--muted); }
+    .step-body code {
+      background: rgba(255,255,255,0.06); border-radius: 4px;
+      padding: 2px 6px; font-size: 0.82em; font-family: monospace;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px; text-align: center;
+      color: var(--muted); font-size: 0.82em;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .stats-bar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">⚕ HealthBridge KSA</a>
+  <div class="nav-links">
+    <a href="#products">Products</a>
+    <a href="#infrastructure">Infrastructure</a>
+    <a href="#workers">Workers API</a>
+    <a href="#deploy">Deploy</a>
+    <a href="healthbridge/index.html">Platform</a>
+    <a href="https://github.com/Fadil369/Solutions" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🇸🇦 Saudi Healthcare IT Platform</div>
+  <h1>NPHIES Compliance,<br/><span>Delivered at the Edge</span></h1>
+  <p>Four integrated products connecting Saudi healthcare facilities to NPHIES, optimizing patient flow, and recovering CBAHI accreditation — all running on Cloudflare's global edge.</p>
+  <div class="hero-ctas">
+    <a class="btn btn-primary" href="healthbridge/index.html">Explore Platform →</a>
+    <a class="btn btn-secondary" href="https://github.com/Fadil369/Solutions" target="_blank">View on GitHub</a>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<section id="products">
+  <div class="section-label">Products</div>
+  <h2>Four Products, One Platform</h2>
+  <p class="sub">Each product solves a distinct pain point faced by Saudi healthcare facilities.</p>
+  <div class="products-grid">
+    <a class="product-card" href="healthbridge/index.html#nphies">
+      <div class="product-icon">🔗</div>
+      <h3>NPHIES Survival Bridge</h3>
+      <p>Compliance middleware connecting legacy PMS systems to Saudi Arabia's national insurance exchange. Drop-in adapter, no PMS replacement required.</p>
+      <span class="product-tag">FHIR R4 · NPHIES API</span>
+    </a>
+    <a class="product-card" href="healthbridge/index.html#flowclinic">
+      <div class="product-icon">🏥</div>
+      <h3>FlowClinic Express</h3>
+      <p>Patient flow optimizer for high-volume polyclinics. Bilingual kiosk, real-time queue management, and SMS notifications via Twilio.</p>
+      <span class="product-tag">Arabic/English · RTL</span>
+    </a>
+    <a class="product-card" href="healthbridge/index.html#cbahi">
+      <div class="product-icon">📋</div>
+      <h3>CBAHI Remediation Suite</h3>
+      <p>Accreditation recovery tools for hospitals with Denial or Conditional status. Gap tracking, evidence upload, and survey readiness scoring.</p>
+      <span class="product-tag">CBAHI Standards · Audit</span>
+    </a>
+    <a class="product-card" href="healthbridge/index.html#forms">
+      <div class="product-icon">🦷</div>
+      <h3>Specialty Smart-Forms</h3>
+      <p>NPHIES-compliant clinical modules for Dental, Dermatology, and Ophthalmology. Interactive tooth charts, lesion mapping, and visual acuity grids.</p>
+      <span class="product-tag">Dental · Derma · Ophtha</span>
+    </a>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section id="infrastructure">
+  <div class="section-label">Infrastructure</div>
+  <h2>Edge-Native Architecture</h2>
+  <p class="sub">Built on Cloudflare Workers with KV, D1, and R2 — globally distributed, KSA-compliant data residency.</p>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-lbl">CF Workers</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2</div>
+      <div class="stat-lbl">KV Namespaces</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1</div>
+      <div class="stat-lbl">D1 Database</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1</div>
+      <div class="stat-lbl">R2 Bucket</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">TLS 1.3</div>
+      <div class="stat-lbl">All Transit</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">AES-256</div>
+      <div class="stat-lbl">At Rest</div>
+    </div>
+  </div>
+
+  <div class="infra-grid">
+    <div class="infra-card">
+      <div class="icon">🚪</div>
+      <h4>API Gateway</h4>
+      <p>Central edge router with JWT auth, CORS, and rate limiting. Routes to all backend services.</p>
+      <span class="infra-badge badge-worker">Worker</span>
+      <span class="infra-badge badge-kv">KV: Sessions</span>
+    </div>
+    <div class="infra-card">
+      <div class="icon">🔄</div>
+      <h4>NPHIES Proxy</h4>
+      <p>Caching proxy for NPHIES API. Reduces duplicate eligibility calls, improves claim throughput.</p>
+      <span class="infra-badge badge-worker">Worker</span>
+      <span class="infra-badge badge-kv">KV: Cache</span>
+    </div>
+    <div class="infra-card">
+      <div class="icon">📁</div>
+      <h4>Document Store</h4>
+      <p>Clinical document management: discharge summaries, CBAHI evidence, audit files.</p>
+      <span class="infra-badge badge-worker">Worker</span>
+      <span class="infra-badge badge-r2">R2: Docs</span>
+    </div>
+    <div class="infra-card">
+      <div class="icon">🗄️</div>
+      <h4>Compliance DB</h4>
+      <p>CBAHI findings, claim records, facility profiles, and audit logs — SQLite at the edge.</p>
+      <span class="infra-badge badge-worker">Worker</span>
+      <span class="infra-badge badge-d1">D1: Records</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section id="workers">
+  <div class="section-label">Workers API</div>
+  <h2>Cloudflare Workers Endpoints</h2>
+  <p class="sub">All workers are deployed under your Cloudflare account zone. Replace <code>YOUR_ZONE</code> with your actual subdomain.</p>
+
+  <div class="table-wrap">
+    <table class="workers-table">
+      <thead>
+        <tr>
+          <th>Worker</th>
+          <th>Base Route</th>
+          <th>Bindings</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>api-gateway</strong></td>
+          <td><code>/api/*</code></td>
+          <td><span class="infra-badge badge-kv">SESSIONS_KV</span> <span class="infra-badge badge-kv">RATELIMIT_KV</span></td>
+          <td>Auth, CORS, routing, rate limiting</td>
+        </tr>
+        <tr>
+          <td><strong>nphies-proxy</strong></td>
+          <td><code>/api/nphies/*</code></td>
+          <td><span class="infra-badge badge-kv">NPHIES_CACHE_KV</span></td>
+          <td>NPHIES FHIR R4 proxy with caching</td>
+        </tr>
+        <tr>
+          <td><strong>document-store</strong></td>
+          <td><code>/api/documents/*</code></td>
+          <td><span class="infra-badge badge-r2">DOCUMENTS_R2</span></td>
+          <td>Clinical document upload/retrieval</td>
+        </tr>
+        <tr>
+          <td><strong>compliance-db</strong></td>
+          <td><code>/api/compliance/*</code></td>
+          <td><span class="infra-badge badge-d1">COMPLIANCE_DB</span></td>
+          <td>CBAHI findings, audit log, facilities</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <table class="workers-table">
+      <thead>
+        <tr>
+          <th>Endpoint</th>
+          <th>Method</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>POST /api/auth/token</code></td><td>POST</td><td>Issue JWT session token (stored in KV)</td></tr>
+        <tr><td><code>GET /api/nphies/eligibility/:memberId</code></td><td>GET</td><td>Eligibility check with 5-min KV cache</td></tr>
+        <tr><td><code>POST /api/nphies/claims</code></td><td>POST</td><td>Submit FHIR claim bundle to NPHIES</td></tr>
+        <tr><td><code>PUT /api/documents/:facilityId/:type/:id</code></td><td>PUT</td><td>Upload clinical document to R2</td></tr>
+        <tr><td><code>GET /api/documents/:facilityId/:type/:id</code></td><td>GET</td><td>Retrieve document from R2</td></tr>
+        <tr><td><code>GET /api/compliance/facilities</code></td><td>GET</td><td>List facilities from D1</td></tr>
+        <tr><td><code>GET /api/compliance/findings/:facilityId</code></td><td>GET</td><td>CBAHI findings by facility from D1</td></tr>
+        <tr><td><code>POST /api/compliance/findings</code></td><td>POST</td><td>Create/update CBAHI finding in D1</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section id="deploy">
+  <div class="section-label">Deployment</div>
+  <h2>One-Click Deploy</h2>
+  <p class="sub">Configure two GitHub secrets, then every push to <code>main</code> auto-deploys Pages and Workers.</p>
+
+  <ul class="steps">
+    <li>
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Fork &amp; Clone the Repository</h4>
+        <p>Fork <a href="https://github.com/Fadil369/Solutions" style="color:var(--accent)">Fadil369/Solutions</a> and clone it locally.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Add GitHub Secrets</h4>
+        <p>In your repo → Settings → Secrets and variables → Actions, add: <code>CF_API_TOKEN</code> (Cloudflare API token with Workers + KV + D1 + R2 edit permissions) and <code>CF_ACCOUNT_ID</code> (your Cloudflare account ID).</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Create Cloudflare Resources</h4>
+        <p>Run <code>npm run cf:setup</code> from the <code>workers/</code> directory. This creates the KV namespaces, D1 database, and R2 bucket via Wrangler, then patches <code>wrangler.toml</code> IDs automatically.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Push to Main</h4>
+        <p>Push any change to <code>main</code>. The <code>deploy-pages</code> and <code>deploy-workers</code> workflows run in parallel — Pages deploys in ~30s, Workers in ~60s.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Enable GitHub Pages</h4>
+        <p>In your repo → Settings → Pages, set Source to <strong>GitHub Actions</strong>. Your site will be live at <code>https://your-username.github.io/Solutions/</code>.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<footer>
+  <p>HealthBridge KSA Digital Health Platform · Built for Saudi Arabia's 200+ under-served healthcare facilities</p>
+  <p style="margin-top:8px">
+    <a href="https://github.com/Fadil369/Solutions">GitHub</a> ·
+    <a href="healthbridge/index.html">Platform Docs</a> ·
+    <a href="healthbridge/downloads.html">Downloads</a>
+  </p>
+</footer>
+
+</body>
+</html>
